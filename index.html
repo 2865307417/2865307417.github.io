@@ -155,7 +155,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/archives">
-          <span class="site-state-item-count">3</span>
+          <span class="site-state-item-count">4</span>
           <span class="site-state-item-name">المقالات</span>
         </a>
       </div>
@@ -185,6 +185,126 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2020/12/30/aaa/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="maq谦">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="maq 谦's blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2020/12/30/aaa/" class="post-title-link" itemprop="url">aaa</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">نُشر في</span>
+      
+
+      <time title="أُنشأ: 2020-12-30 15:00:04 / عُدل: 15:00:27" itemprop="dateCreated datePublished" datetime="2020-12-30T15:00:04+08:00">2020-12-30</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>前言</p>
+<p>Kivy是一套Python下的跨平台开源应用开发框架，官网，我们可以用它来将Python程序打包为安卓的apk安装文件。以下是在win7  64位环境中的具体配置步骤（安装和配置的过程中会下载很多东西，确保你能够稳定地访问外网–即能访问YouTuBe等网站）</p>
+<p>一、环境配置</p>
+<p>1、安装python，我本地安装的是【python3.6.1】</p>
+<p>2、按照kivy官网操作，</p>
+<blockquote>
+<p>1、Ensure you have the latest pip, wheel, and virtualenv</p>
+</blockquote>
+<p>python36  -m  pip   install  –upgrade   pip   wheel  setuptools</p>
+<p>1</p>
+<blockquote>
+<p>2、Install the dependencies (skip gstreamer (~120MB) if not needed, see Kivy’s dependencies)</p>
+</blockquote>
+<p>python36  -m  pip   install  docutils   pygments  pypiwin32   kivy.deps.sdl2   kivy.deps.glew</p>
+<p>2<br>python36  -m  pip   install  kivy.deps.gstreamer</p>
+<p>3</p>
+<blockquote>
+<p>3、For Python 3.5+, you can also use the angle backend instead of glew. This can be installed with</p>
+</blockquote>
+<p>python36   -m   pip   install   kivy.deps.angle</p>
+<p>4</p>
+<blockquote>
+<p>4、Install kivy</p>
+</blockquote>
+<p>python36   -m   pip   install   kivy</p>
+<p>5</p>
+<blockquote>
+<p>5、(Optionally) Install the kivy examples</p>
+</blockquote>
+<p>python36  -m  pip  install   kivy_examples</p>
+<p>6</p>
+<blockquote>
+<p>6、The examples are installed in the share directory under the root directory where python is installed.</p>
+</blockquote>
+<p>That’s it. You should now be able to import kivy in python or run a basic example if you installed the kivy examples:</p>
+<p>pythonkivy_venv\share\kivy-examples\demo\showcase\main.py，写一个简单的程序main.py测试一下：</p>
+<p>7<br>运行结果</p>
+<p>8<br>运行成功，那开发环境基本没问题了。然后下面就是怎么将这个程序打包成apk。</p>
+<p>首先需要安装虚拟机 VirtualBox，这个没问题，很快就装好了，然后Kivy官方制作了该虚拟机的映像（很体贴），下载后就直接能运行了，省去不少麻烦。（kivy虚拟机映像下载地址：<a target="_blank" rel="noopener" href="https://kivy.org/#download%EF%BC%89%EF%BC%8C%E6%88%96%E8%80%85%E7%9B%B4%E6%8E%A5%E5%8E%BB%EF%BC%88kivy%E5%AE%98%E7%BD%91%E5%9C%B0%E5%9D%80%EF%BC%9Ahttps://kivy.org/doc/stable/installation/installation-windows.html#install-win-dist%EF%BC%89%E4%B8%8B%E8%BD%BD%EF%BC%9A">https://kivy.org/#download），或者直接去（kivy官网地址：https://kivy.org/doc/stable/installation/installation-windows.html#install-win-dist）下载：</a></p>
+<p>9<br>下载并解压之后，打开VB并载入该文件夹下的虚拟机文件，然后运行（登录密码kivy）：</p>
+<p>10<br>11<br>进入到该系统中之后，就需要开始配置环境，具体查看官网文档：<a target="_blank" rel="noopener" href="https://kivy.org/doc/stable/guide/packaging-android.html#packaging-your-application-into-apk%EF%BC%8C%E9%A6%96%E5%85%88%E6%88%91%E4%BB%AC%E5%85%88%E5%9C%A8%E8%AF%A5%E7%B3%BB%E7%BB%9F%E4%B8%AD%E6%B7%BB%E5%8A%A0%E4%B8%80%E4%B8%AA%E5%85%B1%E4%BA%AB%E6%96%87%E4%BB%B6%E5%A4%B9%EF%BC%8C%E8%BF%99%E6%A0%B7%E5%8F%AF%E4%BB%A5%E5%92%8Cwindows%E5%85%B1%E4%BA%AB%E6%96%87%E4%BB%B6%EF%BC%8C%E5%9C%A8VB%E7%9A%84%E8%AE%BE%E5%A4%87-&gt;%E5%85%B1%E4%BA%AB%E6%96%87%E4%BB%B6%E5%A4%B9%E9%80%89%E9%A1%B9%E4%B8%AD%E6%9C%89%E9%85%8D%E7%BD%AE%EF%BC%9A">https://kivy.org/doc/stable/guide/packaging-android.html#packaging-your-application-into-apk，首先我们先在该系统中添加一个共享文件夹，这样可以和windows共享文件，在VB的设备-&gt;共享文件夹选项中有配置：</a></p>
+<p>12<br>然后我们使用固定分配，在windows下某个路径新建一个文件夹后将其选择为共享文件夹，并选择自动挂载：</p>
+<p>13<br>然后重新启动虚拟机就可以访问该共享文件夹了：</p>
+<p>14<br>设置好了共享文件夹后，可以将之前写的测试程序main.py拷贝到该文件夹，然后在虚拟机中拷贝到桌面备用。然后打开终端（cd到桌面），执行buildozer init命令，之后会在桌面上生成buildozer.spec的配置文件:</p>
+<p>15<br>然后使用命令gedit buildozer.spec来编辑该文件，（如果没有gedit可以sudo apt-get install gedit来安装，记得虚拟机要能上网哦）</p>
+<p>16<br>基本不用改什么，那个source.dir 需要注意，这是刚刚我们放在桌面上的main.py的路径。</p>
+<p>然后运行buildozer android_new debug，接着就开始下载很多东西了，例如Android SDK,Android NDK之类，并且是需要访问外网的，自搭梯子。这个过程要很久，请耐心等待</p>
+<p>17<br>然后在它自动下载配置之后就会在桌面的bin文件夹下面生成了apk文件，可以安装在手机上试一下。</p>
+<p>然后基本流程大概如此^^，详细可以去官网了解。</p>
+<p>环境配置下载网址：</p>
+<p>1、kivy虚拟机映像下载地址：<a target="_blank" rel="noopener" href="https://kivy.org/#download">https://kivy.org/#download</a></p>
+<p>2、kivy官网地址：<a target="_blank" rel="noopener" href="https://kivy.org/doc/stable/installation/installation-windows.html#install-win-dist">https://kivy.org/doc/stable/installation/installation-windows.html#install-win-dist</a></p>
+<p>遇到的问题点：</p>
+<p>1、apt-get update 出现404 </p>
+<p>解决方法：<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_37591986/article/details/79840074">https://blog.csdn.net/qq_37591986/article/details/79840074</a></p>
+<p>作者：keitwo<br>链接：<a target="_blank" rel="noopener" href="https://www.jianshu.com/p/4fb4dc185fe9">https://www.jianshu.com/p/4fb4dc185fe9</a><br>来源：简书<br>著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
