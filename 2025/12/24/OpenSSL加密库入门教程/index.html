@@ -19,12 +19,12 @@
   <meta name="author" content="ddanggui">
   <meta name="keywords" content="">
   
-    <meta name="description" content="OpenSSL 加密库编程新手入门教程OpenSSL是一个功能强大的开源加密库，支持SSL&#x2F;TLS协议以及几乎所有主流的加密算法（对称、非对称、哈希等），广泛用于网络安全、数据加密等场景。下面从环境搭建、命令行快速上手、C语言编程示例三个维度带你入门。  一、环境搭建首先确保你的系统中安装了OpenSSL库和开发包（包含头文件和链接库）。 1. Linux（Ubuntu&#x2F;Deb">
+    <meta name="description" content="OpenSSL 加密库编程新手入门教程 OpenSSL是一个功能强大的开源加密库，支持SSL&#x2F;TLS协议以及几乎所有主流的加密算法（对称、非对称、哈希等），广泛用于网络安全、数据加密等场景。下面从环境搭建、命令行快速上手、C语言编程示例三个维度带你入门。  一、环境搭建 首先确保你的系统中安装了OpenSSL库和开发包（包含头文件和链接库）。 1. Linux（Ubuntu&#x2F;Debian） 1 2">
 <meta property="og:type" content="article">
 <meta property="og:title" content="OpenSSL加密库入门教程">
 <meta property="og:url" content="http://example.com/2025/12/24/OpenSSL%E5%8A%A0%E5%AF%86%E5%BA%93%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B/index.html">
 <meta property="og:site_name" content="ddanggui&#39;s 博客">
-<meta property="og:description" content="OpenSSL 加密库编程新手入门教程OpenSSL是一个功能强大的开源加密库，支持SSL&#x2F;TLS协议以及几乎所有主流的加密算法（对称、非对称、哈希等），广泛用于网络安全、数据加密等场景。下面从环境搭建、命令行快速上手、C语言编程示例三个维度带你入门。  一、环境搭建首先确保你的系统中安装了OpenSSL库和开发包（包含头文件和链接库）。 1. Linux（Ubuntu&#x2F;Deb">
+<meta property="og:description" content="OpenSSL 加密库编程新手入门教程 OpenSSL是一个功能强大的开源加密库，支持SSL&#x2F;TLS协议以及几乎所有主流的加密算法（对称、非对称、哈希等），广泛用于网络安全、数据加密等场景。下面从环境搭建、命令行快速上手、C语言编程示例三个维度带你入门。  一、环境搭建 首先确保你的系统中安装了OpenSSL库和开发包（包含头文件和链接库）。 1. Linux（Ubuntu&#x2F;Debian） 1 2">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2025-12-24T04:18:56.000Z">
 <meta property="article:modified_time" content="2025-12-24T05:04:01.921Z">
@@ -222,7 +222,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.6k 字
+          1.5k 字
         
       </span>
     
@@ -233,7 +233,7 @@
         
         
         
-          14 分钟
+          13 分钟
         
       </span>
     
@@ -275,22 +275,28 @@
             
               <div class="markdown-body">
                 
-                <h1 id="OpenSSL-加密库编程新手入门教程"><a href="#OpenSSL-加密库编程新手入门教程" class="headerlink" title="OpenSSL 加密库编程新手入门教程"></a>OpenSSL 加密库编程新手入门教程</h1><p>OpenSSL是一个功能强大的开源加密库，支持SSL&#x2F;TLS协议以及几乎所有主流的加密算法（对称、非对称、哈希等），广泛用于网络安全、数据加密等场景。下面从<strong>环境搭建</strong>、<strong>命令行快速上手</strong>、<strong>C语言编程示例</strong>三个维度带你入门。</p>
+                <h1>OpenSSL 加密库编程新手入门教程</h1>
+<p>OpenSSL是一个功能强大的开源加密库，支持SSL/TLS协议以及几乎所有主流的加密算法（对称、非对称、哈希等），广泛用于网络安全、数据加密等场景。下面从<strong>环境搭建</strong>、<strong>命令行快速上手</strong>、<strong>C语言编程示例</strong>三个维度带你入门。</p>
 <hr>
-<h2 id="一、环境搭建"><a href="#一、环境搭建" class="headerlink" title="一、环境搭建"></a>一、环境搭建</h2><p>首先确保你的系统中安装了OpenSSL库和开发包（包含头文件和链接库）。</p>
-<h3 id="1-Linux（Ubuntu-Debian）"><a href="#1-Linux（Ubuntu-Debian）" class="headerlink" title="1. Linux（Ubuntu&#x2F;Debian）"></a>1. Linux（Ubuntu&#x2F;Debian）</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs Bash"><br></code></pre></td></tr></table></figure>
-
-<h3 id="2-macOS"><a href="#2-macOS" class="headerlink" title="2. macOS"></a>2. macOS</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs Bash"><br></code></pre></td></tr></table></figure>
-
-<h3 id="3-Windows"><a href="#3-Windows" class="headerlink" title="3. Windows"></a>3. Windows</h3><p>推荐使用MinGW-w64或MSYS2：</p>
+<h2 id="一、环境搭建">一、环境搭建</h2>
+<p>首先确保你的系统中安装了OpenSSL库和开发包（包含头文件和链接库）。</p>
+<h3 id="1-Linux（Ubuntu-Debian）">1. Linux（Ubuntu/Debian）</h3>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs Bash"><br></code></pre></td></tr></table></figure>
+<h3 id="2-macOS">2. macOS</h3>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs Bash"><br></code></pre></td></tr></table></figure>
+<h3 id="3-Windows">3. Windows</h3>
+<p>推荐使用MinGW-w64或MSYS2：</p>
 <ul>
-<li><p>安装MSYS2后，执行 <code>pacman -S openssl openssl-devel</code></p>
+<li>
+<p>安装MSYS2后，执行 <code>pacman -S openssl openssl-devel</code></p>
 </li>
-<li><p>也可下载预编译的OpenSSL安装包（<a target="_blank" rel="noopener" href="https://www.openssl.org/">官网</a>），注意选择32&#x2F;64位版本。</p>
+<li>
+<p>也可下载预编译的OpenSSL安装包（<a target="_blank" rel="noopener" href="https://www.openssl.org/">官网</a>），注意选择32/64位版本。</p>
 </li>
 </ul>
 <hr>
-<h2 id="二、OpenSSL核心概念（新手必懂）"><a href="#二、OpenSSL核心概念（新手必懂）" class="headerlink" title="二、OpenSSL核心概念（新手必懂）"></a>二、OpenSSL核心概念（新手必懂）</h2><p>先理清3类核心操作，避免混淆：</p>
+<h2 id="二、OpenSSL核心概念（新手必懂）">二、OpenSSL核心概念（新手必懂）</h2>
+<p>先理清3类核心操作，避免混淆：</p>
 <table>
 <thead>
 <tr>
@@ -300,7 +306,8 @@
 <th>适用场景</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td>哈希（摘要）</td>
 <td>不可逆，固定长度输出</td>
 <td>MD5、SHA256</td>
@@ -318,72 +325,96 @@
 <td>RSA、ECC</td>
 <td>密钥交换、数字签名</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
 <hr>
-<h2 id="三、命令行快速上手（先体验，再编程）"><a href="#三、命令行快速上手（先体验，再编程）" class="headerlink" title="三、命令行快速上手（先体验，再编程）"></a>三、命令行快速上手（先体验，再编程）</h2><p>新手先通过命令行熟悉OpenSSL的核心功能，直观感受加密效果。</p>
-<h3 id="1-哈希（摘要）计算"><a href="#1-哈希（摘要）计算" class="headerlink" title="1. 哈希（摘要）计算"></a>1. 哈希（摘要）计算</h3><p>以SHA256为例（MD5已不安全，仅作示例）：</p>
+<h2 id="三、命令行快速上手（先体验，再编程）">三、命令行快速上手（先体验，再编程）</h2>
+<p>新手先通过命令行熟悉OpenSSL的核心功能，直观感受加密效果。</p>
+<h3 id="1-哈希（摘要）计算">1. 哈希（摘要）计算</h3>
+<p>以SHA256为例（MD5已不安全，仅作示例）：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs Bash"><br></code></pre></td></tr></table></figure>
-
-<h3 id="2-AES对称加密（AES-256-CBC模式）"><a href="#2-AES对称加密（AES-256-CBC模式）" class="headerlink" title="2. AES对称加密（AES-256-CBC模式）"></a>2. AES对称加密（AES-256-CBC模式）</h3><p>CBC模式需要<strong>密钥</strong>和<strong>初始化向量（IV）</strong>，IV需随机且长度与算法块大小一致（AES块大小16字节）。</p>
+<h3 id="2-AES对称加密（AES-256-CBC模式）">2. AES对称加密（AES-256-CBC模式）</h3>
+<p>CBC模式需要<strong>密钥</strong>和<strong>初始化向量（IV）</strong>，IV需随机且长度与算法块大小一致（AES块大小16字节）。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs Bash"><br></code></pre></td></tr></table></figure>
-
 <p>参数说明：</p>
 <ul>
-<li><p><code>-e</code>：加密，<code>-d</code>：解密</p>
+<li>
+<p><code>-e</code>：加密，<code>-d</code>：解密</p>
 </li>
-<li><p><code>-k</code>：指定密钥（实际开发中建议用文件传入，避免明文暴露）</p>
+<li>
+<p><code>-k</code>：指定密钥（实际开发中建议用文件传入，避免明文暴露）</p>
 </li>
-<li><p><code>-iv</code>：指定初始化向量（16字节）</p>
+<li>
+<p><code>-iv</code>：指定初始化向量（16字节）</p>
 </li>
 </ul>
-<h3 id="3-RSA非对称加密"><a href="#3-RSA非对称加密" class="headerlink" title="3. RSA非对称加密"></a>3. RSA非对称加密</h3><p>步骤：生成密钥对 → 公钥加密 → 私钥解密。</p>
+<h3 id="3-RSA非对称加密">3. RSA非对称加密</h3>
+<p>步骤：生成密钥对 → 公钥加密 → 私钥解密。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs Bash"><br></code></pre></td></tr></table></figure>
-
 <hr>
-<h2 id="四、C语言编程入门（核心）"><a href="#四、C语言编程入门（核心）" class="headerlink" title="四、C语言编程入门（核心）"></a>四、C语言编程入门（核心）</h2><p>OpenSSL的核心价值是嵌入到代码中使用，下面给出2个最常用的示例（AES对称加密、RSA非对称加密），代码可直接编译运行。</p>
-<h3 id="前置说明"><a href="#前置说明" class="headerlink" title="前置说明"></a>前置说明</h3><p>编译命令（以Linux为例）：</p>
+<h2 id="四、C语言编程入门（核心）">四、C语言编程入门（核心）</h2>
+<p>OpenSSL的核心价值是嵌入到代码中使用，下面给出2个最常用的示例（AES对称加密、RSA非对称加密），代码可直接编译运行。</p>
+<h3 id="前置说明">前置说明</h3>
+<p>编译命令（以Linux为例）：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs Bash"><br></code></pre></td></tr></table></figure>
-
-<h3 id="示例1：AES-256-CBC加密解密"><a href="#示例1：AES-256-CBC加密解密" class="headerlink" title="示例1：AES-256-CBC加密解密"></a>示例1：AES-256-CBC加密解密</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs C"><br></code></pre></td></tr></table></figure>
-
-<h4 id="代码关键解释："><a href="#代码关键解释：" class="headerlink" title="代码关键解释："></a>代码关键解释：</h4><ul>
-<li><p><code>AES_set_encrypt_key/decrypt_key</code>：初始化加密&#x2F;解密密钥上下文；</p>
+<h3 id="示例1：AES-256-CBC加密解密">示例1：AES-256-CBC加密解密</h3>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs C"><br></code></pre></td></tr></table></figure>
+<h4 id="代码关键解释：">代码关键解释：</h4>
+<ul>
+<li>
+<p><code>AES_set_encrypt_key/decrypt_key</code>：初始化加密/解密密钥上下文；</p>
 </li>
-<li><p><code>AES_cbc_encrypt</code>：CBC模式加密&#x2F;解密（最后一个参数指定<code>AES_ENCRYPT</code>&#x2F;<code>AES_DECRYPT</code>）；</p>
+<li>
+<p><code>AES_cbc_encrypt</code>：CBC模式加密/解密（最后一个参数指定<code>AES_ENCRYPT</code>/<code>AES_DECRYPT</code>）；</p>
 </li>
-<li><p>实际开发中，<strong>密钥和IV必须随机生成</strong>（可通过<code>RAND_bytes</code>函数生成），不能硬编码。</p>
+<li>
+<p>实际开发中，<strong>密钥和IV必须随机生成</strong>（可通过<code>RAND_bytes</code>函数生成），不能硬编码。</p>
 </li>
 </ul>
-<h3 id="示例2：RSA加解密（生成密钥对-加密-解密）"><a href="#示例2：RSA加解密（生成密钥对-加密-解密）" class="headerlink" title="示例2：RSA加解密（生成密钥对+加密+解密）"></a>示例2：RSA加解密（生成密钥对+加密+解密）</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs C"><br></code></pre></td></tr></table></figure>
-
-<h4 id="代码关键解释：-1"><a href="#代码关键解释：-1" class="headerlink" title="代码关键解释："></a>代码关键解释：</h4><ul>
-<li><p><code>RSA_generate_key_ex</code>：生成RSA密钥对（2048位是安全的最小长度）；</p>
+<h3 id="示例2：RSA加解密（生成密钥对-加密-解密）">示例2：RSA加解密（生成密钥对+加密+解密）</h3>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs C"><br></code></pre></td></tr></table></figure>
+<h4 id="代码关键解释：-2">代码关键解释：</h4>
+<ul>
+<li>
+<p><code>RSA_generate_key_ex</code>：生成RSA密钥对（2048位是安全的最小长度）；</p>
 </li>
-<li><p><code>RSA_public_encrypt</code>：公钥加密（<code>RSA_PKCS1_PADDING</code>是常用填充方式，避免明文攻击）；</p>
+<li>
+<p><code>RSA_public_encrypt</code>：公钥加密（<code>RSA_PKCS1_PADDING</code>是常用填充方式，避免明文攻击）；</p>
 </li>
-<li><p><code>RSA_private_decrypt</code>：私钥解密，填充方式需和加密一致；</p>
+<li>
+<p><code>RSA_private_decrypt</code>：私钥解密，填充方式需和加密一致；</p>
 </li>
-<li><p>RSA不适合加密大文件，通常用于加密对称加密的密钥，再用对称加密处理大文件。</p>
+<li>
+<p>RSA不适合加密大文件，通常用于加密对称加密的密钥，再用对称加密处理大文件。</p>
 </li>
 </ul>
 <hr>
-<h2 id="五、新手常见坑"><a href="#五、新手常见坑" class="headerlink" title="五、新手常见坑"></a>五、新手常见坑</h2><ol>
-<li><p><strong>密钥&#x2F;IV硬编码</strong>：绝对不要把密钥、IV写死在代码里，生产环境需从配置文件&#x2F;环境变量读取；</p>
+<h2 id="五、新手常见坑">五、新手常见坑</h2>
+<ol>
+<li>
+<p><strong>密钥/IV硬编码</strong>：绝对不要把密钥、IV写死在代码里，生产环境需从配置文件/环境变量读取；</p>
 </li>
-<li><p><strong>使用不安全算法</strong>：避免MD5、DES、1024位RSA，优先选择SHA256、AES-256、2048&#x2F;4096位RSA；</p>
+<li>
+<p><strong>使用不安全算法</strong>：避免MD5、DES、1024位RSA，优先选择SHA256、AES-256、2048/4096位RSA；</p>
 </li>
-<li><p><strong>编译链接错误</strong>：忘记加<code>-lssl -lcrypto</code>链接库，或头文件路径不对（需指定<code>-I</code>参数）；</p>
+<li>
+<p><strong>编译链接错误</strong>：忘记加<code>-lssl -lcrypto</code>链接库，或头文件路径不对（需指定<code>-I</code>参数）；</p>
 </li>
-<li><p><strong>RSA加密大文件</strong>：RSA仅适合小数据（如密钥），大文件需用AES+RSA混合方案。</p>
+<li>
+<p><strong>RSA加密大文件</strong>：RSA仅适合小数据（如密钥），大文件需用AES+RSA混合方案。</p>
 </li>
 </ol>
 <hr>
-<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><ol>
-<li><p>OpenSSL核心操作分<strong>哈希、对称加密、非对称加密</strong>三类，新手先通过命令行熟悉效果，再写代码；</p>
+<h3 id="总结">总结</h3>
+<ol>
+<li>
+<p>OpenSSL核心操作分<strong>哈希、对称加密、非对称加密</strong>三类，新手先通过命令行熟悉效果，再写代码；</p>
 </li>
-<li><p>编程使用时，编译必须链接<code>-lssl -lcrypto</code>库，且优先选择安全算法（AES-256、SHA256、2048位RSA）；</p>
+<li>
+<p>编程使用时，编译必须链接<code>-lssl -lcrypto</code>库，且优先选择安全算法（AES-256、SHA256、2048位RSA）；</p>
 </li>
-<li><p>对称加密（AES）速度快适合大文件，非对称加密（RSA）适合密钥交换&#x2F;签名，实际开发常混合使用。</p>
+<li>
+<p>对称加密（AES）速度快适合大文件，非对称加密（RSA）适合密钥交换/签名，实际开发常混合使用。</p>
 </li>
 </ol>
 
