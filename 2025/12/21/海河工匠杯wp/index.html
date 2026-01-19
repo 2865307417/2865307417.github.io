@@ -1,0 +1,799 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="ddanggui">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="河海工匠杯 个人wp 虽然赛题不很难，但是鉴于主包第一次参加的赛事，记录一下叭 1.crack_RSA 题目： 123N : 46065781388428960989637205658554417248531811702624626389974432923749270182062721955600778820059011913617389598900138215153600685382332638">
+<meta property="og:type" content="article">
+<meta property="og:title" content="海河工匠杯wp">
+<meta property="og:url" content="http://example.com/2025/12/21/%E6%B5%B7%E6%B2%B3%E5%B7%A5%E5%8C%A0%E6%9D%AFwp/index.html">
+<meta property="og:site_name" content="ddanggui&#39;s 博客">
+<meta property="og:description" content="河海工匠杯 个人wp 虽然赛题不很难，但是鉴于主包第一次参加的赛事，记录一下叭 1.crack_RSA 题目： 123N : 46065781388428960989637205658554417248531811702624626389974432923749270182062721955600778820059011913617389598900138215153600685382332638">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/2025/12/21/%E6%B5%B7%E6%B2%B3%E5%B7%A5%E5%8C%A0%E6%9D%AFwp/image.png">
+<meta property="article:published_time" content="2025-12-21T11:55:46.000Z">
+<meta property="article:modified_time" content="2026-01-11T12:33:13.892Z">
+<meta property="article:author" content="ddanggui">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://example.com/2025/12/21/%E6%B5%B7%E6%B2%B3%E5%B7%A5%E5%8C%A0%E6%9D%AFwp/image.png">
+  
+  
+  
+  <title>海河工匠杯wp - ddanggui&#39;s 博客</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/KaTeX/0.16.2/katex.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 8.1.1"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>ddanggui&#39;s 博客</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-link-fill"></i>
+                <span>友链</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="海河工匠杯wp"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-12-21 19:55" pubdate>
+          2025年12月21日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          15k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          122 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">海河工匠杯wp</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1>河海工匠杯 个人wp</h1>
+<p><em>虽然赛题不很难，但是鉴于主包第一次参加的赛事，记录一下叭</em></p>
+<h5 id="1-crack-RSA">1.crack_RSA</h5>
+<p>题目：</p>
+<figure class="highlight ada"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs ada">N : 460657813884289609896372056585544172485318117026246263899744329237492701820627219556007788200590119136173895989001382151536006853823326382892363143604314518686388786002989248800814861248595075326277099645338694977097459168530898776007293695728101976069423971696524237755227187061418202849911479124793990722597<br>e : 354611102441307572056572181827925899198345350228753730931089393275463916544456626894245415096107834465778409532373187125318554614722599301791528916212839368121066035541008808261534500586023652767712271625785204280964688004680328300124849680477105302519377370092578107827116821391826210972320377614967547827619<br>enc : 38230991316229399651823567590692301060044620412191737764632384680546256228451518238842965221394711848337832459443844446889468362154188214840736744657885858943810177675871991111466653158257191139605699916347308294995664530280816850482740530602254559123759121106338359220242637775919026933563326069449424391192<br></code></pre></td></tr></table></figure>
+<p>看到这中没有任何提示的rsa题目补药怕呀，往往只是吓吓你而已<br>
+rsa常规流程走一便：<br>
+<img src="image.png" srcset="/img/loading.gif" lazyload alt="alt text"><br>
+n可以暴力分解！<br>
+剩下就好说咯</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> Crypto.Util.number <span class="hljs-keyword">import</span> *<br><span class="hljs-keyword">from</span> gmpy2 <span class="hljs-keyword">import</span> *<br>p =<span class="hljs-number">15991846970993213322072626901560749932686325766403404864023341810735319249066370916090640926219079368845510444031400322229147771682961132420481897362843199</span><br>q = <span class="hljs-number">28805791771260259486856902729020438686670354441296247148207862836064657849735343618207098163901787287368569768472521344635567334299356760080507454640207003</span><br>e = <span class="hljs-number">354611102441307572056572181827925899198345350228753730931089393275463916544456626894245415096107834465778409532373187125318554614722599301791528916212839368121066035541008808261534500586023652767712271625785204280964688004680328300124849680477105302519377370092578107827116821391826210972320377614967547827619</span><br>enc = <span class="hljs-number">38230991316229399651823567590692301060044620412191737764632384680546256228451518238842965221394711848337832459443844446889468362154188214840736744657885858943810177675871991111466653158257191139605699916347308294995664530280816850482740530602254559123759121106338359220242637775919026933563326069449424391192</span><br>N = <span class="hljs-number">460657813884289609896372056585544172485318117026246263899744329237492701820627219556007788200590119136173895989001382151536006853823326382892363143604314518686388786002989248800814861248595075326277099645338694977097459168530898776007293695728101976069423971696524237755227187061418202849911479124793990722597</span><br><br>phi = (p-<span class="hljs-number">1</span>)*(q-<span class="hljs-number">1</span>)<br>d = inverse(e, phi)<br>m = <span class="hljs-built_in">pow</span>(enc,d,N)<br><span class="hljs-built_in">print</span>(long_to_bytes(m))<br></code></pre></td></tr></table></figure>
+<p>什么？你说没法爆破怎么办？<s>跳了呗，下一题（bushi）</s><br>
+另解：观察特点，发现e非常大，由此也可以看出d会很小，可以尝试winner攻击<br>
+RSA的密钥满足：<code>ed - k·φ(n) = 1</code>（<code>k</code>为正整数），变形得：</p>
+<p><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>e</mi><mi>d</mi><mo>=</mo><mi>k</mi><mo separator="true">⋅</mo><mi>φ</mi><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo><mo>+</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">ed = k·φ(n) + 1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord mathnormal">e</span><span class="mord mathnormal">d</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.03148em;">k</span><span class="mpunct">⋅</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal">φ</span><span class="mopen">(</span><span class="mord mathnormal">n</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">1</span></span></span></span></p>
+<ul>
+<li>
+<p>欧拉函数<code>φ(n) = (p-1)(q-1) = n - (p+q) + 1</code>，由于<code>p</code>和<code>q</code>是大素数，<code>p+q</code>远小于<code>n</code>，因此<code>φ(n) ≈ n</code>；</p>
+</li>
+<li>
+<p>将<code>ed = k·φ(n) + 1</code>两边除以<code>d·φ(n)</code>：</p>
+<p><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mfrac><mi>e</mi><mrow><mi>φ</mi><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mrow></mfrac><mo>=</mo><mfrac><mi>k</mi><mi>d</mi></mfrac><mo>+</mo><mfrac><mn>1</mn><mrow><mi>d</mi><mo separator="true">⋅</mo><mi>φ</mi><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mrow></mfrac></mrow><annotation encoding="application/x-tex">\frac{e}{φ(n)} = \frac{k}{d} + \frac{1}{d·φ(n)}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.2154em;vertical-align:-0.52em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.6954em;"><span style="top:-2.655em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">φ</span><span class="mopen mtight">(</span><span class="mord mathnormal mtight">n</span><span class="mclose mtight">)</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.394em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">e</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.52em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1.2251em;vertical-align:-0.345em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8801em;"><span style="top:-2.655em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">d</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.394em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.03148em;">k</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.345em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1.3651em;vertical-align:-0.52em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8451em;"><span style="top:-2.655em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">d</span><span class="mpunct mtight">⋅</span><span class="mord mathnormal mtight">φ</span><span class="mopen mtight">(</span><span class="mord mathnormal mtight">n</span><span class="mclose mtight">)</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.394em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.52em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></p>
+</li>
+<li>
+<p>忽略极小项<code>1/(d·φ(n))</code>，结合<code>φ(n)≈n</code>，可得核心近似关系：</p>
+<p><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mfrac><mi>e</mi><mi>n</mi></mfrac><mo>≈</mo><mfrac><mi>k</mi><mi>d</mi></mfrac></mrow><annotation encoding="application/x-tex">\frac{e}{n} ≈ \frac{k}{d}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.0404em;vertical-align:-0.345em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.6954em;"><span style="top:-2.655em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">n</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.394em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">e</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.345em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">≈</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1.2251em;vertical-align:-0.345em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8801em;"><span style="top:-2.655em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">d</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.394em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.03148em;">k</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.345em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></p>
+</li>
+</ul>
+<p>对 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mfrac><mi>e</mi><mi>n</mi></mfrac></mrow><annotation encoding="application/x-tex">\frac{e}{n}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.0404em;vertical-align:-0.345em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.6954em;"><span style="top:-2.655em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">n</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.394em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">e</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.345em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span> 连分数展开便有可能得出k与n咯</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> gmpy2<br><span class="hljs-keyword">import</span> libnum<br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">continued_fraction</span>(<span class="hljs-params">x, y</span>):<br>    <span class="hljs-string">&quot;&quot;&quot;计算连分数展开序列</span><br><span class="hljs-string">    :param x: 分子 (e)</span><br><span class="hljs-string">    :param y: 分母 (n)</span><br><span class="hljs-string">    :return: 连分数列表</span><br><span class="hljs-string">    &quot;&quot;&quot;</span><br>    cf = []<br>    <span class="hljs-keyword">while</span> y:<br>        cf.append(x // y)<br>        x, y = y, x % y<br>    <span class="hljs-keyword">return</span> cf<br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">gradual_convergents</span>(<span class="hljs-params">cf</span>):<br>    <span class="hljs-string">&quot;&quot;&quot;生成所有渐进分数 (k/d)</span><br><span class="hljs-string">    :param cf: 连分数列表</span><br><span class="hljs-string">    :yield: (分子k, 分母d)</span><br><span class="hljs-string">    &quot;&quot;&quot;</span><br>    numerator_prev, numerator_curr = <span class="hljs-number">0</span>, <span class="hljs-number">1</span><br>    denominator_prev, denominator_curr = <span class="hljs-number">1</span>, <span class="hljs-number">0</span><br>    <span class="hljs-keyword">for</span> q <span class="hljs-keyword">in</span> cf:<br>        numerator_next = q * numerator_curr + numerator_prev<br>        denominator_next = q * denominator_curr + denominator_prev<br>        numerator_prev, numerator_curr = numerator_curr, numerator_next<br>        denominator_prev, denominator_curr = denominator_curr, denominator_next<br>        <span class="hljs-keyword">yield</span> (numerator_curr, denominator_curr)<br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">solve_pq</span>(<span class="hljs-params">a, b, c</span>):<br>    <span class="hljs-string">&quot;&quot;&quot;通过二次方程分解n=p*q</span><br><span class="hljs-string">    :param a: x²系数 (固定为1)</span><br><span class="hljs-string">    :param b: x系数 (n - phi + 1)</span><br><span class="hljs-string">    :param c: 常数项 (n)</span><br><span class="hljs-string">    :return: p, q</span><br><span class="hljs-string">    &quot;&quot;&quot;</span><br>    delta = b**<span class="hljs-number">2</span> - <span class="hljs-number">4</span>*a*c<br>    <span class="hljs-keyword">if</span> delta &lt; <span class="hljs-number">0</span>: <span class="hljs-keyword">return</span> <span class="hljs-literal">None</span><br>    sqrt_delta = gmpy2.isqrt(delta)<br>    <span class="hljs-keyword">if</span> sqrt_delta * sqrt_delta != delta:<br>        <span class="hljs-keyword">return</span> <span class="hljs-literal">None</span><br>    p = (-b + sqrt_delta) // (<span class="hljs-number">2</span> * a)<br>    q = (-b - sqrt_delta) // (<span class="hljs-number">2</span> * a)<br>    <span class="hljs-keyword">return</span> (p, q) <span class="hljs-keyword">if</span> p * q == c <span class="hljs-keyword">else</span> <span class="hljs-literal">None</span><br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">wiener_attack</span>(<span class="hljs-params">e, n</span>):<br>    <span class="hljs-string">&quot;&quot;&quot;维纳攻击主函数</span><br><span class="hljs-string">    :param e: 公钥e</span><br><span class="hljs-string">    :param n: 模数n</span><br><span class="hljs-string">    :return: 私钥d 或 None</span><br><span class="hljs-string">    &quot;&quot;&quot;</span><br>    cf = continued_fraction(e, n)<br>    <span class="hljs-keyword">for</span> k, d <span class="hljs-keyword">in</span> gradual_convergents(cf):<br>        <span class="hljs-keyword">if</span> k == <span class="hljs-number">0</span>: <span class="hljs-keyword">continue</span><br>        <span class="hljs-keyword">if</span> (e * d - <span class="hljs-number">1</span>) % k != <span class="hljs-number">0</span>:<br>            <span class="hljs-keyword">continue</span><br>        phi = (e * d - <span class="hljs-number">1</span>) // k<br>        pq = solve_pq(<span class="hljs-number">1</span>, n - phi + <span class="hljs-number">1</span>, n)<br>        <span class="hljs-keyword">if</span> pq:<br>            p, q = pq<br>            <span class="hljs-keyword">if</span> p * q == n:<br>                <span class="hljs-keyword">return</span> d<br>    <span class="hljs-keyword">return</span> <span class="hljs-literal">None</span><br><br><span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">&quot;__main__&quot;</span>:<br>    <span class="hljs-comment"># 测试数据（替换为实际参数）</span><br>    n = <span class="hljs-number">460657813884289609896372056585544172485318117026246263899744329237492701820627219556007788200590119136173895989001382151536006853823326382892363143604314518686388786002989248800814861248595075326277099645338694977097459168530898776007293695728101976069423971696524237755227187061418202849911479124793990722597</span><br>    e = <span class="hljs-number">354611102441307572056572181827925899198345350228753730931089393275463916544456626894245415096107834465778409532373187125318554614722599301791528916212839368121066035541008808261534500586023652767712271625785204280964688004680328300124849680477105302519377370092578107827116821391826210972320377614967547827619</span><br>    c = <span class="hljs-number">38230991316229399651823567590692301060044620412191737764632384680546256228451518238842965221394711848337832459443844446889468362154188214840736744657885858943810177675871991111466653158257191139605699916347308294995664530280816850482740530602254559123759121106338359220242637775919026933563326069449424391192</span>   <br>    d = wiener_attack(e, n)<br>    <span class="hljs-keyword">if</span> d:<br>        <span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;[+] 私钥d = <span class="hljs-subst">&#123;d&#125;</span>&quot;</span>)<br>        m = <span class="hljs-built_in">pow</span>(c, d, n)<br>        <span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;[+] 明文 = <span class="hljs-subst">&#123;libnum.n2s(<span class="hljs-built_in">int</span>(m)).decode()&#125;</span>&quot;</span>)<br>    <span class="hljs-keyword">else</span>:<br>        <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;[-] 攻击失败，可能d不满足维纳条件&quot;</span>)<br></code></pre></td></tr></table></figure>
+<h5 id="2-command">2.command</h5>
+<p>题目</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><code class="hljs py"><span class="hljs-keyword">from</span> secret <span class="hljs-keyword">import</span> flag<br><span class="hljs-keyword">from</span> Crypto.Util.number <span class="hljs-keyword">import</span> *<br><br>p = getPrime(<span class="hljs-number">1024</span>)<br>q1 = getPrime(<span class="hljs-number">1024</span>)<br>q2 = getPrime(<span class="hljs-number">1024</span>)<br><br>n1 = p * q1<br>n2 = p * q2<br>e  = <span class="hljs-number">0x10001</span><br><br>m = bytes_to_long(flag)<br>c1 = <span class="hljs-built_in">pow</span>(m, e, n1)<br>c2 = <span class="hljs-built_in">pow</span>(m, e, n2)<br><br><span class="hljs-built_in">print</span>(c1)<br><span class="hljs-built_in">print</span>(n1)<br><span class="hljs-built_in">print</span>(c2)<br><span class="hljs-built_in">print</span>(n2)<br><br><br><span class="hljs-comment"># 4941707047346667175208995859949404389322583225976420544331062614693386809791615029343678778664425048376340187366155043564992194252492261601744888865226804666848581371609771137227420031942968451977653728169798389786353613232575562480592642357804748184143027923004426192328699886075682903734608470957863437094162637828629980861061313193478602945671274941820713441068765686829372743052820131555406957764726286667754643454059540313131391568239032095090368445897408669444308899803560012425357607296170299089198157608947328661673814435023280124404645125994375763555334414315256063016251526584818376451642455251523209255802</span><br><span class="hljs-comment"># 23870161680183523079741569974844567326019753076392636009584986567612198552769297327520140947753967201209251923569250042808435602604746173316812218561002639890627852637259978806388826042450311742551247657942180612619269580501221658861246087292389488686348455622638650573340684120087995899502358420625262078225393838288965001923426876996521245801399902175648882304659224530399947903626889562357334105116376279410129681393098230440046021549860624097368418577529956483763264706086840482433245189236097197915840133182908767740904012654564998517212402393117912683093507460179360440863741119755955402495890705201911376608287</span><br><span class="hljs-comment"># 15361482578239201122825735518613560425956918915682082355755400248771835488441342237398430042762133757967330714360779296866589247720714355380496678719262004338885321961470744042111217118574883401901820510469999875432217721036106005542885036119619624821458268716392152006782899996387626674519404398439643754050298394226768471302131781460214161254895195587947346312072521081253756073686949674898685783707405534113832058397514942338528976019855060111031531673705000954520440402528450353772060433440812396824325761264326895396370502262440389779595049703594280011852963627217339075366282031362737198717406376555679069806258</span><br><span class="hljs-comment"># 27799578924743649991986024628153641945800733904267409387203138015966552861634251919848520890705796293509399305155356061091874177186618542710179261647491030477309736237809439680701450990170747064756974278248222130804744789442182601317629449781655995599376757972019189878891496801811940270932663639537402645346568086063480094758375696668553141406635142266030261394906382884967081494979457009425568148790959718481235323099812941999183305133433926721515800515742432246719644508578309303020326602709313629970737948300830614693840686955065188058995026232804383907013878621481775642198847855961249614692528029044092622003431</span><br></code></pre></td></tr></table></figure>
+<p>看看出题入的巧思在哪里？注意到：</p>
+<figure class="highlight abnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs abnf"><span class="hljs-attribute">n1</span> <span class="hljs-operator">=</span> p * q1<br><span class="hljs-attribute">n2</span> <span class="hljs-operator">=</span> p * q2<br></code></pre></td></tr></table></figure>
+<p>n1n2已知，可以利用欧几里得算法求p，p既出，则题解！</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs py"><span class="hljs-keyword">from</span> Crypto.Util.number <span class="hljs-keyword">import</span> *<br><span class="hljs-keyword">from</span> gmpy2 <span class="hljs-keyword">import</span> *<br><br>c1 = <span class="hljs-number">4941707047346667175208995859949404389322583225976420544331062614693386809791615029343678778664425048376340187366155043564992194252492261601744888865226804666848581371609771137227420031942968451977653728169798389786353613232575562480592642357804748184143027923004426192328699886075682903734608470957863437094162637828629980861061313193478602945671274941820713441068765686829372743052820131555406957764726286667754643454059540313131391568239032095090368445897408669444308899803560012425357607296170299089198157608947328661673814435023280124404645125994375763555334414315256063016251526584818376451642455251523209255802</span><br>n1 = <span class="hljs-number">23870161680183523079741569974844567326019753076392636009584986567612198552769297327520140947753967201209251923569250042808435602604746173316812218561002639890627852637259978806388826042450311742551247657942180612619269580501221658861246087292389488686348455622638650573340684120087995899502358420625262078225393838288965001923426876996521245801399902175648882304659224530399947903626889562357334105116376279410129681393098230440046021549860624097368418577529956483763264706086840482433245189236097197915840133182908767740904012654564998517212402393117912683093507460179360440863741119755955402495890705201911376608287</span><br>c2 = <span class="hljs-number">15361482578239201122825735518613560425956918915682082355755400248771835488441342237398430042762133757967330714360779296866589247720714355380496678719262004338885321961470744042111217118574883401901820510469999875432217721036106005542885036119619624821458268716392152006782899996387626674519404398439643754050298394226768471302131781460214161254895195587947346312072521081253756073686949674898685783707405534113832058397514942338528976019855060111031531673705000954520440402528450353772060433440812396824325761264326895396370502262440389779595049703594280011852963627217339075366282031362737198717406376555679069806258</span><br>n2 = <span class="hljs-number">27799578924743649991986024628153641945800733904267409387203138015966552861634251919848520890705796293509399305155356061091874177186618542710179261647491030477309736237809439680701450990170747064756974278248222130804744789442182601317629449781655995599376757972019189878891496801811940270932663639537402645346568086063480094758375696668553141406635142266030261394906382884967081494979457009425568148790959718481235323099812941999183305133433926721515800515742432246719644508578309303020326602709313629970737948300830614693840686955065188058995026232804383907013878621481775642198847855961249614692528029044092622003431</span><br>e = <span class="hljs-number">0x10001</span><br><br>p = gcd(n1, n2)<br>q1 = n1 // p<br>phi = (p - <span class="hljs-number">1</span>) * (q1 - <span class="hljs-number">1</span>)<br>d = inverse(e, phi)<br>m = <span class="hljs-built_in">pow</span>(c1, d, n1)<br><span class="hljs-built_in">print</span>(long_to_bytes(m))<br></code></pre></td></tr></table></figure>
+<h5 id="3-affine">3.affine</h5>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">y</span> = <span class="hljs-number">11</span>*x+<span class="hljs-number">7</span> 试对密文dikhkkruz解密,答案格式：flag&#123;********&#125;<br></code></pre></td></tr></table></figure>
+<p><s>凯撒</s>仿射啦，直接喂ai吧<br>
+但是有解密公式就好办了：x = 19 * (y - 7) mod</p>
+<hr>
+<p>补充一下：</p>
+<ol>
+<li>
+<p><strong>凯撒密码与仿射密码</strong></p>
+<ul>
+<li>
+<p>凯撒密码是仿射密码在  <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi><mo>=</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">a=1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">a</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">1</span></span></span></span>  时的<strong>特例</strong>。</p>
+</li>
+<li>
+<p>仿射密码的密钥空间更大（ <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi></mrow><annotation encoding="application/x-tex">a</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">a</span></span></span></span>  有 12 种选择， <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>b</mi></mrow><annotation encoding="application/x-tex">b</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord mathnormal">b</span></span></span></span>  有 26 种选择，共  <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>12</mn><mo>×</mo><mn>26</mn><mo>=</mo><mn>312</mn></mrow><annotation encoding="application/x-tex">12 \times 26 = 312</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">12</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">26</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">312</span></span></span></span>  种密钥），而凯撒密码只有 26 种密钥。</p>
+</li>
+</ul>
+</li>
+</ol>
+<hr>
+<table>
+<thead>
+<tr>
+<th>密文字母</th>
+<th>密文数字(y)</th>
+<th>(y-7) mod26</th>
+<th>19*(y-7) mod26</th>
+<th>明文数字(x)</th>
+<th>明文字母</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>d</td>
+<td>3</td>
+<td>22</td>
+<td>22*19=418 mod26=2</td>
+<td>2</td>
+<td>c</td>
+</tr>
+<tr>
+<td>i</td>
+<td>8</td>
+<td>1</td>
+<td>19 mod26=19</td>
+<td>19</td>
+<td>t</td>
+</tr>
+<tr>
+<td>k</td>
+<td>10</td>
+<td>3</td>
+<td>57 mod26=5</td>
+<td>5</td>
+<td>f</td>
+</tr>
+<tr>
+<td>h</td>
+<td>7</td>
+<td>0</td>
+<td>0 mod26=0</td>
+<td>0</td>
+<td>a</td>
+</tr>
+<tr>
+<td>k</td>
+<td>10</td>
+<td>3</td>
+<td>57 mod26=5</td>
+<td>5</td>
+<td>f</td>
+</tr>
+<tr>
+<td>k</td>
+<td>10</td>
+<td>3</td>
+<td>57 mod26=5</td>
+<td>5</td>
+<td>f</td>
+</tr>
+<tr>
+<td>r</td>
+<td>17</td>
+<td>10</td>
+<td>190 mod26=8</td>
+<td>8</td>
+<td>i</td>
+</tr>
+<tr>
+<td>u</td>
+<td>20</td>
+<td>13</td>
+<td>247 mod26=13</td>
+<td>13</td>
+<td>n</td>
+</tr>
+<tr>
+<td>z</td>
+<td>25</td>
+<td>18</td>
+<td>342 mod26=4</td>
+<td>4</td>
+<td>e</td>
+</tr>
+</tbody>
+</table>
+<p>拼接后明文为 <code>ctfaffine</code>，最终flag为 <code>flag{ctfaffine}</code>。</p>
+<h5 id="4-HASH">4.HASH</h5>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs markdown">现在我们有一个压缩文件,但我们不知道完整的解压密码。<br>幸好我们知道解压密码的一部分hash值，不过这个hash值被人改动过<br>你能帮我们找到的密码吗?<br>不完整的密码：”<span class="hljs-emphasis">*ha*</span>i<span class="hljs-emphasis">*_go*</span>d” <span class="hljs-emphasis">*代表可打印字符</span><br><span class="hljs-emphasis">不完整的hash值：”2aa90dc*</span>46aa5d0<span class="hljs-emphasis">*baedc4a*</span>13e4c0a6<span class="hljs-emphasis">*91bf6*</span>2″（<span class="hljs-emphasis">*代表可打印字符）</span><br><span class="hljs-emphasis">答案格式： flag&#123;<span class="hljs-strong">****</span><span class="hljs-strong">***&#125;</span></span><br></code></pre></td></tr></table></figure>
+<p>哈希。。。没啥想法，套脚本爆破结果</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><code class="hljs py"><span class="hljs-keyword">import</span> hashlib<br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">find_correct_password</span>():<br>    hash_template = <span class="hljs-string">&quot;2aa90dc*46aa5d0*baedc4a*13e4c0a6*91bf6*2&quot;</span><br>    fixed_positions = []<br>    <span class="hljs-keyword">for</span> idx, char <span class="hljs-keyword">in</span> <span class="hljs-built_in">enumerate</span>(hash_template):<br>        <span class="hljs-keyword">if</span> char != <span class="hljs-string">&#x27;*&#x27;</span>:<br>            fixed_positions.append((idx, char))<br>    printable_chars = [<span class="hljs-built_in">chr</span>(c) <span class="hljs-keyword">for</span> c <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">32</span>, <span class="hljs-number">127</span>)]<br><br>    count = <span class="hljs-number">0</span><br>    <span class="hljs-keyword">for</span> c1 <span class="hljs-keyword">in</span> printable_chars:<br>        <span class="hljs-keyword">for</span> c4 <span class="hljs-keyword">in</span> printable_chars:<br>            <span class="hljs-keyword">for</span> c6 <span class="hljs-keyword">in</span> printable_chars:<br>                <span class="hljs-keyword">for</span> c10 <span class="hljs-keyword">in</span> printable_chars:<br>                    password = <span class="hljs-string">f&quot;<span class="hljs-subst">&#123;c1&#125;</span>ha<span class="hljs-subst">&#123;c4&#125;</span>i<span class="hljs-subst">&#123;c6&#125;</span>_go<span class="hljs-subst">&#123;c10&#125;</span>d&quot;</span><br>                    sha1_hash = hashlib.sha1(password.encode(<span class="hljs-string">&#x27;utf-8&#x27;</span>)).hexdigest()<br>                    <span class="hljs-keyword">match</span> = <span class="hljs-literal">True</span><br>                    <span class="hljs-keyword">for</span> (pos, target_char) <span class="hljs-keyword">in</span> fixed_positions:<br>                        <span class="hljs-keyword">if</span> sha1_hash[pos] != target_char:<br>                            <span class="hljs-keyword">match</span> = <span class="hljs-literal">False</span><br>                            <span class="hljs-keyword">break</span><br>                    <span class="hljs-keyword">if</span> <span class="hljs-keyword">match</span>:<br>                        <span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;找到正确密码：<span class="hljs-subst">&#123;password&#125;</span>&quot;</span>)<br>                        <span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;对应的SHA1哈希：<span class="hljs-subst">&#123;sha1_hash&#125;</span>&quot;</span>)<br>                        <span class="hljs-keyword">return</span> password<br>                    count += <span class="hljs-number">1</span><br><br>    <span class="hljs-keyword">return</span> <span class="hljs-literal">None</span><br>correct_pwd = find_correct_password()<br><span class="hljs-keyword">if</span> correct_pwd:<br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;\nflag&#123;&#123;<span class="hljs-subst">&#123;correct_pwd&#125;</span>&#125;&#125;&quot;</span>)<br></code></pre></td></tr></table></figure>
+<h5 id="5-coppersmith">5.coppersmith</h5>
+<p><s>敬请期待</s><br>
+<s>QwQsagemath</s><br>
+<s>没整明白</s><br>
+<s>等笔者好消息吧</s></p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs py"><span class="hljs-keyword">from</span> secret <span class="hljs-keyword">import</span> flag<br><span class="hljs-keyword">from</span> Crypto.Util.number <span class="hljs-keyword">import</span> *<br><br>m = bytes_to_long(flag)<br><br>p = getPrime(<span class="hljs-number">512</span>)<br>q = getPrime(<span class="hljs-number">512</span>)<br>N = p * q<br>e = <span class="hljs-number">7</span><br><br>c = <span class="hljs-built_in">pow</span>(m, e, N)<br>high_p = (p &gt;&gt; <span class="hljs-number">100</span>) &lt;&lt; <span class="hljs-number">100</span><br><br><span class="hljs-built_in">print</span>(c, N, high_p, sep=<span class="hljs-string">&#x27;\n&#x27;</span>)<br><br><span class="hljs-comment"># 77910349061944763568299396394184337520861899083817490010678766043320388729842050532499742515132299125221386423487817013007167101659632771120727305169401713711755701139645391311421914142639007159020652755880068954988225402131362184667436752944331368809243280933094976267099141065017878199319211904257432652753</span><br><span class="hljs-comment"># 99887986204824691113457754897953425406993412586030259044004283966194202433452866024995465248688896193125819761385921365388030307691682145106269184432165936577174730773115650122496935533603059557681592007428920955897003476296682566264772005134125852663260971355535474414913501328212769545952135420770881499467</span><br><span class="hljs-comment"># 12672576027810761975840956553905924324108169270520824932988309977042643967090398117355253953195633095326913407044418517938976916071656473263683948565757952</span><br></code></pre></td></tr></table></figure>
+<p>很明显的p高位攻击了，连还原高位的过程都帮你做了</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs py"><span class="hljs-keyword">from</span> gmpy2 <span class="hljs-keyword">import</span> *<br><span class="hljs-keyword">from</span> Crypto.Util.number <span class="hljs-keyword">import</span> *<br><br>c = <span class="hljs-number">77910349061944763568299396394184337520861899083817490010678766043320388729842050532499742515132299125221386423487817013007167101659632771120727305169401713711755701139645391311421914142639007159020652755880068954988225402131362184667436752944331368809243280933094976267099141065017878199319211904257432652753</span><br>n = <span class="hljs-number">99887986204824691113457754897953425406993412586030259044004283966194202433452866024995465248688896193125819761385921365388030307691682145106269184432165936577174730773115650122496935533603059557681592007428920955897003476296682566264772005134125852663260971355535474414913501328212769545952135420770881499467</span><br>p = <span class="hljs-number">12672576027810761975840956553905924324108169270520824932988309977042643967090398117355253953195633095326913407044418517938976916071656473263683948565757952</span><br><br>PR.&lt;x&gt; = PolynomialRing(Zmod(n))<br><br>f = p+x<br>res = f.small_roots(X=<span class="hljs-number">2</span>^<span class="hljs-number">100</span>, beta=<span class="hljs-number">0.4</span>)<br><br>p = <span class="hljs-built_in">int</span>(res[<span class="hljs-number">0</span>]) + p<br>q = n // p<br><span class="hljs-built_in">print</span>(q)<br>d = inverse_mod(<span class="hljs-number">7</span>, (p-<span class="hljs-number">1</span>)*(q-<span class="hljs-number">1</span>))<br>m = power_mod(c, d, n)<br><span class="hljs-built_in">print</span>(long_to_bytes(m))<br></code></pre></td></tr></table></figure>
+<p>(p(x) = (p_h + x) \mod n)。</p>
+<hr>
+<p>Coppersmith 方法的能力是：如果多项式在模 n 的某个因数下有一个 “足够小的根”，就能把这个根求出来。</p>
+<hr>
+<p>res = f.small_roots(X=2^100, beta=0.4)<br>
+参数解释：</p>
+<ul>
+<li>x：X 是小根的上界，即告诉算法：“我们要找的根 (x_0) 满足 (|x_0| &lt; X)”。</li>
+<li>作用beta 是因数占比参数，表示 N 的素因子 p 满足 (p \geq N^{\text{beta}})。</li>
+</ul>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>海河工匠杯wp</div>
+      <div>http://example.com/2025/12/21/海河工匠杯wp/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>ddanggui</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2025年12月21日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2025/12/24/OpenSSL%E5%8A%A0%E5%AF%86%E5%BA%93%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B/" title="OpenSSL加密库入门教程">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">OpenSSL加密库入门教程</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

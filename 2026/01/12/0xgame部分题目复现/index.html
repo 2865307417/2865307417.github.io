@@ -1,0 +1,709 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="ddanggui">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="0xgame 题目:Ez_LCG 12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455#!&#x2F;usr&#x2F;local&#x2F;bin&#x2F;pythonfrom Crypto.Util.number import *from secret import flagimpo">
+<meta property="og:type" content="article">
+<meta property="og:title" content="0xgame部分题目复现">
+<meta property="og:url" content="http://example.com/2026/01/12/0xgame%E9%83%A8%E5%88%86%E9%A2%98%E7%9B%AE%E5%A4%8D%E7%8E%B0/index.html">
+<meta property="og:site_name" content="ddanggui&#39;s 博客">
+<meta property="og:description" content="0xgame 题目:Ez_LCG 12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455#!&#x2F;usr&#x2F;local&#x2F;bin&#x2F;pythonfrom Crypto.Util.number import *from secret import flagimpo">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/2026/01/12/0xgame%E9%83%A8%E5%88%86%E9%A2%98%E7%9B%AE%E5%A4%8D%E7%8E%B0/1.jpg">
+<meta property="article:published_time" content="2026-01-12T04:57:07.000Z">
+<meta property="article:modified_time" content="2026-01-19T03:52:01.959Z">
+<meta property="article:author" content="ddanggui">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://example.com/2026/01/12/0xgame%E9%83%A8%E5%88%86%E9%A2%98%E7%9B%AE%E5%A4%8D%E7%8E%B0/1.jpg">
+  
+  
+  
+  <title>0xgame部分题目复现 - ddanggui&#39;s 博客</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/KaTeX/0.16.2/katex.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 8.1.1"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>ddanggui&#39;s 博客</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-link-fill"></i>
+                <span>友链</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="0xgame部分题目复现"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2026-01-12 12:57" pubdate>
+          2026年1月12日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          8.2k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          69 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">0xgame部分题目复现</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1>0xgame</h1>
+<h4 id="题目-Ez-LCG">题目:Ez_LCG</h4>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><code class="hljs py"><span class="hljs-comment">#!/usr/local/bin/python</span><br><span class="hljs-keyword">from</span> Crypto.Util.number <span class="hljs-keyword">import</span> *<br><span class="hljs-keyword">from</span> secret <span class="hljs-keyword">import</span> flag<br><span class="hljs-keyword">import</span> random<br><br><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">LCG</span>():<br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__init__</span>(<span class="hljs-params">self, a, b, m, seed</span>):<br>        <span class="hljs-variable language_">self</span>.a = a<br>        <span class="hljs-variable language_">self</span>.b = b<br>        <span class="hljs-variable language_">self</span>.m = m<br>        <span class="hljs-variable language_">self</span>.state = seed<br><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">next</span>(<span class="hljs-params">self</span>):<br>        <span class="hljs-variable language_">self</span>.state = (<span class="hljs-variable language_">self</span>.a * <span class="hljs-variable language_">self</span>.state + <span class="hljs-variable language_">self</span>.b) % <span class="hljs-variable language_">self</span>.m<br>        <span class="hljs-keyword">return</span> <span class="hljs-variable language_">self</span>.state<br><br><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">RNG</span>():<br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__init__</span>(<span class="hljs-params">self, coefficients, seed, MOD=<span class="hljs-number">2</span>**<span class="hljs-number">20</span></span>):<br>        <span class="hljs-variable language_">self</span>.coefficients = coefficients<br>        <span class="hljs-variable language_">self</span>.state = seed<br>        <span class="hljs-variable language_">self</span>.f = <span class="hljs-keyword">lambda</span> x: <span class="hljs-built_in">sum</span>(c * (x ** i) <span class="hljs-keyword">for</span> i, c <span class="hljs-keyword">in</span> <span class="hljs-built_in">enumerate</span>(coefficients)) % MOD<br><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">next</span>(<span class="hljs-params">self</span>):<br>        <span class="hljs-variable language_">self</span>.state = <span class="hljs-variable language_">self</span>.f(<span class="hljs-variable language_">self</span>.state)<br>        <span class="hljs-keyword">return</span> <span class="hljs-variable language_">self</span>.state<br><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">next_n</span>(<span class="hljs-params">self, n</span>):<br>        <span class="hljs-keyword">for</span> _ <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(n):<br>            <span class="hljs-variable language_">self</span>.<span class="hljs-built_in">next</span>()<br>        <span class="hljs-keyword">return</span> <span class="hljs-variable language_">self</span>.state<br><br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">encrypt_flag</span>(<span class="hljs-params">flag</span>):<br>    coefficients = [random.randint(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>**<span class="hljs-number">20</span>) <span class="hljs-keyword">for</span> _ <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">10</span>)]<br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;Generated coefficients:&quot;</span>, coefficients)<br>    seed = <span class="hljs-built_in">input</span>(<span class="hljs-string">&quot;Set seed for RNG: &quot;</span>)<br>    rng = RNG(coefficients, <span class="hljs-built_in">int</span>(seed))<br>    <span class="hljs-keyword">assert</span> rng.<span class="hljs-built_in">next</span>() != rng.<span class="hljs-built_in">next</span>(), <span class="hljs-string">&quot;Weak seed&quot;</span><br>    a, b = [rng.next_n(random.randint(<span class="hljs-number">1</span>, <span class="hljs-number">1024</span>)) <span class="hljs-keyword">for</span> _ <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">2</span>)]<br>    encs = []<br>    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> flag:<br>        lcg = LCG(a, b, <span class="hljs-number">2</span>**<span class="hljs-number">32</span> + <span class="hljs-number">1</span>, i)<br>        <span class="hljs-keyword">for</span> _ <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(random.randint(<span class="hljs-number">1</span>, <span class="hljs-number">1024</span>)):<br>            enc = lcg.<span class="hljs-built_in">next</span>()<br>        encs.append(enc)<br>    <span class="hljs-keyword">return</span> encs<br><br><br><span class="hljs-keyword">assert</span> flag.startswith(<span class="hljs-string">b&quot;0xGame&#123;&quot;</span>) <span class="hljs-keyword">and</span> flag.endswith(<span class="hljs-string">b&quot;&#125;&quot;</span>)<br>flag = flag[<span class="hljs-number">7</span>:-<span class="hljs-number">1</span>]<br><br><span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;Encrypted flag: <span class="hljs-subst">&#123;encrypt_flag(flag)&#125;</span>&quot;</span>)<br><br></code></pre></td></tr></table></figure>
+<h5 id="解答">解答</h5>
+<p>首先要理解一下<br>
+rng是为生成a,b服务的<br>
+只要能理解RNG的输出是可以循环就好说了</p>
+<hr>
+<p>为啥会循环？</p>
+<ul>
+<li>模 2^20 意味着状态空间是 2^20 ≈ 1,048,576</li>
+<li>每次next()调用都会根据当前state计算唯一确定的下一个state（通过多项式函数f(x)）</li>
+<li>根据鸽巢原理：当调用next()的次数超过状态空间大小（1048576 次）时，必然会出现重复的state</li>
+</ul>
+<hr>
+<p>虽然这个状态空间看似很大，但是我们可以选取合适的seed来达到找一个小循环的目的</p>
+<p>服务器给出因子coefficients<br>
+如何找合适的seed呢？爆破！</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">list_ring</span>(<span class="hljs-params">x0</span>):<br>    lis = [x0]<br>    <span class="hljs-keyword">while</span> <span class="hljs-built_in">len</span>(lis) &lt;= <span class="hljs-number">3</span>:<br>        x = f(lis[-<span class="hljs-number">1</span>])<br>        <span class="hljs-keyword">if</span> x <span class="hljs-keyword">in</span> lis:<br>            <span class="hljs-keyword">return</span> lis<br>        lis.append(x)<br><br><span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(MOD):<br>    <span class="hljs-keyword">if</span> res := list_ring(i):<br>        <span class="hljs-built_in">print</span>(res)<br>        <span class="hljs-built_in">print</span>(<span class="hljs-built_in">len</span>(res))<br>        <span class="hljs-keyword">break</span><br></code></pre></td></tr></table></figure>
+<p>那么a，b都是可以遇见的了<br>
+使用组合去尝试就好</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs stylus"><span class="hljs-keyword">for</span> <span class="hljs-selector-tag">a</span>, <span class="hljs-selector-tag">b</span> <span class="hljs-keyword">in</span> <span class="hljs-built_in">product</span>(res, res)<br></code></pre></td></tr></table></figure>
+<p>完整代码</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><code class="hljs py"><span class="hljs-keyword">from</span> itertools <span class="hljs-keyword">import</span> product<br><span class="hljs-keyword">from</span> Crypto.Util.number <span class="hljs-keyword">import</span> *<br><span class="hljs-keyword">from</span> ast <span class="hljs-keyword">import</span> literal_eval<br><span class="hljs-keyword">from</span> pwn <span class="hljs-keyword">import</span> *<br><br>context(log_level=<span class="hljs-string">&#x27;debug&#x27;</span>)<br>io = remote(<span class="hljs-string">&#x27;nc1.ctfplus.cn&#x27;</span>,xxxxx)<br>io.recvuntil(<span class="hljs-string">b&quot;Generated coefficients: &quot;</span>)<br>coefficients = literal_eval(io.recvline().strip().decode())<br>MOD = <span class="hljs-number">2</span>**<span class="hljs-number">20</span><br>f = <span class="hljs-keyword">lambda</span> x: <span class="hljs-built_in">sum</span>(c * (x ** i) <span class="hljs-keyword">for</span> i, c <span class="hljs-keyword">in</span> <span class="hljs-built_in">enumerate</span>(coefficients)) % MOD<br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">list_ring</span>(<span class="hljs-params">x0</span>):<br>    lis = [x0]<br>    <span class="hljs-keyword">while</span> <span class="hljs-built_in">len</span>(lis) &lt;= <span class="hljs-number">3</span>:<br>        x = f(lis[-<span class="hljs-number">1</span>])<br>        <span class="hljs-keyword">if</span> x <span class="hljs-keyword">in</span> lis:<br>            <span class="hljs-keyword">return</span> lis<br>        lis.append(x)<br><br><span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(MOD):<br>    <span class="hljs-keyword">if</span> res := list_ring(i):<br>        <span class="hljs-built_in">print</span>(res)<br>        <span class="hljs-built_in">print</span>(<span class="hljs-built_in">len</span>(res))<br>        <span class="hljs-keyword">break</span><br><br>io.recvuntil(<span class="hljs-string">b&quot;Set seed for RNG: &quot;</span>)<br>io.sendline(<span class="hljs-built_in">str</span>(res[<span class="hljs-number">0</span>]).encode())<br><br>io.recvuntil(<span class="hljs-string">b&quot;Encrypted flag: &quot;</span>)<br>encs = literal_eval(io.recvline().strip().decode())<br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">decrypt</span>(<span class="hljs-params">a, b, encs</span>):<br>    MOD = <span class="hljs-number">2</span>**<span class="hljs-number">32</span> + <span class="hljs-number">1</span><br>    flag = <span class="hljs-string">&quot;&quot;</span><br>    <span class="hljs-keyword">for</span> enc <span class="hljs-keyword">in</span> encs:<br>        state = enc<br>        found = <span class="hljs-literal">False</span><br>        <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">1</span>,<span class="hljs-number">1025</span>):<br>            state = (state - b) * <span class="hljs-built_in">pow</span>(a, -<span class="hljs-number">1</span>, MOD) % MOD<br>            <span class="hljs-keyword">if</span> <span class="hljs-number">32</span> &lt;= state &lt;= <span class="hljs-number">126</span>: <br>                flag += <span class="hljs-built_in">chr</span>(state)<br>                found = <span class="hljs-literal">True</span><br>                <span class="hljs-keyword">break</span><br>        <span class="hljs-keyword">if</span> <span class="hljs-keyword">not</span> found:<br>            <span class="hljs-keyword">return</span> <span class="hljs-literal">None</span><br>    <span class="hljs-keyword">return</span> flag<br><br><span class="hljs-keyword">for</span> a, b <span class="hljs-keyword">in</span> product(res, res):<br>    flag = decrypt(a, b, encs)<br>    <span class="hljs-keyword">if</span> flag:<br>        <span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;0xGame&#123;&#123;<span class="hljs-subst">&#123;flag&#125;</span>&#125;&#125;&quot;</span>)<br><br></code></pre></td></tr></table></figure>
+<h4 id="题目-Ez-LCG-2">题目:Ez_LCG</h4>
+<h5 id="解答-2">解答</h5>
+<p>抛砖引玉QwQ</p>
+<p>rng是为生成a,b服务的<br>
+只要能理解RNG的输出是可以循环就好说了</p>
+<p>为啥会循环？</p>
+<ul>
+<li>模 2^20 意味着状态空间是 2^20 ≈ 1,048,576</li>
+<li>每次next()调用都会根据当前state计算唯一确定的下一个state（通过多项式函数f(x)）</li>
+<li>根据鸽巢原理：当调用next()的次数超过状态空间大小（1048576 次）时，必然会出现重复的state<br>
+虽然这个状态空间看似很大，但是我们可以选取合适的seed来达到找一个小循环的目的</li>
+</ul>
+<p>服务器给出因子coefficients<br>
+如何找合适的seed呢？爆破！</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs py"><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">list_ring</span>(<span class="hljs-params">x0</span>):<br>    lis = [x0]<br>    <span class="hljs-keyword">while</span> <span class="hljs-built_in">len</span>(lis) &lt;= <span class="hljs-number">3</span>:<br>        x = f(lis[-<span class="hljs-number">1</span>])<br>        <span class="hljs-keyword">if</span> x <span class="hljs-keyword">in</span> lis:<br>            <span class="hljs-keyword">return</span> lis<br>        lis.append(x)<br><br><span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(MOD):<br>    <span class="hljs-keyword">if</span> res := list_ring(i):<br>        <span class="hljs-built_in">print</span>(res)<br>        <span class="hljs-built_in">print</span>(<span class="hljs-built_in">len</span>(res))<br>        <span class="hljs-keyword">break</span><br></code></pre></td></tr></table></figure>
+<p>那么a，b都是可以遇见的了<br>
+使用组合去尝试就好</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><code class="hljs py"><span class="hljs-keyword">for</span> a, b <span class="hljs-keyword">in</span> product(res, res)<br><br><br>完整代码<br><br><span class="hljs-keyword">from</span> itertools <span class="hljs-keyword">import</span> product<br><span class="hljs-keyword">from</span> Crypto.Util.number <span class="hljs-keyword">import</span> *<br><span class="hljs-keyword">from</span> ast <span class="hljs-keyword">import</span> literal_eval<br><span class="hljs-keyword">from</span> pwn <span class="hljs-keyword">import</span> *<br><br>context(log_level=<span class="hljs-string">&#x27;debug&#x27;</span>)<br>io = remote(<span class="hljs-string">&#x27;nc1.ctfplus.cn&#x27;</span>,xxxxx)<br>io.recvuntil(<span class="hljs-string">b&quot;Generated coefficients: &quot;</span>)<br>coefficients = literal_eval(io.recvline().strip().decode())<br>MOD = <span class="hljs-number">2</span>**<span class="hljs-number">20</span><br>f = <span class="hljs-keyword">lambda</span> x: <span class="hljs-built_in">sum</span>(c * (x ** i) <span class="hljs-keyword">for</span> i, c <span class="hljs-keyword">in</span> <span class="hljs-built_in">enumerate</span>(coefficients)) % MOD<br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">list_ring</span>(<span class="hljs-params">x0</span>):<br>    lis = [x0]<br>    <span class="hljs-keyword">while</span> <span class="hljs-built_in">len</span>(lis) &lt;= <span class="hljs-number">3</span>:<br>        x = f(lis[-<span class="hljs-number">1</span>])<br>        <span class="hljs-keyword">if</span> x <span class="hljs-keyword">in</span> lis:<br>            <span class="hljs-keyword">return</span> lis<br>        lis.append(x)<br><br><span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(MOD):<br>    <span class="hljs-keyword">if</span> res := list_ring(i):<br>        <span class="hljs-built_in">print</span>(res)<br>        <span class="hljs-built_in">print</span>(<span class="hljs-built_in">len</span>(res))<br>        <span class="hljs-keyword">break</span><br><br>io.recvuntil(<span class="hljs-string">b&quot;Set seed for RNG: &quot;</span>)<br>io.sendline(<span class="hljs-built_in">str</span>(res[<span class="hljs-number">0</span>]).encode())<br><br>io.recvuntil(<span class="hljs-string">b&quot;Encrypted flag: &quot;</span>)<br>encs = literal_eval(io.recvline().strip().decode())<br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">decrypt</span>(<span class="hljs-params">a, b, encs</span>):<br>    MOD = <span class="hljs-number">2</span>**<span class="hljs-number">32</span> + <span class="hljs-number">1</span><br>    flag = <span class="hljs-string">&quot;&quot;</span><br>    <span class="hljs-keyword">for</span> enc <span class="hljs-keyword">in</span> encs:<br>        state = enc<br>        found = <span class="hljs-literal">False</span><br>        <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">1</span>,<span class="hljs-number">1025</span>):<br>            state = (state - b) * <span class="hljs-built_in">pow</span>(a, -<span class="hljs-number">1</span>, MOD) % MOD<br>            <span class="hljs-keyword">if</span> <span class="hljs-number">32</span> &lt;= state &lt;= <span class="hljs-number">126</span>: <br>                flag += <span class="hljs-built_in">chr</span>(state)<br>                found = <span class="hljs-literal">True</span><br>                <span class="hljs-keyword">break</span><br>        <span class="hljs-keyword">if</span> <span class="hljs-keyword">not</span> found:<br>            <span class="hljs-keyword">return</span> <span class="hljs-literal">None</span><br>    <span class="hljs-keyword">return</span> flag<br><br><span class="hljs-keyword">for</span> a, b <span class="hljs-keyword">in</span> product(res, res):<br>    flag = decrypt(a, b, encs)<br>    <span class="hljs-keyword">if</span> flag:<br>        <span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;0xGame&#123;&#123;<span class="hljs-subst">&#123;flag&#125;</span>&#125;&#125;&quot;</span>)<br></code></pre></td></tr></table></figure>
+<h4 id="题目-Copper">题目:Copper!!!.</h4>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs py"><span class="hljs-keyword">from</span> Crypto.Util.number <span class="hljs-keyword">import</span> *<br><span class="hljs-keyword">from</span> secret <span class="hljs-keyword">import</span> flag<br><br>m = bytes_to_long(flag)<br><br><br>p = getPrime(<span class="hljs-number">512</span>)<br>q = getPrime(<span class="hljs-number">512</span>)<br>n = p * q<br>e = <span class="hljs-number">65537</span><br>c = <span class="hljs-built_in">pow</span>(m, e, n)<br><span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;n = <span class="hljs-subst">&#123;n&#125;</span>&quot;</span>)<br><span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;c = <span class="hljs-subst">&#123;c&#125;</span>&quot;</span>)<br><span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;gift = <span class="hljs-subst">&#123;p &gt;&gt; <span class="hljs-number">242</span> &lt;&lt; <span class="hljs-number">242</span>&#125;</span>&quot;</span>)<br><br><span class="hljs-comment"># n = 92873040755425037862453595432032305849700597051458113741962060511759338242511707376645887864988028778023918585157853023538298808432423892753226386473625357887471318145132753202886684219309732628049959875215531475307942392884965913932053771541589293948849554008069165822411930991003624635227296915315188938427</span><br><span class="hljs-comment"># c = 78798946231057858237017891544035026520248922588969396262361286907576401467816384819451190528802344534495780520382462432888103466971743435370588783181267466189564132373143717299869053172848786781320750631382630113459268771330862538801774075395201914653025347332312015985213462835680853607187971669296490439714</span><br><span class="hljs-comment"># gift = 10911712225716809560802315710689854621004330184657267444255298781464639032414821020145885934381310240257843204972266622870698161556175406337237650652528640</span><br><br></code></pre></td></tr></table></figure>
+<h5 id="解答-3">解答</h5>
+<p>p高位泄露，用Coppersmith求解就好</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs py"><span class="hljs-keyword">from</span> gmpy2 <span class="hljs-keyword">import</span> *<br><span class="hljs-keyword">from</span> Crypto.Util.number <span class="hljs-keyword">import</span> *<br><br>n = <span class="hljs-number">92873040755425037862453595432032305849700597051458113741962060511759338242511707376645887864988028778023918585157853023538298808432423892753226386473625357887471318145132753202886684219309732628049959875215531475307942392884965913932053771541589293948849554008069165822411930991003624635227296915315188938427</span><br>c = <span class="hljs-number">78798946231057858237017891544035026520248922588969396262361286907576401467816384819451190528802344534495780520382462432888103466971743435370588783181267466189564132373143717299869053172848786781320750631382630113459268771330862538801774075395201914653025347332312015985213462835680853607187971669296490439714</span><br>p = <span class="hljs-number">10911712225716809560802315710689854621004330184657267444255298781464639032414821020145885934381310240257843204972266622870698161556175406337237650652528640</span><br><br>PR. = PolynomialRing(Zmod(n))<br><br>f = p+x<br>res = f.small_roots(X=<span class="hljs-number">2</span>^<span class="hljs-number">242</span>, beta=<span class="hljs-number">0.5</span>, epsilon=<span class="hljs-number">0.02</span>)<br>p = <span class="hljs-built_in">int</span>(res[<span class="hljs-number">0</span>]) + p<br>q = n // p<br><span class="hljs-built_in">print</span>(q)<br>d = inverse_mod(<span class="hljs-number">65537</span>, (p-<span class="hljs-number">1</span>)*(q-<span class="hljs-number">1</span>))<br>m = power_mod(c, d, n)<br><span class="hljs-built_in">print</span>(long_to_bytes(m))<br></code></pre></td></tr></table></figure>
+<h4 id="题目-Mid-LLL">题目:Mid_LLL</h4>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><code class="hljs py"><span class="hljs-keyword">import</span> random<br><span class="hljs-keyword">from</span> secret <span class="hljs-keyword">import</span> flag<br><span class="hljs-keyword">from</span> sympy <span class="hljs-keyword">import</span> Matrix<br><span class="hljs-keyword">from</span> Crypto.Util.number <span class="hljs-keyword">import</span> *<br><br><br>msg = [i <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> flag]<br><br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">generate_matrix</span>(<span class="hljs-params">n, p</span>):<br>    matrix = []<br>    <span class="hljs-keyword">for</span> _ <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(n):<br>        row = [random.randint(<span class="hljs-number">0</span>, p) <span class="hljs-keyword">for</span> _ <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(n)]<br>        matrix.append(row)<br>    <span class="hljs-keyword">return</span> matrix<br><br><br>matrix = generate_matrix(<span class="hljs-built_in">len</span>(msg), <span class="hljs-number">2</span>**<span class="hljs-number">128</span>)<br>matrix[<span class="hljs-number">0</span>] = msg<br>matrix = Matrix(matrix)<br><br>noise = Matrix(generate_matrix(<span class="hljs-built_in">len</span>(msg), <span class="hljs-number">2</span>**<span class="hljs-number">128</span>))<br><br><span class="hljs-keyword">with</span> <span class="hljs-built_in">open</span>(<span class="hljs-string">&quot;./output.txt&quot;</span>, <span class="hljs-string">&quot;w&quot;</span>) <span class="hljs-keyword">as</span> f:<br>    f.write(<span class="hljs-built_in">str</span>((noise * matrix).tolist()))<br><br></code></pre></td></tr></table></figure>
+<h5 id="解答-4">解答</h5>
+<p>先看看代码里发生了什么：</p>
+<ul>
+<li><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi><mo>=</mo><mi>N</mi><mo>×</mo><mi>M</mi></mrow><annotation encoding="application/x-tex">R = N \times M</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.00773em;">R</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.7667em;vertical-align:-0.0833em;"></span><span class="mord mathnormal" style="margin-right:0.10903em;">N</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.10903em;">M</span></span></span></span>
+<ul>
+<li><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>N</mi></mrow><annotation encoding="application/x-tex">N</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.10903em;">N</span></span></span></span> (noise)：一个全是 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mn>2</mn><mn>128</mn></msup></mrow><annotation encoding="application/x-tex">2^{128}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8141em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">128</span></span></span></span></span></span></span></span></span></span></span></span> 大小随机数的矩阵。</li>
+<li><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>M</mi></mrow><annotation encoding="application/x-tex">M</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.10903em;">M</span></span></span></span> (matrix)：第一行是 Flag（ASCII 码，数值很小，<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>&lt;</mo><mn>128</mn></mrow><annotation encoding="application/x-tex">&lt;128</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5782em;vertical-align:-0.0391em;"></span><span class="mrel">&lt;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">128</span></span></span></span>），其余行是 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mn>2</mn><mn>128</mn></msup></mrow><annotation encoding="application/x-tex">2^{128}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8141em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">128</span></span></span></span></span></span></span></span></span></span></span></span> 大小的随机数。</li>
+<li><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi></mrow><annotation encoding="application/x-tex">R</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.00773em;">R</span></span></span></span> (output)：我们拿到的结果矩阵。</li>
+</ul>
+</li>
+<li>目标：从 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi></mrow><annotation encoding="application/x-tex">R</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.00773em;">R</span></span></span></span> 中还原 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>M</mi></mrow><annotation encoding="application/x-tex">M</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.10903em;">M</span></span></span></span> 的第一行（即 Flag）。</li>
+</ul>
+<p>关键在于结合线性代数不难发现：<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi></mrow><annotation encoding="application/x-tex">R</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.00773em;">R</span></span></span></span> 的每一行都是 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>M</mi></mrow><annotation encoding="application/x-tex">M</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.10903em;">M</span></span></span></span> 的行的线性组合：</p>
+<p class="katex-block "><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msub><mi>R</mi><mrow><mi>r</mi><mi>o</mi><msub><mi>w</mi><mi>i</mi></msub></mrow></msub><mo>=</mo><msub><mi>N</mi><mrow><mi>i</mi><mo separator="true">,</mo><mn>0</mn></mrow></msub><mo>⋅</mo><mtext>Flag</mtext><mo>+</mo><msub><mi>N</mi><mrow><mi>i</mi><mo separator="true">,</mo><mn>1</mn></mrow></msub><mo>⋅</mo><msub><mi>M</mi><mrow><mi>r</mi><mi>o</mi><msub><mi>w</mi><mn>1</mn></msub></mrow></msub><mo>+</mo><mo>…</mo></mrow><annotation encoding="application/x-tex">R_{row_i} = N_{i,0} \cdot \text{Flag} + N_{i,1} \cdot M_{row_1} + \dots
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.9334em;vertical-align:-0.2501em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.00773em;">R</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:-0.0077em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">ro</span><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.02691em;">w</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3281em;"><span style="top:-2.357em;margin-left:-0.0269em;margin-right:0.0714em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.143em;"><span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2501em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.9694em;vertical-align:-0.2861em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.10903em;">N</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:-0.109em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">i</span><span class="mpunct mtight">,</span><span class="mord mtight">0</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">⋅</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="mord text"><span class="mord">Flag</span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.9694em;vertical-align:-0.2861em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.10903em;">N</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:-0.109em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">i</span><span class="mpunct mtight">,</span><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">⋅</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.9334em;vertical-align:-0.2501em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.10903em;">M</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:-0.109em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">ro</span><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.02691em;">w</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3173em;"><span style="top:-2.357em;margin-left:-0.0269em;margin-right:0.0714em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.143em;"><span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2501em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.123em;"></span><span class="minner">…</span></span></span></span></span></p>
+<p>这里是不是就很熟悉了？构造一个格<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>M</mi></mrow><annotation encoding="application/x-tex">M</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.10903em;">M</span></span></span></span>,对<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>M</mi></mrow><annotation encoding="application/x-tex">M</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.10903em;">M</span></span></span></span>做一个LLL也许就可以得到答案！</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs py">output = ...<br>aaa = Matrix(ZZ, output)<br>L = aaa.LLL()<br><span class="hljs-built_in">print</span>(g:=GCD(L[<span class="hljs-number">0</span>]))<br><span class="hljs-built_in">print</span>(lis:=<span class="hljs-built_in">list</span>(<span class="hljs-built_in">map</span>(<span class="hljs-built_in">abs</span>, L[<span class="hljs-number">0</span>]/g)))<br><span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;&quot;</span>.join(<span class="hljs-built_in">map</span>(<span class="hljs-built_in">chr</span>, lis)))<br></code></pre></td></tr></table></figure>
+<h4 id="题目-Where-is-my-public-Key">题目:Where is my public Key</h4>
+<p>一个<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>e</mi></mrow><annotation encoding="application/x-tex">e</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">e</span></span></span></span>未知的rsa加密黑箱<br>
+<img src="1.jpg" srcset="/img/loading.gif" lazyload alt="alt text"></p>
+<h5 id="解答-5">解答</h5>
+<p class="katex-block "><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>c</mi><mo>≡</mo><msup><mi>m</mi><mi>e</mi></msup><mspace></mspace><mspace width="1em"/><mo stretchy="false">(</mo><mrow><mi mathvariant="normal">m</mi><mi mathvariant="normal">o</mi><mi mathvariant="normal">d</mi></mrow><mspace width="0.3333em"/><mi>n</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">c \equiv m^e \pmod{n} 
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4637em;"></span><span class="mord mathnormal">c</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">≡</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.7144em;"></span><span class="mord"><span class="mord mathnormal">m</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.7144em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">e</span></span></span></span></span></span></span></span><span class="mspace allowbreak"></span><span class="mspace" style="margin-right:1em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord"><span class="mord"><span class="mord mathrm">mod</span></span></span><span class="mspace" style="margin-right:0.3333em;"></span><span class="mord mathnormal">n</span><span class="mclose">)</span></span></span></span></span></p>
+<p>m可以自定义，c与n已知<br>
+题目便成为了一个离散对数问题，此时注意到<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>p</mi><mo>−</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">p-1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7778em;vertical-align:-0.1944em;"></span><span class="mord mathnormal">p</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">1</span></span></span></span>永远光滑，此时便可以确定使用<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi><mi>o</mi><mi>h</mi><mi>l</mi><mi>i</mi><mi>g</mi><mo>−</mo><mi>H</mi><mi>e</mi><mi>l</mi><mi>l</mi><mi>m</mi><mi>a</mi><mi>n</mi><mtext>方法解决</mtext></mrow><annotation encoding="application/x-tex">Pohlig-Hellman方法解决</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="mord mathnormal" style="margin-right:0.13889em;">P</span><span class="mord mathnormal">o</span><span class="mord mathnormal">h</span><span class="mord mathnormal" style="margin-right:0.01968em;">l</span><span class="mord mathnormal">i</span><span class="mord mathnormal" style="margin-right:0.03588em;">g</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord mathnormal">He</span><span class="mord mathnormal" style="margin-right:0.01968em;">ll</span><span class="mord mathnormal">man</span><span class="mord cjk_fallback">方法解决</span></span></span></span>但是此处不需要我们手搓，直接用sagemath里包装好就好</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs py"><span class="hljs-comment">#与服务器交互拿到数据</span><br><span class="hljs-comment">#为简化计算我们打一个m = 2交给靶机交互，拿到c</span><br><span class="hljs-keyword">from</span> Crypto.Util.number <span class="hljs-keyword">import</span> *<br><span class="hljs-keyword">from</span> gmpy2 <span class="hljs-keyword">import</span> *<br><br>c1 = <span class="hljs-number">1004110357630545817311074765090693459204040033207755011932094275908555203208034259186627539702760517778222622235294948447821410668911086052956891332665832</span><br>p = <span class="hljs-number">78646795385241335466971628111322052062110333388784897992869461989103306932403</span><br>q = <span class="hljs-number">112215922938327387909468272953228363870450000556239972267568652798377484240491</span><br>F = Zmod(p*q)<br>e = discrete_log(F(c), F(<span class="hljs-number">2</span>), <span class="hljs-built_in">ord</span>=(p-<span class="hljs-number">1</span>)*(q-<span class="hljs-number">1</span>))<br><span class="hljs-built_in">print</span>(e)<br></code></pre></td></tr></table></figure>
+<p>拿到e就好说了</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>0xgame部分题目复现</div>
+      <div>http://example.com/2026/01/12/0xgame部分题目复现/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>ddanggui</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2026年1月12日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2026/01/03/xyctf%E6%9F%90%E9%A2%98/" title="xyctf某题">
+                        <span class="hidden-mobile">xyctf某题</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
