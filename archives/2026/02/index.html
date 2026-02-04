@@ -21,8 +21,8 @@
   
     <meta name="description" content="尽人事 听天命 静候花开">
 <meta property="og:type" content="website">
-<meta property="og:title" content="ddanggui&#39;s 博客">
-<meta property="og:url" content="http://example.com/index.html">
+<meta property="og:title" content="归档">
+<meta property="og:url" content="http://example.com/archives/2026/02/index.html">
 <meta property="og:site_name" content="ddanggui&#39;s 博客">
 <meta property="og:description" content="尽人事 听天命 静候花开">
 <meta property="og:locale" content="zh_CN">
@@ -31,7 +31,7 @@
   
   
   
-  <title>ddanggui&#39;s 博客</title>
+  <title>归档 - ddanggui&#39;s 博客</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -85,7 +85,7 @@
   <header>
     
 
-<div class="header-inner" style="height: 100vh;">
+<div class="header-inner" style="height: 60vh;">
   <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand" href="/">
@@ -203,17 +203,13 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="CRYPTO小菜鸡的升级之路"></span>
+            <span id="subtitle" data-typed-text="归档"></span>
           
         </div>
 
         
       </div>
 
-      
-        <div class="scroll-down-bar">
-          <i class="iconfont icon-arrowdown"></i>
-        </div>
       
     </div>
   </div>
@@ -227,245 +223,28 @@
     
       <div class="container nopadding-x-md">
         <div id="board"
-          style="margin-top: 0">
+          >
           
           <div class="container">
             <div class="row">
               <div class="col-12 col-md-10 m-auto">
                 
 
-<h1 style="display: none">ddanggui&#39;s 博客</h1>
-
-  <div class="row mx-auto index-card">
+<div class="list-group">
+  <p class="h4">共计 7 篇文章</p>
+  <hr>
+  
+  
     
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h2 class="index-header">
-        
-        <a href="/2026/02/04/unictf/" target="_self">
-          unictf
-        </a>
-      </h2>
-
       
-      <a class="index-excerpt index-excerpt__noimg" href="/2026/02/04/unictf/" target="_self">
-        <div>
-          牢底坐穿啦！！！  unictf Subgroup-Weaver解题步骤： 分析代码，发现求出正确的key发给服务器就可以拿到flag key的产生:  key = randbytes(64)#64字节随机  分析这个随机数生成器发现问题 : randint(1, 7) % 2输出1和0的概率并不相等，存在统计偏差 因此，每一位生成的概率分布为： P(random_bit=1)=4/7≈57.1
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2026-02-04 10:24" pubdate>
-              2026-02-04
-            </time>
-          </div>
-        
-        
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
+      <p class="h5">2026</p>
     
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h2 class="index-header">
-        
-        <a href="/2026/01/12/0xgame%E9%83%A8%E5%88%86%E9%A2%98%E7%9B%AE%E5%A4%8D%E7%8E%B0/" target="_self">
-          0xgame部分题目复现
-        </a>
-      </h2>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2026/01/12/0xgame%E9%83%A8%E5%88%86%E9%A2%98%E7%9B%AE%E5%A4%8D%E7%8E%B0/" target="_self">
-        <div>
-          0xgame 题目:Ez_LCG 12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455#!/usr/local/bin/pythonfrom Crypto.Util.number import *from secret import flagimpo
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2026-01-12 12:57" pubdate>
-              2026-01-12
-            </time>
-          </div>
-        
-        
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h2 class="index-header">
-        
-        <a href="/2026/01/03/xyctf%E6%9F%90%E9%A2%98/" target="_self">
-          xyctf某题
-        </a>
-      </h2>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2026/01/03/xyctf%E6%9F%90%E9%A2%98/" target="_self">
-        <div>
-          xyctf wp 题目: 12345678910111213141516171819202122from Crypto.Util.number import *import hashlibfrom secrets import flagdef hash(x):    return hashlib.sha256(x.encode()).digest()def pad(message):    ret
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2026-01-03 14:57" pubdate>
-              2026-01-03
-            </time>
-          </div>
-        
-        
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h2 class="index-header">
-        
-        <a href="/2025/12/28/pwntools%E5%B8%B8%E7%94%A8/" target="_self">
-          pwntools常用
-        </a>
-      </h2>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2025/12/28/pwntools%E5%B8%B8%E7%94%A8/" target="_self">
-        <div>
-          CTF 中 Pwntools 连接场景简单 在CTF中使用pwntools连接靶机是最基础也最核心的操作之一，pwntools提供了简洁的API支持本地程序调试、远程TCP连接、串口连接等多种场景，下面简单说明用法 1. 远程连接（最常见） 123456789from pwn import *# 基本连接p = remote(&#x27;靶机IP&#x27;, 端口号)# 示例p = remote
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2025-12-28 22:22" pubdate>
-              2025-12-28
-            </time>
-          </div>
-        
-        
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h2 class="index-header">
-        
-        <a href="/2025/12/26/%E6%8A%BD%E4%BB%A3%E4%B8%80%E4%BA%9B%E4%B8%AA%E6%A6%82%E5%BF%B5/" target="_self">
-          抽代一些个概念
-        </a>
-      </h2>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2025/12/26/%E6%8A%BD%E4%BB%A3%E4%B8%80%E4%BA%9B%E4%B8%AA%E6%A6%82%E5%BF%B5/" target="_self">
-        <div>
-          近日学习Coppersmith方法和Sagemath工具，看不懂看不懂思密达~，补习一下概念  多项式环代数结构差异及与 RSA 攻击的关联 要结合群、环、域的代数结构，讲清楚 PolynomialRing(GF(p)) 和 PolynomialRing(Zmod(n)) 的区别，核心逻辑是：多项式环的性质完全由其系数集的代数结构决定——系数集是域，多项式环的性质更优良；系数集是环（非域），多项
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2025-12-26 12:58" pubdate>
-              2025-12-26
-            </time>
-          </div>
-        
-        
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h2 class="index-header">
-        
-        <a href="/2025/12/24/OpenSSL%E5%8A%A0%E5%AF%86%E5%BA%93%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B/" target="_self">
-          OpenSSL加密库入门教程
-        </a>
-      </h2>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2025/12/24/OpenSSL%E5%8A%A0%E5%AF%86%E5%BA%93%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B/" target="_self">
-        <div>
-          OpenSSL 加密库编程新手入门教程 OpenSSL是一个功能强大的开源加密库，支持SSL/TLS协议以及几乎所有主流的加密算法（对称、非对称、哈希等），广泛用于网络安全、数据加密等场景。下面从环境搭建、命令行快速上手、C语言编程示例三个维度带你入门。  一、环境搭建 首先确保你的系统中安装了OpenSSL库和开发包（包含头文件和链接库）。 1. Linux（Ubuntu/Debian） 1 2
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2025-12-24 12:18" pubdate>
-              2025-12-24
-            </time>
-          </div>
-        
-        
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h2 class="index-header">
-        
-        <a href="/2025/12/21/%E6%B5%B7%E6%B2%B3%E5%B7%A5%E5%8C%A0%E6%9D%AFwp/" target="_self">
-          海河工匠杯wp
-        </a>
-      </h2>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2025/12/21/%E6%B5%B7%E6%B2%B3%E5%B7%A5%E5%8C%A0%E6%9D%AFwp/" target="_self">
-        <div>
-          河海工匠杯 个人wp 虽然赛题不很难，但是鉴于主包第一次参加的赛事，记录一下叭 1.crack_RSA 题目： 123N : 46065781388428960989637205658554417248531811702624626389974432923749270182062721955600778820059011913617389598900138215153600685382332638
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2025-12-21 19:55" pubdate>
-              2025-12-21
-            </time>
-          </div>
-        
-        
-        
-      </div>
-    </article>
-  </div>
+    <a href="/2026/02/04/unictf/" class="list-group-item list-group-item-action">
+      <time>02-04</time>
+      <div class="list-group-item-title">unictf</div>
+    </a>
+  
+</div>
 
 
 
