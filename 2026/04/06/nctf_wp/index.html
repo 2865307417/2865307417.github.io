@@ -19,21 +19,21 @@
   <meta name="author" content="ddanggui">
   <meta name="keywords" content="">
   
-    <meta name="description" content="nctf_wp Ez_RSA 题目 1234567891011121314151617181920212223from Crypto.Util.number import *from secrets import flagnbits &#x3D; 512p &#x3D; getPrime(nbits)q &#x3D; getPrime(nbits)n &#x3D; p * qe &#x3D; 65537m &#x3D; bytes_to_long(flag">
+    <meta name="description" content="居然还能有我能ak的比赛哈哈 nctf_wp Ez_RSA 题目 1234567891011121314151617181920212223from Crypto.Util.number import *from secrets import flagnbits &#x3D; 512p &#x3D; getPrime(nbits)q &#x3D; getPrime(nbits)n &#x3D; p * qe &#x3D; 65537m &#x3D; byt">
 <meta property="og:type" content="article">
-<meta property="og:title" content="QWQ">
+<meta property="og:title" content="nctf_wp">
 <meta property="og:url" content="https://yourdomain.com/2026/04/06/nctf_wp/index.html">
 <meta property="og:site_name" content="ddanggui&#39;s 博客">
-<meta property="og:description" content="nctf_wp Ez_RSA 题目 1234567891011121314151617181920212223from Crypto.Util.number import *from secrets import flagnbits &#x3D; 512p &#x3D; getPrime(nbits)q &#x3D; getPrime(nbits)n &#x3D; p * qe &#x3D; 65537m &#x3D; bytes_to_long(flag">
+<meta property="og:description" content="居然还能有我能ak的比赛哈哈 nctf_wp Ez_RSA 题目 1234567891011121314151617181920212223from Crypto.Util.number import *from secrets import flagnbits &#x3D; 512p &#x3D; getPrime(nbits)q &#x3D; getPrime(nbits)n &#x3D; p * qe &#x3D; 65537m &#x3D; byt">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2026-04-06T08:06:33.000Z">
-<meta property="article:modified_time" content="2026-04-06T08:07:22.393Z">
+<meta property="article:modified_time" content="2026-04-06T08:10:35.164Z">
 <meta property="article:author" content="ddanggui">
 <meta name="twitter:card" content="summary_large_image">
   
   
   
-  <title>QWQ - ddanggui&#39;s 博客</title>
+  <title>nctf_wp - ddanggui&#39;s 博客</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -213,7 +213,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="QWQ"></span>
+            <span id="subtitle" data-typed-text="nctf_wp"></span>
           
         </div>
 
@@ -284,12 +284,13 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">QWQ</h1>
+            <h1 id="seo-header">nctf_wp</h1>
             
             
               <div class="markdown-body">
                 
-                <h1>nctf_wp</h1>
+                <p>居然还能有我能ak的比赛哈哈</p>
+<h1>nctf_wp</h1>
 <h2 id="Ez-RSA">Ez_RSA</h2>
 <h3 id="题目">题目</h3>
 <figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><code class="hljs py"><span class="hljs-keyword">from</span> Crypto.Util.number <span class="hljs-keyword">import</span> *<br><span class="hljs-keyword">from</span> secrets <span class="hljs-keyword">import</span> flag<br><br>nbits = <span class="hljs-number">512</span><br>p = getPrime(nbits)<br>q = getPrime(nbits)<br>n = p * q<br>e = <span class="hljs-number">65537</span><br>m = bytes_to_long(flag)<br>c = <span class="hljs-built_in">pow</span>(m, e, n)<br>hint = p ^ <span class="hljs-built_in">int</span>(<span class="hljs-built_in">bin</span>(q)[:<span class="hljs-number">1</span>:-<span class="hljs-number">1</span>], <span class="hljs-number">2</span>)<br><br><span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;nbits = <span class="hljs-subst">&#123;nbits&#125;</span>&quot;</span>)<br><span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;n = <span class="hljs-subst">&#123;n&#125;</span>&quot;</span>)<br><span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;e = <span class="hljs-subst">&#123;e&#125;</span>&quot;</span>)<br><span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;c = <span class="hljs-subst">&#123;c&#125;</span>&quot;</span>)<br><span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;hint = <span class="hljs-subst">&#123;hint&#125;</span>&quot;</span>)<br><br><span class="hljs-comment"># nbits = 512</span><br><span class="hljs-comment"># n = 113811568965055236591575124486758679392744553312134148909105203346767338399571149835776281246434662598568061596388663253038256689345299177200416663539845688277447346395189677568405388952270634599590543939397457325519084988358577805564978282375882831765408646889940777372958745826393653515323881370943911243589</span><br><span class="hljs-comment"># e = 65537</span><br><span class="hljs-comment"># c = 28637971616659975415203771281328378878549288421921080859079174552593926682380791394169267513651195690175911968893108214839850128311436983081661719981958725955998997347063633351893769712863719014753154993940174947685060864532241899917269380408066913133029163844049218414849768354727966161277243216291473824377</span><br><span class="hljs-comment"># hint = 157624334507300300837306007943988438905196981213124202656160912356046979618961372023595598201180149465610337965346427263713514476892241848899142885213492</span><br></code></pre></td></tr></table></figure>
@@ -504,7 +505,7 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>QWQ</div>
+      <div>nctf_wp</div>
       <div>https://yourdomain.com/2026/04/06/nctf_wp/</div>
     </div>
     <div class="license-meta">
