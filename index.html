@@ -375,14 +375,14 @@
       <h2 class="index-header">
         
         <a href="/2026/02/26/unictf/" target="_self">
-          
+          unictf
         </a>
       </h2>
 
       
       <a class="index-excerpt index-excerpt__noimg" href="/2026/02/26/unictf/" target="_self">
         <div>
-          牢底坐穿啦！！！  unictf Subgroup-Weaver解题步骤： 分析代码，发现求出正确的key发给服务器就可以拿到flag key的产生:  key = randbytes(64)#64字节随机  分析这个随机数生成器发现问题 : randint(1, 7) % 2输出1和0的概率并不相等，存在统计偏差 因此，每一位生成的概率分布为： P(random_bit=1)=4/7≈57.1
+          unictf Subgroup-Weaver解题步骤： 分析代码，发现求出正确的key发给服务器就可以拿到flag key的产生:  key = randbytes(64)#64字节随机  分析这个随机数生成器发现问题 : randint(1, 7) % 2输出1和0的概率并不相等，存在统计偏差 因此，每一位生成的概率分布为： P(random_bit=1)=4/7≈57.14%P(\text{r
         </div>
       </a>
 
@@ -390,7 +390,7 @@
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2026-02-26 23:43" pubdate>
+            <time datetime="2026-02-26 16:06" pubdate>
               2026-02-26
             </time>
           </div>
