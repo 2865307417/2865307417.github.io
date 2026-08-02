@@ -250,7 +250,7 @@
       
       <a class="index-excerpt index-excerpt__noimg" href="/2026/07/21/nepctf%E9%83%A8%E5%88%86/" target="_self">
         <div>
-          nepctf部分 题1 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748import randomfrom Crypto.Util.number import getPrime, bytes_to_longdef generate_challenge():    bits
+          nepctf 比赛 Crypto 部分题目，涉及高位泄露的 RSA 与 LCG。
         </div>
       </a>
 
@@ -283,7 +283,7 @@
       
       <a class="index-excerpt index-excerpt__noimg" href="/2026/06/01/tutctf/" target="_self">
         <div>
-          动手能力太差了，难绷 RSA 题目 12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849from Crypto.Util.number import getPrime, bytes_to_longimport mathFLAG = &#x27;TUTCTF&#123;???
+          tutctf 比赛 wp，RSA 题目，动手能力太差了，难绷。
         </div>
       </a>
 
@@ -316,7 +316,7 @@
       
       <a class="index-excerpt index-excerpt__noimg" href="/2026/04/26/%E6%95%B0%E5%AD%97%E4%B8%AD%E5%9B%BD%E5%86%B3%E8%B5%9B/" target="_self">
         <div>
-          依旧爆零还是很难受的，不过出人意料的是全场师傅们居然陪我一起爆零哈哈 题目 (pow部分已略过) 1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465666768697071727374757677787980
+          数字中国决赛赛后记，全场陪爆零，含 LWE/格相关题目。
         </div>
       </a>
 
@@ -349,7 +349,7 @@
       
       <a class="index-excerpt index-excerpt__noimg" href="/2026/04/19/%E8%BD%AF%E4%BB%B6%E5%AE%89%E5%85%A8%E5%8C%BA%E5%9F%9F%E7%BA%BF%E4%B8%8B%E8%B5%9B/" target="_self">
         <div>
-          也是爆零了T_T。感触蛮多的，虽然比赛身有点草台班子，但还是蛮有意义的   第一次参观北理这种顶级高校，有一种农村人进城的感觉哈哈   再一个也是第一次参加线下的断网的比赛了，离了开始ai重新审视自己，发现自己其实没有预想的那么菜，说明平时对ai一把梭类题型的额外关照还是有意义的   好好努力吧  题目 1234567891011121314151617181920212223242526272
+          软件安全区域线下赛后记，第一次参加线下断网比赛，感悟颇多。
         </div>
       </a>
 
@@ -382,7 +382,7 @@
       
       <a class="index-excerpt index-excerpt__noimg" href="/2026/04/06/nctf_wp/" target="_self">
         <div>
-          居然还能有我能ak的比赛哈哈 nctf_wp Ez_RSA 题目 1234567891011121314151617181920212223from Crypto.Util.number import *from secrets import flagnbits = 512p = getPrime(nbits)q = getPrime(nbits)n = p * qe = 65537m = byt
+          nctf 比赛 wp，难得能 ak 一次，包含 Ez_RSA 等题目。
         </div>
       </a>
 
@@ -415,7 +415,7 @@
       
       <a class="index-excerpt index-excerpt__noimg" href="/2026/03/30/Polaris-CTF/" target="_self">
         <div>
-          app.py 题目 1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162from flask import Flask, request, make_response, render_template, redirect,
+          Polaris CTF 题目 wp，包含 AES-CBC session 相关的 web/crypto 题。
         </div>
       </a>
 
@@ -448,7 +448,7 @@
       
       <a class="index-excerpt index-excerpt__noimg" href="/2026/03/03/hgame%E9%83%A8%E5%88%86/" target="_self">
         <div>
-          babyrsa 关键：m有强结构 m 不是任意整数。 它满足： m=bytes_to_long(VIDAR X  )m = bytes\_to\_long(   \text{VIDAR{} X \text{ }}   )m=bytes_to_long(VIDAR X  ) 其中：  X 长度已知范围 X 每个字符来自 64 个字符集 这是一个强约束结构整数   转化为数学方程 设：  prefix
+          hgame 比赛 babyrsa：利用明文 m 的强结构（前缀已知、字符集受限）将 RSA 转化为格/Coppersmith 问题求解。
         </div>
       </a>
 
@@ -481,7 +481,7 @@
       
       <a class="index-excerpt index-excerpt__noimg" href="/2026/03/03/%E5%B8%B8%E7%94%A8%E8%AF%AD%E6%B3%95/" target="_self">
         <div>
-          常用语法 常用语法 12345678910from gmpy2 import *mpz(n)	#初始化一个大整数mpfr(x)	# 初始化一个高精度浮点数xd = invert(e,n) 	# 求逆元，de = 1 mod nc = powmod(m,e,n)	# 幂取模，结果是 c = m^e mod nis_prime(n)	 #素性检测gcd(a,b)  	#欧几里得算法，最大公约数gcde
+          gmpy2、sympy 等常用密码学库的常用语法速查。
         </div>
       </a>
 
@@ -514,7 +514,7 @@
       
       <a class="index-excerpt index-excerpt__noimg" href="/2026/02/26/unictf/" target="_self">
         <div>
-          unictf Subgroup-Weaver解题步骤： 分析代码，发现求出正确的key发给服务器就可以拿到flag key的产生:  key = randbytes(64)#64字节随机  分析这个随机数生成器发现问题 : randint(1, 7) % 2输出1和0的概率并不相等，存在统计偏差 因此，每一位生成的概率分布为： P(random_bit=1)=4/7≈57.14%P(\text{r
+          unictf 比赛 Subgroup-Weaver：利用 randint 概率偏差，通过统计攻击恢复 64 字节 key。
         </div>
       </a>
 
@@ -547,7 +547,7 @@
       
       <a class="index-excerpt index-excerpt__noimg" href="/2026/02/15/DLP-s/" target="_self">
         <div>
-          DLP问题  打个比赛碰到了一万种题型，每一种都是牢底坐穿，整合一下吧  问题描述 DLP的目标是在给定群体 GGG 和生成元 ggg 的情况下，找到一个 xxx，使得 gx≡h (mod p)g^x \equiv h \ (\text{mod} \ p) gx≡h (mod p) 其中，ppp 是一个素数，ggg 是生成元，hhh 是已知的值，xxx 是我们要解决的离散对数。 常规方法： 1.
+          整理 CTF 中遇到的各类离散对数（DLP）题型与解法，涵盖 BSGS、Pohlig-Hellman 等算法及 SageMath 用法。
         </div>
       </a>
 
