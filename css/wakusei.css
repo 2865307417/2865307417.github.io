@@ -1,0 +1,99 @@
+/* ============================================================
+ * Wakusei HomePage · Hexo 移植补充样式
+ * 主题 CSS 原样保留,这里只放:Hexo 输出适配 + KaTeX 暗色适配 + 兜底
+ * ============================================================ */
+
+[hidden] { display: none !important; }
+
+.page-scroller { scroll-behavior: smooth; }
+
+/* ---- KaTeX(mathjax/katex 区块在暗色下继承前景色,行间公式横向滚动) ---- */
+.post-body .katex-display {
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding: 0.25rem 0;
+    scrollbar-width: thin;
+}
+.post-body .katex-display::-webkit-scrollbar { height: 6px; }
+.post-body .katex-display::-webkit-scrollbar-thumb {
+    background: var(--panel-border, rgba(0, 0, 0, 0.2));
+    border-radius: 3px;
+}
+.post-body .katex { color: inherit; }
+.post-body .katex-block { margin: 0; }
+[data-theme='dark'] .post-body .katex { color: var(--fg, #fff); }
+[data-theme='dark'] .post-body .katex .mord,
+[data-theme='dark'] .post-body .katex .mbin,
+[data-theme='dark'] .post-body .katex .mrel,
+[data-theme='dark'] .post-body .katex .mopen,
+[data-theme='dark'] .post-body .katex .mclose { color: inherit; }
+
+/* ---- Hexo highlight.js 输出映射到主题的 pre.astro-code ---- */
+.post-body pre.astro-code { margin: 0; }
+.post-body pre.astro-code code {
+    display: block;
+    background: transparent;
+    padding: 0;
+    font-family: var(--font-mono, ui-monospace, monospace);
+}
+
+/* 高亮令牌配色(浅色纸面 + 暗色两套,贴近主题气质) */
+.post-body .hljs-comment, .post-body .hljs-quote { color: #9a938a; font-style: italic; }
+.post-body .hljs-keyword, .post-body .hljs-selector-tag, .post-body .hljs-meta { color: #3e59ff; }
+.post-body .hljs-string, .post-body .hljs-attr, .post-body .hljs-template-tag { color: #0a7d3f; }
+.post-body .hljs-number, .post-body .hljs-literal, .post-body .hljs-built_in { color: #b3541e; }
+.post-body .hljs-title, .post-body .hljs-name, .post-body .hljs-section { color: #8a1f6d; }
+.post-body .hljs-type, .post-body .hljs-class .hljs-title, .post-body .hljs-tag { color: #22577a; }
+.post-body .hljs-variable, .post-body .hljs-regexp, .post-body .hljs-symbol { color: #a05a00; }
+.post-body .hljs-addition { color: #0a7d3f; }
+.post-body .hljs-deletion { color: #c22f2f; }
+
+[data-theme='dark'] .post-body .hljs-comment, [data-theme='dark'] .post-body .hljs-quote { color: #7d7f87; }
+[data-theme='dark'] .post-body .hljs-keyword, [data-theme='dark'] .post-body .hljs-selector-tag, [data-theme='dark'] .post-body .hljs-meta { color: #9aa5ff; }
+[data-theme='dark'] .post-body .hljs-string, [data-theme='dark'] .post-body .hljs-attr { color: #7fd6a0; }
+[data-theme='dark'] .post-body .hljs-number, [data-theme='dark'] .post-body .hljs-literal, [data-theme='dark'] .post-body .hljs-built_in { color: #f0a66b; }
+[data-theme='dark'] .post-body .hljs-title, [data-theme='dark'] .post-body .hljs-name, [data-theme='dark'] .post-body .hljs-section { color: #f28ac2; }
+[data-theme='dark'] .post-body .hljs-type, [data-theme='dark'] .post-body .hljs-tag { color: #8ecbea; }
+[data-theme='dark'] .post-body .hljs-variable, [data-theme='dark'] .post-body .hljs-regexp, [data-theme='dark'] .post-body .hljs-symbol { color: #ffcf7d; }
+
+/* Hexo 代码块语言角标 */
+.post-body .code-block { position: relative; }
+.post-body .code-block[data-lang]::after {
+    content: attr(data-lang);
+    position: absolute;
+    top: 8px;
+    right: 12px;
+    font-family: var(--font-mono, monospace);
+    font-size: 0.68rem;
+    color: var(--muted, #666);
+    opacity: 0.65;
+    pointer-events: none;
+}
+
+/* 目录长标题溢出省略(移植版的扁平 li 结构下保证不撑破面板) */
+.article-toc__link {
+    display: block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.article-toc__item { min-width: 0; }
+.article-toc__list { overflow-x: hidden; }
+
+/* 顶栏主题按钮:亮/暗图标切换 */
+.top-bar [data-action='toggle-theme'] .icon-light { display: none; }
+[data-theme='dark'] .top-bar [data-action='toggle-theme'] .icon-dark { display: none; }
+[data-theme='dark'] .top-bar [data-action='toggle-theme'] .icon-light { display: inline-block; }
+
+/* 搜索结果可聚焦态(搜索页复用 PostCard) */
+.search-result { cursor: pointer; }
+.search-result:focus-visible { outline: var(--focus-ring, 2px solid var(--accent-blue)); outline-offset: 2px; }
+.search-result--selected .post-card { box-shadow: var(--shadow-pop, 0 8px 30px rgba(0, 0, 0, 0.12)); }
+
+/* Hexo 分页(文章页 post-nav 占位)在窄屏的兜底 */
+.post-nav__placeholder { min-width: 0; }
+
+/* 移动端 hero-sticky 在非首页隐藏左栏时保持可滚动 */
+@media (max-width: 900px) {
+    .hero-sticky[data-shell-mode='article'] .left-panel .hero-minimal { padding-top: 4.5rem; }
+}

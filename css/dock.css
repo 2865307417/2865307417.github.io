@@ -1,0 +1,8 @@
+/* ========================================
+    Sidebar Menu Items
+    ======================================== */
+
+.sidebar-menu-item,
+.sidebar-submenu-item {
+    cursor: pointer;
+}

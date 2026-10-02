@@ -1,307 +1,367 @@
-
-
 <!DOCTYPE html>
-<html lang="zh-CN" data-default-color-scheme=auto>
-
-
-
+<html lang="zh-CN" data-ui-lang="zh-CN" data-content-lang="zh-CN" class="is-entering">
 <head>
-  <meta charset="UTF-8">
-
-  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
-  <link rel="icon" href="/img/fluid.png">
-  
-
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
-  <meta http-equiv="x-ua-compatible" content="ie=edge">
-  
-  <meta name="theme-color" content="#2f4154">
-  <meta name="author" content="ddanggui">
-  <meta name="keywords" content="">
-  
-    <meta name="description" content="tutctf 比赛 wp，RSA 题目，动手能力太差了，难绷。">
-<meta property="og:type" content="article">
-<meta property="og:title" content="tutctf wp">
-<meta property="og:url" content="https://ddanggui.top/2026/06/01/tutctf/index.html">
-<meta property="og:site_name" content="ddanggui&#39;s 博客">
-<meta property="og:description" content="tutctf 比赛 wp，RSA 题目，动手能力太差了，难绷。">
-<meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2026-06-01T05:35:24.000Z">
-<meta property="article:modified_time" content="2026-08-02T01:26:30.556Z">
-<meta property="article:author" content="ddanggui">
-<meta name="twitter:card" content="summary_large_image">
-  
-  
-  
-  <title>tutctf wp - ddanggui&#39;s 博客</title>
-
-  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
-
-
-
-  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
-
-  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
-
-  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
-
-  <link  rel="stylesheet" href="https://lib.baomitu.com/KaTeX/0.16.2/katex.min.css" />
-
-
-
-<!-- 主题依赖的图标库，不要自行修改 -->
-<!-- Do not modify the link that theme dependent icons -->
-
-<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
-
-
-
-<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
-
-
-<link  rel="stylesheet" href="/css/main.css" />
-
-
-  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
-  
-    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
-  
-
-
-
-
-  <script id="fluid-configs">
-    var Fluid = window.Fluid || {};
-    Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"ddanggui.top","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
-
-    if (CONFIG.web_analytics.follow_dnt) {
-      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
-      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>tutctf wp | ddanggui&#39;s 博客</title>
+<meta name="description" content="tutctf 比赛 wp，RSA 题目，动手能力太差了，难绷。">
+<meta name="robots" content="index, follow">
+<script>
+(function () {
+    var t;
+    try { t = localStorage.getItem('theme'); } catch (e) {}
+    if (t !== 'dark' && t !== 'light') {
+        t = (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light';
     }
-  </script>
-  <script  src="/js/utils.js" ></script>
-  <script  src="/js/color-schema.js" ></script>
-  
+    document.documentElement.setAttribute('data-theme', t);
+    if (t === 'dark') {
+        var m = document.querySelector('meta[name="theme-color"]');
+        if (m) m.setAttribute('content', '#080808');
+    }
+    var c = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+    try {
+        if ((c && (c.saveData || /^(slow-2g|2g|3g)$/.test(c.effectiveType || ''))) ||
+            (window.matchMedia && window.matchMedia('(prefers-reduced-data: reduce)').matches)) {
+            document.documentElement.setAttribute('data-perf', 'lite');
+        }
+    } catch (e) {}
+})();
+</script>
+<meta name="theme-color" content="#fffef7">
+<style>:root { --theme-color: #fffef7; }</style>
+<link rel="canonical" href="https://ddanggui.top/2026/06/01/tutctf/">
+<link rel="icon" href="/img/avatar.png" type="image/png">
+
+<link rel="preconnect" href="https://www.loliapi.com" media="(min-width: 901px)">
+<link rel="dns-prefetch" href="https://www.loliapi.com" media="(min-width: 901px)">
+<link rel="alternate" type="application/atom+xml" title="ddanggui&#39;s 博客" href="/atom.xml">
 
 
-  
+<link rel="stylesheet" href="/fonts/inter/inter.css">
+<link rel="stylesheet" href="/fonts/noto-sans-sc/400.css">
+<link rel="stylesheet" href="/fonts/noto-sans-sc/500.css">
+<link rel="stylesheet" href="/fonts/noto-sans-sc/600.css">
+<link rel="stylesheet" href="/fonts/noto-sans-sc/700.css">
+<link rel="stylesheet" href="/fonts/noto-serif-sc/400.css">
+<link rel="stylesheet" href="/fonts/noto-serif-sc/600.css">
+<link rel="stylesheet" href="/fonts/noto-serif-sc/700.css">
+
+<link rel="stylesheet" href="/fonts/katex/katex.min.css">
+
+<link rel="stylesheet" href="/css/base.css">
+<link rel="stylesheet" href="/css/layout.css">
+<link rel="stylesheet" href="/css/transitions.css">
+<link rel="stylesheet" href="/css/components.css">
+<link rel="stylesheet" href="/css/responsive.css">
+<link rel="stylesheet" href="/css/dock.css">
+<link rel="stylesheet" href="/css/topbar.css">
+<link rel="stylesheet" href="/css/footer.css">
+<link rel="stylesheet" href="/css/article.css">
+<link rel="stylesheet" href="/css/toc.css">
+<link rel="stylesheet" href="/css/reading-controls.css">
+<link rel="stylesheet" href="/css/performance.css">
+<link rel="stylesheet" href="/css/wakusei.css">
+
+<meta property="og:site_name" content="ddanggui&#39;s 博客">
+<meta property="og:title" content="tutctf wp | ddanggui&#39;s 博客">
+<meta property="og:description" content="tutctf 比赛 wp，RSA 题目，动手能力太差了，难绷。">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://ddanggui.top/2026/06/01/tutctf/">
+<meta property="og:image" content="https://ddanggui.top/img/avatar.png">
+<meta property="og:locale" content="zh_CN">
+<meta name="twitter:card" content="summary">
+
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"tutctf wp","description":"tutctf 比赛 wp，RSA 题目，动手能力太差了，难绷。","inLanguage":"zh-CN","datePublished":"2026-06-01T05:35:24.000Z","dateModified":"2026-08-02T01:26:30.556Z","author":{"@type":"Person","name":"ddanggui"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://ddanggui.top/2026/06/01/tutctf/"}}</script>
+
+<script>
+/* 壁纸首帧预取(桌面端) */
+(function () {
+    if (!window.matchMedia || !window.matchMedia('(min-width: 901px)').matches) return;
+    if (document.querySelector('.wallpaper-image')) return;
+    var img = new Image();
+    img.fetchPriority = 'low';
+    img.decoding = 'async';
+    img.src = '/img/default.png';
+    window.__wallpaperPrefetch = { img: img };
+})();
+</script>
+<script>
+window.__WAKUSEI__ = {"themeColor":"#fffef7","profile":{"name":"ddanggui","status":"CRYPTO小菜鸡的升级之路","avatar":"/img/avatar.png"},"slogans":{"list":["尽人事,听天命,静候花开。","CRYPTO小菜鸡的升级之路","用冰冷的理性温暖世界。","Stay hungry, stay foolish.","师傅,别念了!"],"mode":"sequence","pauseDuration":5000,"loop":true},"time":{"format":"24h","showWeekday":true,"showDate":true,"updateInterval":1000},"wallpaper":{"defaultImage":"/img/default.png","apis":["https://www.loliapi.com/bg/"],"raceTimeout":10000,"maxRetries":5,"rotation":{"enabled":false,"interval":8000}},"effects":{"scrollReveal":{"enabled":true,"offset":50,"delay":50}},"social":{"colorScheme":"cycle","links":[{"name":"GITHUB","url":"https://github.com/2865307417","icon":"fab fa-github","color":"#fff700"},{"name":"EMAIL","url":"mailto:2865307417@qq.com","icon":"fas fa-envelope","color":"#0022ff"},{"name":"BILIBILI","url":"https://space.bilibili.com/","icon":"fab fa-bilibili","color":"#ff7676"},{"name":"RSS","url":"/atom.xml","icon":"fas fa-rss","color":"#ff8400","copy":true}]},"comments":{"enabled":false,"envId":"","pageview":true},"searchIndexUrl":"/search-index.json","searchPageUrl":"/search/","contributionsUrl":"/github-contributions.json","version":"1.0.0"};
+</script>
+<noscript><style>.scroll-reveal { opacity: 1 !important; transform: none !important; }</style></noscript>
 <meta name="generator" content="Hexo 8.1.1"></head>
-
-
 <body>
-  
-
-  <header>
-    
-
-<div class="header-inner" style="height: 70vh;">
-  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
-  <div class="container">
-    <a class="navbar-brand" href="/">
-      <strong>ddanggui&#39;s 博客</strong>
-    </a>
-
-    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
-            data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <div class="animated-icon"><span></span><span></span><span></span></div>
-    </button>
-
-    <!-- Collapsible content -->
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav ml-auto text-center">
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/" target="_self">
-                <i class="iconfont icon-home-fill"></i>
-                <span>首页</span>
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/archives/" target="_self">
-                <i class="iconfont icon-archive-fill"></i>
-                <span>归档</span>
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/categories/" target="_self">
-                <i class="iconfont icon-category-fill"></i>
-                <span>分类</span>
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/tags/" target="_self">
-                <i class="iconfont icon-tags-fill"></i>
-                <span>标签</span>
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/about/" target="_self">
-                <i class="iconfont icon-user-fill"></i>
-                <span>关于</span>
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/links/" target="_self">
-                <i class="iconfont icon-link-fill"></i>
-                <span>友链</span>
-              </a>
-            </li>
-          
-        
-        
-          <li class="nav-item" id="search-btn">
-            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
-              <i class="iconfont icon-search"></i>
-            </a>
-          </li>
-          
-        
-        
-          <li class="nav-item" id="color-toggle-btn">
-            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
-              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
-            </a>
-          </li>
-        
-      </ul>
-    </div>
-  </div>
-</nav>
-
-  
-
-<div id="banner" class="banner" parallax=true
-     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
-  <div class="full-bg-img">
-    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
-      <div class="banner-text text-center fade-in-up">
-        <div class="h2">
-          
-            <span id="subtitle" data-typed-text="tutctf wp"></span>
-          
-        </div>
-
-        
-          
-  <div class="mt-3">
-    
-    
-      <span class="post-meta">
-        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2026-06-01 13:35" pubdate>
-          2026年6月1日 下午
-        </time>
-      </span>
-    
-  </div>
-
-  <div class="mt-1">
-    
-      <span class="post-meta mr-2">
-        <i class="iconfont icon-chart"></i>
-        
-          7.8k 字
-        
-      </span>
-    
-
-    
-      <span class="post-meta mr-2">
-        <i class="iconfont icon-clock-fill"></i>
-        
-        
-        
-          66 分钟
-        
-      </span>
-    
-
-    
-    
-  </div>
-
-
-        
-      </div>
-
-      
-    </div>
-  </div>
+<script>(function () {
+    var remove = function () { document.documentElement.classList.remove('is-entering'); };
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', function () {
+            requestAnimationFrame(function () { requestAnimationFrame(remove); });
+        });
+    } else {
+        requestAnimationFrame(function () { requestAnimationFrame(remove); });
+    }
+})();</script>
+<div id="navigationProgress" class="navigation-progress" aria-hidden="true">
+    <div id="navigationProgressBar" class="navigation-progress__bar"></div>
 </div>
-
-</div>
-
-  </header>
-
-  <main>
-    
-      
-
-<div class="container-fluid nopadding-x">
-  <div class="row nomargin-x">
-    <div class="side-col d-none d-lg-block col-lg-2">
-      
-
-    </div>
-
-    <div class="col-lg-8 nopadding-x-md">
-      <div class="container nopadding-x-md" id="board-ctn">
-        <div id="board">
-          <article class="post-content mx-auto">
-            <h1 id="seo-header">tutctf wp</h1>
-            
-            
-              <div class="markdown-body">
+<div id="pageScroller" class="page-scroller">
+    <div class="noise-overlay"></div>
+<div class="hero-sticky" data-shell-mode="article">
+    <div class="hero-content">
+        <main class="container">
+            <div class="wallpaper-scroll-area"></div>
+            <section class="left-panel">
                 
-                <p>动手能力太差了，难绷</p>
+                <header class="hero hero-minimal">
+                    <h1 class="name"><span class="name-latin">tutctf</span> <span class="name-latin">wp</span></h1>
+                </header>
+                
+            </section>
+        </main>
+        
+        <div class="hero-marquee-defocus hero-marquee-defocus--revealed" aria-hidden="true" style="--marquee-defocus-opacity: 1">
+    <div class="hero-marquee-defocus__layer hero-marquee-defocus__layer--far"></div>
+    <div class="hero-marquee-defocus__layer hero-marquee-defocus__layer--mid"></div>
+    <div class="hero-marquee-defocus__layer hero-marquee-defocus__layer--near"></div>
+</div>
+<section class="hero-marquee hero-marquee--revealed" aria-label="首页速览">
+    <div class="hero-marquee__viewport" style="--marquee-duration: 126s">
+        <div class="hero-marquee__track">
+            
+            
+<article class="hero-ticket hero-ticket--clock">
+    <div class="hero-ticket__pad">
+        <span class="hero-ticket__label">时间</span>
+        <div class="time-widget time-widget--compact">
+            <div class="weekday" data-allow-mismatch="text"></div>
+            <div class="date-display" data-allow-mismatch="text"></div>
+            <div class="clock" data-allow-mismatch="text">--:--:--</div>
+        </div>
+    </div>
+</article>
+            
+            
+<article class="hero-ticket hero-ticket--search">
+    <a class="hero-ticket__hit" href="javascript:void(0)" data-wakusei-search>
+        <span class="hero-ticket__label"><svg class="svg-icon hero-ticket__icon" viewBox="0 0 512 512" width="0.7em" height="0.7em" aria-hidden="true" style="display:inline-block;flex-shrink:0;pointer-events:none;vertical-align:-0.125em"><path fill="currentColor" d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376C296.3 401.2 253.9 416 208 416C93.1 416 0 322.9 0 208S93.1 0 208 0s208 93.1 208 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z"></path></svg>搜索</span>
+        <span class="hero-ticket__title">站内搜索</span>
+        <span class="hero-ticket__meta hero-ticket__meta--mono">⌘K / Ctrl+K</span>
+    </a>
+</article>
+            
+            
+<article class="hero-ticket hero-ticket--slogan">
+    <div class="hero-ticket__pad">
+        <span class="hero-ticket__label">摘句</span>
+        <p class="hero-ticket__quote">尽人事,听天命,静候花开。</p>
+    </div>
+</article>
+            
+            
+<article class="hero-ticket hero-ticket--stats">
+    <a class="hero-ticket__hit hero-ticket__hit--stats" href="/#posts">
+        <span class="hero-ticket__label">站点</span>
+        <div class="hero-ticket__stat-row" role="presentation">
+            <div class="hero-ticket__stat"><span class="hero-ticket__stat-value">18</span><span class="hero-ticket__stat-label">文</span></div>
+            <div class="hero-ticket__stat"><span class="hero-ticket__stat-value">2</span><span class="hero-ticket__stat-label">类</span></div>
+            <div class="hero-ticket__stat"><span class="hero-ticket__stat-value">3</span><span class="hero-ticket__stat-label">签</span></div>
+        </div>
+    </a>
+</article>
+            
+            
+<article class="hero-ticket hero-ticket--archive">
+    <a class="hero-ticket__hit" href="/archives/">
+        <span class="hero-ticket__label"><svg class="svg-icon hero-ticket__icon" viewBox="0 0 512 512" width="0.7em" height="0.7em" aria-hidden="true" style="display:inline-block;flex-shrink:0;pointer-events:none;vertical-align:-0.125em"><path fill="currentColor" d="M232.5 5.2c14.9-6.9 32.1-6.9 47 0l192 88c22.7 10.4 22.7 42.8 0 53.2l-192 88c-14.9 6.9-32.1 6.9-47 0l-192-88c-22.7-10.4-22.7-42.8 0-53.2l192-88zM0 212.8c0-9.9 10.1-16.6 19.2-12.5L256 309.5l236.8-109.2c9-4.2 19.2 2.4 19.2 12.5 0 5.4-3.2 10.3-8.1 12.5L279.5 328.7c-14.9 6.9-32.1 6.9-47 0L8.1 225.3C3.2 223 0 218.2 0 212.8zm0 96c0-9.9 10.1-16.6 19.2-12.5L256 405.5l236.8-109.2c9-4.2 19.2 2.4 19.2 12.5 0 5.4-3.2 10.3-8.1 12.5L279.5 424.7c-14.9 6.9-32.1 6.9-47 0L8.1 321.3C3.2 319 0 314.2 0 308.8z"></path></svg>索引</span>
+        <span class="hero-ticket__title">写作年表</span>
+        <span class="hero-ticket__meta">2025–2026</span>
+    </a>
+</article>
+            
+            
+<article class="hero-ticket hero-ticket--updated">
+    <a class="hero-ticket__hit hero-ticket__hit--post" href="/2026/02/15/DLP-s/">
+        
+        <div class="hero-ticket__body">
+            <span class="hero-ticket__label">更新</span>
+            <span class="hero-ticket__title">DLP-s</span>
+            <span class="hero-ticket__meta">2026-02-15</span>
+        </div>
+    </a>
+</article>
+            
+            
+<article class="hero-ticket hero-ticket--post">
+    <a class="hero-ticket__hit hero-ticket__hit--post" href="/2026/09/04/sekaictf%E8%B6%A3%E9%A2%98/">
+        
+        <div class="hero-ticket__body">
+            <span class="hero-ticket__label">wp</span>
+            <span class="hero-ticket__title">sekaictf趣题</span>
+            <span class="hero-ticket__meta">2026-09-04</span>
+        </div>
+    </a>
+</article>
+            
+            
+<article class="hero-ticket hero-ticket--post">
+    <a class="hero-ticket__hit hero-ticket__hit--post" href="/2026/09/01/%E7%86%B5%E5%AF%86%E6%9D%AF%E5%A4%8D%E7%8E%B0(%E4%B8%80)/">
+        
+        <div class="hero-ticket__body">
+            <span class="hero-ticket__label">精选</span>
+            <span class="hero-ticket__title">熵密杯复现(一)</span>
+            <span class="hero-ticket__meta">2026-09-01</span>
+        </div>
+    </a>
+</article>
+            
+            
+<article class="hero-ticket hero-ticket--post">
+    <a class="hero-ticket__hit hero-ticket__hit--post" href="/2026/07/21/nepctf%E9%83%A8%E5%88%86/">
+        
+        <div class="hero-ticket__body">
+            <span class="hero-ticket__label">精选</span>
+            <span class="hero-ticket__title">nepctf部分</span>
+            <span class="hero-ticket__meta">2026-07-21</span>
+        </div>
+    </a>
+</article>
+            
+            
+<article class="hero-ticket hero-ticket--clock">
+    <div class="hero-ticket__pad">
+        <span class="hero-ticket__label">时间</span>
+        <div class="time-widget time-widget--compact">
+            <div class="weekday" data-allow-mismatch="text"></div>
+            <div class="date-display" data-allow-mismatch="text"></div>
+            <div class="clock" data-allow-mismatch="text">--:--:--</div>
+        </div>
+    </div>
+</article>
+            
+            
+<article class="hero-ticket hero-ticket--search">
+    <a class="hero-ticket__hit" href="javascript:void(0)" data-wakusei-search>
+        <span class="hero-ticket__label"><svg class="svg-icon hero-ticket__icon" viewBox="0 0 512 512" width="0.7em" height="0.7em" aria-hidden="true" style="display:inline-block;flex-shrink:0;pointer-events:none;vertical-align:-0.125em"><path fill="currentColor" d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376C296.3 401.2 253.9 416 208 416C93.1 416 0 322.9 0 208S93.1 0 208 0s208 93.1 208 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z"></path></svg>搜索</span>
+        <span class="hero-ticket__title">站内搜索</span>
+        <span class="hero-ticket__meta hero-ticket__meta--mono">⌘K / Ctrl+K</span>
+    </a>
+</article>
+            
+            
+<article class="hero-ticket hero-ticket--slogan">
+    <div class="hero-ticket__pad">
+        <span class="hero-ticket__label">摘句</span>
+        <p class="hero-ticket__quote">尽人事,听天命,静候花开。</p>
+    </div>
+</article>
+            
+            
+<article class="hero-ticket hero-ticket--stats">
+    <a class="hero-ticket__hit hero-ticket__hit--stats" href="/#posts">
+        <span class="hero-ticket__label">站点</span>
+        <div class="hero-ticket__stat-row" role="presentation">
+            <div class="hero-ticket__stat"><span class="hero-ticket__stat-value">18</span><span class="hero-ticket__stat-label">文</span></div>
+            <div class="hero-ticket__stat"><span class="hero-ticket__stat-value">2</span><span class="hero-ticket__stat-label">类</span></div>
+            <div class="hero-ticket__stat"><span class="hero-ticket__stat-value">3</span><span class="hero-ticket__stat-label">签</span></div>
+        </div>
+    </a>
+</article>
+            
+            
+<article class="hero-ticket hero-ticket--archive">
+    <a class="hero-ticket__hit" href="/archives/">
+        <span class="hero-ticket__label"><svg class="svg-icon hero-ticket__icon" viewBox="0 0 512 512" width="0.7em" height="0.7em" aria-hidden="true" style="display:inline-block;flex-shrink:0;pointer-events:none;vertical-align:-0.125em"><path fill="currentColor" d="M232.5 5.2c14.9-6.9 32.1-6.9 47 0l192 88c22.7 10.4 22.7 42.8 0 53.2l-192 88c-14.9 6.9-32.1 6.9-47 0l-192-88c-22.7-10.4-22.7-42.8 0-53.2l192-88zM0 212.8c0-9.9 10.1-16.6 19.2-12.5L256 309.5l236.8-109.2c9-4.2 19.2 2.4 19.2 12.5 0 5.4-3.2 10.3-8.1 12.5L279.5 328.7c-14.9 6.9-32.1 6.9-47 0L8.1 225.3C3.2 223 0 218.2 0 212.8zm0 96c0-9.9 10.1-16.6 19.2-12.5L256 405.5l236.8-109.2c9-4.2 19.2 2.4 19.2 12.5 0 5.4-3.2 10.3-8.1 12.5L279.5 424.7c-14.9 6.9-32.1 6.9-47 0L8.1 321.3C3.2 319 0 314.2 0 308.8z"></path></svg>索引</span>
+        <span class="hero-ticket__title">写作年表</span>
+        <span class="hero-ticket__meta">2025–2026</span>
+    </a>
+</article>
+            
+            
+<article class="hero-ticket hero-ticket--updated">
+    <a class="hero-ticket__hit hero-ticket__hit--post" href="/2026/02/15/DLP-s/">
+        
+        <div class="hero-ticket__body">
+            <span class="hero-ticket__label">更新</span>
+            <span class="hero-ticket__title">DLP-s</span>
+            <span class="hero-ticket__meta">2026-02-15</span>
+        </div>
+    </a>
+</article>
+            
+            
+<article class="hero-ticket hero-ticket--post">
+    <a class="hero-ticket__hit hero-ticket__hit--post" href="/2026/09/04/sekaictf%E8%B6%A3%E9%A2%98/">
+        
+        <div class="hero-ticket__body">
+            <span class="hero-ticket__label">wp</span>
+            <span class="hero-ticket__title">sekaictf趣题</span>
+            <span class="hero-ticket__meta">2026-09-04</span>
+        </div>
+    </a>
+</article>
+            
+            
+<article class="hero-ticket hero-ticket--post">
+    <a class="hero-ticket__hit hero-ticket__hit--post" href="/2026/09/01/%E7%86%B5%E5%AF%86%E6%9D%AF%E5%A4%8D%E7%8E%B0(%E4%B8%80)/">
+        
+        <div class="hero-ticket__body">
+            <span class="hero-ticket__label">精选</span>
+            <span class="hero-ticket__title">熵密杯复现(一)</span>
+            <span class="hero-ticket__meta">2026-09-01</span>
+        </div>
+    </a>
+</article>
+            
+            
+<article class="hero-ticket hero-ticket--post">
+    <a class="hero-ticket__hit hero-ticket__hit--post" href="/2026/07/21/nepctf%E9%83%A8%E5%88%86/">
+        
+        <div class="hero-ticket__body">
+            <span class="hero-ticket__label">精选</span>
+            <span class="hero-ticket__title">nepctf部分</span>
+            <span class="hero-ticket__meta">2026-07-21</span>
+        </div>
+    </a>
+</article>
+            
+        </div>
+    </div>
+</section>
+
+        
+    </div>
+</div>
+
+    <div id="pageTransitionSurface" class="page-transition-surface" data-shell-mode="article" data-page-title="tutctf wp">
+        <div class="reading-progress" aria-hidden="true"><div class="reading-progress__fill"></div></div>
+<article class="post-container">
+    <div class="post-lead">
+        <header class="post-header">
+            <h1 class="post-title">tutctf wp</h1>
+            <div class="post-meta">
+                
+                <time class="post-date" datetime="2026-06-01T05:35:24.000Z">2026-06-01</time>
+                <span class="post-reading-time">3 分钟阅读</span>
+                <time class="post-date post-date--updated" datetime="2026-08-02T01:26:30.556Z">更新于 2026-08-02</time>
+                
+            </div>
+        </header>
+        
+    </div>
+    <div class="post-body">
+        <p>动手能力太差了，难绷</p>
 <h1>RSA</h1>
 <h2 id="题目">题目</h2>
-<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><code class="hljs PY"><span class="hljs-keyword">from</span> Crypto.Util.number <span class="hljs-keyword">import</span> getPrime, bytes_to_long<br><span class="hljs-keyword">import</span> math<br><br>FLAG = <span class="hljs-string">&#x27;TUTCTF&#123;???&#125;&#x27;</span><br>victory_key = <span class="hljs-string">&quot;TUTCTF&quot;</span><br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">victory_encrypt</span>(<span class="hljs-params">plaintext, key</span>):<br>    key = key.upper()<br>    key_length = <span class="hljs-built_in">len</span>(key)<br>    plaintext = plaintext.upper()<br>    ciphertext = <span class="hljs-string">&#x27;&#x27;</span><br><br>    <span class="hljs-keyword">for</span> i, char <span class="hljs-keyword">in</span> <span class="hljs-built_in">enumerate</span>(plaintext):<br>        <span class="hljs-keyword">if</span> char.isalpha():<br>            shift = <span class="hljs-built_in">ord</span>(key[i % key_length]) - <span class="hljs-built_in">ord</span>(<span class="hljs-string">&#x27;A&#x27;</span>)<br>            encrypted_char = <span class="hljs-built_in">chr</span>((<span class="hljs-built_in">ord</span>(char) - <span class="hljs-built_in">ord</span>(<span class="hljs-string">&#x27;A&#x27;</span>) + shift) % <span class="hljs-number">26</span> + <span class="hljs-built_in">ord</span>(<span class="hljs-string">&#x27;A&#x27;</span>))<br>            ciphertext += encrypted_char<br>        <span class="hljs-keyword">else</span>:<br>            ciphertext += char<br><br>    <span class="hljs-keyword">return</span> ciphertext<br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">generate_parameters</span>(<span class="hljs-params">bit_length=<span class="hljs-number">512</span></span>):<br>    p = getPrime(bit_length)<br>    q = getPrime(bit_length)<br>    n = p * q<br>    e = <span class="hljs-number">65537</span><br>    phi = (p - <span class="hljs-number">1</span>) * (q - <span class="hljs-number">1</span>)<br>    d = <span class="hljs-built_in">pow</span>(e, -<span class="hljs-number">1</span>, phi)<br>    s = p ** <span class="hljs-number">4</span> + q ** <span class="hljs-number">4</span><br>    <span class="hljs-keyword">return</span> n, e, d, s, p, q<br><br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">main</span>():<br>    n, e, d, s, p, q = generate_parameters()<br>    flag =  victory_encrypt(FLAG, victory_key).encode()<br>    c = <span class="hljs-built_in">pow</span>(bytes_to_long(flag), e, n)<br><br>    <span class="hljs-keyword">with</span> <span class="hljs-built_in">open</span>(<span class="hljs-string">&#x27;output.txt&#x27;</span>, <span class="hljs-string">&#x27;w&#x27;</span>) <span class="hljs-keyword">as</span> f:<br>        f.write(<span class="hljs-string">f&quot;n = <span class="hljs-subst">&#123;n&#125;</span>\n&quot;</span>)<br>        f.write(<span class="hljs-string">f&quot;e = <span class="hljs-subst">&#123;e&#125;</span>\n&quot;</span>)<br>        f.write(<span class="hljs-string">f&quot;c = <span class="hljs-subst">&#123;c&#125;</span>\n&quot;</span>)<br>        f.write(<span class="hljs-string">f&quot;s = <span class="hljs-subst">&#123;s&#125;</span>\n&quot;</span>)<br><br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;[+] Parameters saved to output.txt&quot;</span>)<br><br><br><span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">&quot;__main__&quot;</span>:<br>    main()<br></code></pre></td></tr></table></figure>
+<figure class="highlight py"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> Crypto.Util.number <span class="keyword">import</span> getPrime, bytes_to_long</span><br><span class="line"><span class="keyword">import</span> math</span><br><span class="line"></span><br><span class="line">FLAG = <span class="string">&#x27;TUTCTF&#123;???&#125;&#x27;</span></span><br><span class="line">victory_key = <span class="string">&quot;TUTCTF&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">victory_encrypt</span>(<span class="params">plaintext, key</span>):</span><br><span class="line">    key = key.upper()</span><br><span class="line">    key_length = <span class="built_in">len</span>(key)</span><br><span class="line">    plaintext = plaintext.upper()</span><br><span class="line">    ciphertext = <span class="string">&#x27;&#x27;</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> i, char <span class="keyword">in</span> <span class="built_in">enumerate</span>(plaintext):</span><br><span class="line">        <span class="keyword">if</span> char.isalpha():</span><br><span class="line">            shift = <span class="built_in">ord</span>(key[i % key_length]) - <span class="built_in">ord</span>(<span class="string">&#x27;A&#x27;</span>)</span><br><span class="line">            encrypted_char = <span class="built_in">chr</span>((<span class="built_in">ord</span>(char) - <span class="built_in">ord</span>(<span class="string">&#x27;A&#x27;</span>) + shift) % <span class="number">26</span> + <span class="built_in">ord</span>(<span class="string">&#x27;A&#x27;</span>))</span><br><span class="line">            ciphertext += encrypted_char</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            ciphertext += char</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> ciphertext</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">generate_parameters</span>(<span class="params">bit_length=<span class="number">512</span></span>):</span><br><span class="line">    p = getPrime(bit_length)</span><br><span class="line">    q = getPrime(bit_length)</span><br><span class="line">    n = p * q</span><br><span class="line">    e = <span class="number">65537</span></span><br><span class="line">    phi = (p - <span class="number">1</span>) * (q - <span class="number">1</span>)</span><br><span class="line">    d = <span class="built_in">pow</span>(e, -<span class="number">1</span>, phi)</span><br><span class="line">    s = p ** <span class="number">4</span> + q ** <span class="number">4</span></span><br><span class="line">    <span class="keyword">return</span> n, e, d, s, p, q</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">main</span>():</span><br><span class="line">    n, e, d, s, p, q = generate_parameters()</span><br><span class="line">    flag =  victory_encrypt(FLAG, victory_key).encode()</span><br><span class="line">    c = <span class="built_in">pow</span>(bytes_to_long(flag), e, n)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&#x27;output.txt&#x27;</span>, <span class="string">&#x27;w&#x27;</span>) <span class="keyword">as</span> f:</span><br><span class="line">        f.write(<span class="string">f&quot;n = <span class="subst">&#123;n&#125;</span>\n&quot;</span>)</span><br><span class="line">        f.write(<span class="string">f&quot;e = <span class="subst">&#123;e&#125;</span>\n&quot;</span>)</span><br><span class="line">        f.write(<span class="string">f&quot;c = <span class="subst">&#123;c&#125;</span>\n&quot;</span>)</span><br><span class="line">        f.write(<span class="string">f&quot;s = <span class="subst">&#123;s&#125;</span>\n&quot;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;[+] Parameters saved to output.txt&quot;</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure>
 <h2 id="分析">分析</h2>
 <p>已知<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>p</mi><mn>4</mn></msup><mo>+</mo><msup><mi>q</mi><mn>4</mn></msup></mrow><annotation encoding="application/x-tex">p^4 + q^4</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.0085em;vertical-align:-0.1944em;"></span><span class="mord"><span class="mord mathnormal">p</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">4</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1.0085em;vertical-align:-0.1944em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em;">q</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">4</span></span></span></span></span></span></span></span></span></span></span>和p*q直接求pq就行<br>
 结果居然在这个套进去的弗吉尼亚卡了半天<br>
 当时连iroot都忘了，还手搓了一个</p>
 <h2 id="exp">exp</h2>
-<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><code class="hljs py"><span class="hljs-keyword">from</span> Crypto.Util.number <span class="hljs-keyword">import</span> *<br><span class="hljs-keyword">from</span> gmpy2 <span class="hljs-keyword">import</span> iroot<br><br>n = <span class="hljs-number">88404336390052935295167907014990955167757899166459645006020564159910221950313103760744672095425046680977787806322104643113602241372187173741911921754830225380574290977520985329714483964734108589788286223669965444856353724037278541347276877433268175877986937451783914356003584010727646191451951063889248455609</span><br>e = <span class="hljs-number">65537</span><br>c = <span class="hljs-number">11921825186409298359079406916048192752767602192852391027241791193540838563492205016430418692802136940042065660220785320139908699089839204989955923648475022632803709791144611891680915190699364526974964681462990992432763033256899420495174369119948019155391667748721838548855253797865294424715858493207125261252</span><br>s = <span class="hljs-number">22132256578806823997411210238808484780469981809371209041138582748325286114773081797359449254956289434027815102781847751566660330245563532030327073594906392050350502480761813167057219691372052865250833774891975836256799851265608403712175822132860992971312233187072699175930548398773550774537747747336997188361273018466118654290172956476269827800885378133620054325496862790981890907988859536668688826996940261310466429501167512388903117667233782399351835622719788747984955437789431901139660570839313478117275304708756873028209644328685542844890157184777151916692998517816399743210153407834925554864778286523140387691362</span><br><br>a2 = iroot(s + <span class="hljs-number">2</span>*n*n, <span class="hljs-number">2</span>)[<span class="hljs-number">0</span>]     <br>a = iroot(a2 + <span class="hljs-number">2</span>*n, <span class="hljs-number">2</span>)[<span class="hljs-number">0</span>]       <br>delt = iroot(a*a - <span class="hljs-number">4</span>*n, <span class="hljs-number">2</span>)[<span class="hljs-number">0</span>]   <br><br>q = (a + delt) // <span class="hljs-number">2</span><br>p = a - q<br><br><br>d = inverse(e, (p-<span class="hljs-number">1</span>)*(q-<span class="hljs-number">1</span>))<br>m = <span class="hljs-built_in">pow</span>(c, d, n)<br>rsa_flag = long_to_bytes(m).decode()<br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">vigenere_decrypt</span>(<span class="hljs-params">ct, key</span>):<br>    out = []<br>    ki = <span class="hljs-number">0</span><br>    <span class="hljs-keyword">for</span> ch <span class="hljs-keyword">in</span> ct:<br>        <span class="hljs-keyword">if</span> ch.isalpha():<br>            base = <span class="hljs-built_in">ord</span>(<span class="hljs-string">&#x27;A&#x27;</span>) <span class="hljs-keyword">if</span> ch.isupper() <span class="hljs-keyword">else</span> <span class="hljs-built_in">ord</span>(<span class="hljs-string">&#x27;a&#x27;</span>)<br>            k = <span class="hljs-built_in">ord</span>(key[ki % <span class="hljs-built_in">len</span>(key)].upper()) - <span class="hljs-number">65</span> <span class="hljs-comment"># 使用65代替97更严谨，对应 &#x27;A&#x27;</span><br>            out.append(<span class="hljs-built_in">chr</span>((<span class="hljs-built_in">ord</span>(ch) - base - k) % <span class="hljs-number">26</span> + base))<br>            ki += <span class="hljs-number">1</span><br>        <span class="hljs-keyword">else</span>:<br>            out.append(ch)<br>    <span class="hljs-keyword">return</span> <span class="hljs-string">&#x27;&#x27;</span>.join(out)<br><br>key = <span class="hljs-string">&quot;TUTCTF&quot;</span><br>flag = vigenere_decrypt(rsa_flag, key)<br><span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;[+] Final Flag:&quot;</span>, flag)<br></code></pre></td></tr></table></figure>
+<figure class="highlight py"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> Crypto.Util.number <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">from</span> gmpy2 <span class="keyword">import</span> iroot</span><br><span class="line"></span><br><span class="line">n = <span class="number">88404336390052935295167907014990955167757899166459645006020564159910221950313103760744672095425046680977787806322104643113602241372187173741911921754830225380574290977520985329714483964734108589788286223669965444856353724037278541347276877433268175877986937451783914356003584010727646191451951063889248455609</span></span><br><span class="line">e = <span class="number">65537</span></span><br><span class="line">c = <span class="number">11921825186409298359079406916048192752767602192852391027241791193540838563492205016430418692802136940042065660220785320139908699089839204989955923648475022632803709791144611891680915190699364526974964681462990992432763033256899420495174369119948019155391667748721838548855253797865294424715858493207125261252</span></span><br><span class="line">s = <span class="number">22132256578806823997411210238808484780469981809371209041138582748325286114773081797359449254956289434027815102781847751566660330245563532030327073594906392050350502480761813167057219691372052865250833774891975836256799851265608403712175822132860992971312233187072699175930548398773550774537747747336997188361273018466118654290172956476269827800885378133620054325496862790981890907988859536668688826996940261310466429501167512388903117667233782399351835622719788747984955437789431901139660570839313478117275304708756873028209644328685542844890157184777151916692998517816399743210153407834925554864778286523140387691362</span></span><br><span class="line"></span><br><span class="line">a2 = iroot(s + <span class="number">2</span>*n*n, <span class="number">2</span>)[<span class="number">0</span>]     </span><br><span class="line">a = iroot(a2 + <span class="number">2</span>*n, <span class="number">2</span>)[<span class="number">0</span>]       </span><br><span class="line">delt = iroot(a*a - <span class="number">4</span>*n, <span class="number">2</span>)[<span class="number">0</span>]   </span><br><span class="line"></span><br><span class="line">q = (a + delt) // <span class="number">2</span></span><br><span class="line">p = a - q</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">d = inverse(e, (p-<span class="number">1</span>)*(q-<span class="number">1</span>))</span><br><span class="line">m = <span class="built_in">pow</span>(c, d, n)</span><br><span class="line">rsa_flag = long_to_bytes(m).decode()</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">vigenere_decrypt</span>(<span class="params">ct, key</span>):</span><br><span class="line">    out = []</span><br><span class="line">    ki = <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> ch <span class="keyword">in</span> ct:</span><br><span class="line">        <span class="keyword">if</span> ch.isalpha():</span><br><span class="line">            base = <span class="built_in">ord</span>(<span class="string">&#x27;A&#x27;</span>) <span class="keyword">if</span> ch.isupper() <span class="keyword">else</span> <span class="built_in">ord</span>(<span class="string">&#x27;a&#x27;</span>)</span><br><span class="line">            k = <span class="built_in">ord</span>(key[ki % <span class="built_in">len</span>(key)].upper()) - <span class="number">65</span> <span class="comment"># 使用65代替97更严谨，对应 &#x27;A&#x27;</span></span><br><span class="line">            out.append(<span class="built_in">chr</span>((<span class="built_in">ord</span>(ch) - base - k) % <span class="number">26</span> + base))</span><br><span class="line">            ki += <span class="number">1</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            out.append(ch)</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&#x27;&#x27;</span>.join(out)</span><br><span class="line"></span><br><span class="line">key = <span class="string">&quot;TUTCTF&quot;</span></span><br><span class="line">flag = vigenere_decrypt(rsa_flag, key)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;[+] Final Flag:&quot;</span>, flag)</span><br></pre></td></tr></table></figure>
 <h1>ecc</h1>
 <h2 id="题目-2">题目</h2>
-<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><code class="hljs py"><span class="hljs-keyword">from</span> Crypto.Util.number <span class="hljs-keyword">import</span> *<br><span class="hljs-keyword">from</span> Crypto.Cipher <span class="hljs-keyword">import</span> AES<br><span class="hljs-keyword">from</span> Crypto.Util.Padding <span class="hljs-keyword">import</span> pad<br><span class="hljs-keyword">from</span> random <span class="hljs-keyword">import</span> randint<br><span class="hljs-keyword">import</span> hashlib<br><span class="hljs-keyword">from</span> sage.<span class="hljs-built_in">all</span> <span class="hljs-keyword">import</span> *<br>flag = <span class="hljs-string">b&#x27;TUTCTF&#123;???&#125;&#x27;</span><br><br>p = <span class="hljs-number">146808027458411567</span><br><br>A = randint(<span class="hljs-number">1</span>, p)<br>B = randint(<span class="hljs-number">1</span>, p)<br><br>E = EllipticCurve(GF(p),[A,B])<br><br>G = E.random_point()<br><br>key = <span class="hljs-string">&#x27;???&#x27;</span><br>Q = key*G<br><span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;p = <span class="hljs-subst">&#123;p&#125;</span>&quot;</span>)<br><span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;G = <span class="hljs-subst">&#123;G&#125;</span>&quot;</span>)<br><span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;Q = <span class="hljs-subst">&#123;Q&#125;</span>&quot;</span>)<br><br>key = hashlib.sha256(<span class="hljs-built_in">str</span>(key).encode()).digest()<br>cipher = AES.new(key, AES.MODE_ECB)<br>flag = pad(flag,<span class="hljs-number">16</span>)<br>ciphertext = cipher.encrypt(flag)<br><span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;ciphertext=<span class="hljs-subst">&#123;ciphertext&#125;</span>&quot;</span>)<br><br><br><span class="hljs-comment"># p = 146808027458411567</span><br><span class="hljs-comment"># G = (35813342313999718 : 66850728853227735 : 1)</span><br><span class="hljs-comment"># Q = (2399221355957408 : 125062289889696869 : 1)</span><br><span class="hljs-comment"># ciphertext=b&#x27;HmME\x08\xc5O\xa6\xab+\x0f\xbc\x90[]HR\x06\xf4\xa1\x84t\x8f@\xcf\x90\x97\xe3\xba:p/AxM-\xa3\xd3\xce\xb6?\x92\x85\xab\x97&quot;\x04\xf9\xb1\x1b\x83L\xd3P\xd0V\x96569\&#x27;%\xb71&#x27;</span><br><br></code></pre></td></tr></table></figure>
+<figure class="highlight py"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> Crypto.Util.number <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">from</span> Crypto.Cipher <span class="keyword">import</span> AES</span><br><span class="line"><span class="keyword">from</span> Crypto.Util.Padding <span class="keyword">import</span> pad</span><br><span class="line"><span class="keyword">from</span> random <span class="keyword">import</span> randint</span><br><span class="line"><span class="keyword">import</span> hashlib</span><br><span class="line"><span class="keyword">from</span> sage.<span class="built_in">all</span> <span class="keyword">import</span> *</span><br><span class="line">flag = <span class="string">b&#x27;TUTCTF&#123;???&#125;&#x27;</span></span><br><span class="line"></span><br><span class="line">p = <span class="number">146808027458411567</span></span><br><span class="line"></span><br><span class="line">A = randint(<span class="number">1</span>, p)</span><br><span class="line">B = randint(<span class="number">1</span>, p)</span><br><span class="line"></span><br><span class="line">E = EllipticCurve(GF(p),[A,B])</span><br><span class="line"></span><br><span class="line">G = E.random_point()</span><br><span class="line"></span><br><span class="line">key = <span class="string">&#x27;???&#x27;</span></span><br><span class="line">Q = key*G</span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&quot;p = <span class="subst">&#123;p&#125;</span>&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&quot;G = <span class="subst">&#123;G&#125;</span>&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&quot;Q = <span class="subst">&#123;Q&#125;</span>&quot;</span>)</span><br><span class="line"></span><br><span class="line">key = hashlib.sha256(<span class="built_in">str</span>(key).encode()).digest()</span><br><span class="line">cipher = AES.new(key, AES.MODE_ECB)</span><br><span class="line">flag = pad(flag,<span class="number">16</span>)</span><br><span class="line">ciphertext = cipher.encrypt(flag)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&quot;ciphertext=<span class="subst">&#123;ciphertext&#125;</span>&quot;</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># p = 146808027458411567</span></span><br><span class="line"><span class="comment"># G = (35813342313999718 : 66850728853227735 : 1)</span></span><br><span class="line"><span class="comment"># Q = (2399221355957408 : 125062289889696869 : 1)</span></span><br><span class="line"><span class="comment"># ciphertext=b&#x27;HmME\x08\xc5O\xa6\xab+\x0f\xbc\x90[]HR\x06\xf4\xa1\x84t\x8f@\xcf\x90\x97\xe3\xba:p/AxM-\xa3\xd3\xce\xb6?\x92\x85\xab\x97&quot;\x04\xf9\xb1\x1b\x83L\xd3P\xd0V\x96569\&#x27;%\xb71&#x27;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
 <h2 id="分析-2">分析</h2>
 <p>签到题，不会写代码，气笑了<br>
 p不大所以可以带入求出AB后直接用discrete_log函数尝试求解<br>
@@ -309,7 +369,7 @@ p不大所以可以带入求出AB后直接用discrete_log函数尝试求解<br>
 <ol>
 <li>创建曲线：</li>
 </ol>
-<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs py">E = EllipticCurve(GF(p), [a, b])     <span class="hljs-comment">#创建曲线y² = x³ + ax + b</span><br>E = EllipticCurve(GF(p), secp256k1)  <span class="hljs-comment"># 比特币/以太坊曲线</span><br>E = curves.SECP256R1()               <span class="hljs-comment"># NIST P-256</span><br>E = curves.Curve25519()              <span class="hljs-comment"># 现代密钥交换曲线</span><br>E = curves.Ed25519()                 <span class="hljs-comment"># 现代签名曲线</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight py"><table><tr><td class="code"><pre><span class="line">E = EllipticCurve(GF(p), [a, b])     <span class="comment">#创建曲线y² = x³ + ax + b</span></span><br><span class="line">E = EllipticCurve(GF(p), secp256k1)  <span class="comment"># 比特币/以太坊曲线</span></span><br><span class="line">E = curves.SECP256R1()               <span class="comment"># NIST P-256</span></span><br><span class="line">E = curves.Curve25519()              <span class="comment"># 现代密钥交换曲线</span></span><br><span class="line">E = curves.Ed25519()                 <span class="comment"># 现代签名曲线</span></span><br></pre></td></tr></table></figure>
 <ol start="2">
 <li>discret_log求解ecdlp:<br>
 <code>key = discrete_log(Q, G, operation='+')</code><br>
@@ -320,355 +380,176 @@ p不大所以可以带入求出AB后直接用discrete_log函数尝试求解<br>
 <p><code>operation='*'</code>：乘法<br>
 <code>operation='+'</code>：加法</p>
 <h2 id="exp-2">exp</h2>
-<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><code class="hljs py"><span class="hljs-keyword">from</span> sage.<span class="hljs-built_in">all</span> <span class="hljs-keyword">import</span> *<br><span class="hljs-keyword">from</span> Crypto.Util.Padding <span class="hljs-keyword">import</span> unpad<br><span class="hljs-keyword">import</span> hashlib<br><span class="hljs-keyword">from</span> Crypto.Cipher <span class="hljs-keyword">import</span> AES<br><br>p = <span class="hljs-number">146808027458411567</span><br>c = <span class="hljs-string">b&#x27;HmME\x08\xc5O\xa6\xab+\x0f\xbc\x90[]HR\x06\xf4\xa1\x84t\x8f@\xcf\x90\x97\xe3\xba:p/AxM-\xa3\xd3\xce\xb6?\x92\x85\xab\x97&quot;\x04\xf9\xb1\x1b\x83L\xd3P\xd0V\x96569\&#x27;%\xb71&#x27;</span><br>F = GF(p)<br>x1,y1 = F(<span class="hljs-number">35813342313999718</span>), F(<span class="hljs-number">66850728853227735</span>)<br>x2,y2 = F(<span class="hljs-number">2399221355957408</span>), F(<span class="hljs-number">125062289889696869</span>)<br><br><br>A = (y1**<span class="hljs-number">2</span> - y2**<span class="hljs-number">2</span> - x1**<span class="hljs-number">3</span> + x2**<span class="hljs-number">3</span>) / (x1 - x2)<br>B = y1**<span class="hljs-number">2</span> - x1 ** <span class="hljs-number">3</span> - A*x1<br>E = EllipticCurve(F, [A, B])<br><br>G = E(x1, y1)<br>Q = E(x2, y2)<br><br>key = discrete_log(Q, G, operation=<span class="hljs-string">&#x27;+&#x27;</span>)<br>key = hashlib.sha256(<span class="hljs-built_in">str</span>(key).encode()).digest()<br><span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;AES Key:&quot;</span>, key)<br><br>cipher = AES.new(key, AES.MODE_ECB)<br>plaintext_padded = cipher.decrypt(c)<br>plaintext = unpad(plaintext_padded, AES.block_size)<br><br><span class="hljs-built_in">print</span>(plaintext.decode())<br></code></pre></td></tr></table></figure>
+<figure class="highlight py"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> sage.<span class="built_in">all</span> <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">from</span> Crypto.Util.Padding <span class="keyword">import</span> unpad</span><br><span class="line"><span class="keyword">import</span> hashlib</span><br><span class="line"><span class="keyword">from</span> Crypto.Cipher <span class="keyword">import</span> AES</span><br><span class="line"></span><br><span class="line">p = <span class="number">146808027458411567</span></span><br><span class="line">c = <span class="string">b&#x27;HmME\x08\xc5O\xa6\xab+\x0f\xbc\x90[]HR\x06\xf4\xa1\x84t\x8f@\xcf\x90\x97\xe3\xba:p/AxM-\xa3\xd3\xce\xb6?\x92\x85\xab\x97&quot;\x04\xf9\xb1\x1b\x83L\xd3P\xd0V\x96569\&#x27;%\xb71&#x27;</span></span><br><span class="line">F = GF(p)</span><br><span class="line">x1,y1 = F(<span class="number">35813342313999718</span>), F(<span class="number">66850728853227735</span>)</span><br><span class="line">x2,y2 = F(<span class="number">2399221355957408</span>), F(<span class="number">125062289889696869</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">A = (y1**<span class="number">2</span> - y2**<span class="number">2</span> - x1**<span class="number">3</span> + x2**<span class="number">3</span>) / (x1 - x2)</span><br><span class="line">B = y1**<span class="number">2</span> - x1 ** <span class="number">3</span> - A*x1</span><br><span class="line">E = EllipticCurve(F, [A, B])</span><br><span class="line"></span><br><span class="line">G = E(x1, y1)</span><br><span class="line">Q = E(x2, y2)</span><br><span class="line"></span><br><span class="line">key = discrete_log(Q, G, operation=<span class="string">&#x27;+&#x27;</span>)</span><br><span class="line">key = hashlib.sha256(<span class="built_in">str</span>(key).encode()).digest()</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;AES Key:&quot;</span>, key)</span><br><span class="line"></span><br><span class="line">cipher = AES.new(key, AES.MODE_ECB)</span><br><span class="line">plaintext_padded = cipher.decrypt(c)</span><br><span class="line">plaintext = unpad(plaintext_padded, AES.block_size)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(plaintext.decode())</span><br></pre></td></tr></table></figure>
 <h1>ezrsa</h1>
 <h2 id="题目-3">题目</h2>
-<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs py"><span class="hljs-keyword">from</span> Crypto.Util.number <span class="hljs-keyword">import</span> *<br><span class="hljs-keyword">from</span> secret <span class="hljs-keyword">import</span> flag<br><br>m = bytes_to_long(flag)<br><span class="hljs-keyword">assert</span> <span class="hljs-built_in">len</span>(flag)==<span class="hljs-number">32</span><br>p = getPrime(<span class="hljs-number">512</span>)<br>q = getPrime(<span class="hljs-number">512</span>)<br>n = p*q<br>e = <span class="hljs-number">65537</span><br>c1 = p^m<br>c2 = <span class="hljs-built_in">pow</span>(m,e,n)<br><span class="hljs-built_in">print</span>(<span class="hljs-string">f&#x27;n = <span class="hljs-subst">&#123;n&#125;</span>&#x27;</span>)<br><span class="hljs-built_in">print</span>(<span class="hljs-string">f&#x27;c1 = <span class="hljs-subst">&#123;c1&#125;</span>&#x27;</span>)<br><span class="hljs-built_in">print</span>(<span class="hljs-string">f&#x27;c2 = <span class="hljs-subst">&#123;c2&#125;</span>&#x27;</span>)<br><span class="hljs-string">&quot;&quot;&quot;</span><br><span class="hljs-string">n = 139167681803392690594490403105432649693546256181767408269202101512534988406137879788255103631885736461742577594980136624933914700779445704490217419248411578290305101891222576080645870988658334799437317221565839991979543660824098367011942169305111105129234902517835649895908656770416774539906212596072334423407</span><br><span class="hljs-string">c1 = 11201139662236758800406931253538295757259990870588609533820056210585752522925690049252488581929717556881067021381940083808024384402885422258545946243513996</span><br><span class="hljs-string">c2 = 112016152270171196606652761990170033221036025260883289104273504703557624964071464062375228351458191745141525003775876044271210498526920529385038130932141551598616579917681815276713386113932345056134302042399379895915706991873687943357627747262597883603999621939794450743982662393955266685255577026078256473601</span><br><span class="hljs-string">&quot;&quot;&quot;</span><span class="hljs-string">&quot;</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight py"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> Crypto.Util.number <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">from</span> secret <span class="keyword">import</span> flag</span><br><span class="line"></span><br><span class="line">m = bytes_to_long(flag)</span><br><span class="line"><span class="keyword">assert</span> <span class="built_in">len</span>(flag)==<span class="number">32</span></span><br><span class="line">p = getPrime(<span class="number">512</span>)</span><br><span class="line">q = getPrime(<span class="number">512</span>)</span><br><span class="line">n = p*q</span><br><span class="line">e = <span class="number">65537</span></span><br><span class="line">c1 = p^m</span><br><span class="line">c2 = <span class="built_in">pow</span>(m,e,n)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&#x27;n = <span class="subst">&#123;n&#125;</span>&#x27;</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&#x27;c1 = <span class="subst">&#123;c1&#125;</span>&#x27;</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&#x27;c2 = <span class="subst">&#123;c2&#125;</span>&#x27;</span>)</span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">n = 139167681803392690594490403105432649693546256181767408269202101512534988406137879788255103631885736461742577594980136624933914700779445704490217419248411578290305101891222576080645870988658334799437317221565839991979543660824098367011942169305111105129234902517835649895908656770416774539906212596072334423407</span></span><br><span class="line"><span class="string">c1 = 11201139662236758800406931253538295757259990870588609533820056210585752522925690049252488581929717556881067021381940083808024384402885422258545946243513996</span></span><br><span class="line"><span class="string">c2 = 112016152270171196606652761990170033221036025260883289104273504703557624964071464062375228351458191745141525003775876044271210498526920529385038130932141551598616579917681815276713386113932345056134302042399379895915706991873687943357627747262597883603999621939794450743982662393955266685255577026078256473601</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span><span class="string">&quot;</span></span><br></pre></td></tr></table></figure>
 <h2 id="exp-3">exp</h2>
-<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><code class="hljs py"><span class="hljs-keyword">from</span> gmpy2 <span class="hljs-keyword">import</span> *<br><span class="hljs-keyword">from</span> Crypto.Util.number <span class="hljs-keyword">import</span> *<br><span class="hljs-keyword">from</span> sage.<span class="hljs-built_in">all</span> <span class="hljs-keyword">import</span> *<br><br>n = <span class="hljs-number">139167681803392690594490403105432649693546256181767408269202101512534988406137879788255103631885736461742577594980136624933914700779445704490217419248411578290305101891222576080645870988658334799437317221565839991979543660824098367011942169305111105129234902517835649895908656770416774539906212596072334423407</span><br>c1 = <span class="hljs-number">11201139662236758800406931253538295757259990870588609533820056210585752522925690049252488581929717556881067021381940083808024384402885422258545946243513996</span><br>c2 = <span class="hljs-number">112016152270171196606652761990170033221036025260883289104273504703557624964071464062375228351458191745141525003775876044271210498526920529385038130932141551598616579917681815276713386113932345056134302042399379895915706991873687943357627747262597883603999621939794450743982662393955266685255577026078256473601</span><br>e = <span class="hljs-number">65537</span><br>p = c1 ^^ <span class="hljs-number">0</span><br>PR.&lt;x&gt; = PolynomialRing(Zmod(n))<br><br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">partial_prime_known_highbits</span>(<span class="hljs-params">n, known_high, unknown_bits</span>):<br>    <br>    f = known_high * <span class="hljs-number">2</span>^unknown_bits + x<br>    roots = f.small_roots(X=<span class="hljs-number">2</span>^unknown_bits, beta=<span class="hljs-number">0.4</span>,epsilon = <span class="hljs-number">0.01</span>)<br>    <span class="hljs-keyword">for</span> r <span class="hljs-keyword">in</span> roots:<br>        p = <span class="hljs-built_in">int</span>(known_high * <span class="hljs-number">2</span>^unknown_bits + r)<br>        <span class="hljs-keyword">if</span> p <span class="hljs-keyword">and</span> n % p == <span class="hljs-number">0</span>:<br>            <span class="hljs-keyword">return</span> p<br>    <span class="hljs-keyword">return</span> <span class="hljs-literal">None</span><br><span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">0</span>,<span class="hljs-number">256</span>):<br>    <span class="hljs-built_in">print</span>(i)<br>    p_high = p &gt;&gt; <span class="hljs-number">256</span><br>    p_high = p_high &lt;&lt; <span class="hljs-number">8</span><br>    p_high = p_high + i<br>    <span class="hljs-keyword">try</span>:<br>        p0 = partial_prime_known_highbits(n,p_high,<span class="hljs-number">248</span>)<br>        q = n // p0<br>        <span class="hljs-keyword">if</span> p0*q == n: <br>            phi = <span class="hljs-built_in">int</span>((p0-<span class="hljs-number">1</span>)*(q-<span class="hljs-number">1</span>))<br>            d = inverse(e,phi)<br>            m = <span class="hljs-built_in">pow</span>(c2,d,n)<br>            <span class="hljs-built_in">print</span>(long_to_bytes(<span class="hljs-built_in">int</span>(m)))<br>            <span class="hljs-keyword">break</span><br>    <span class="hljs-keyword">except</span>:<br>        <span class="hljs-keyword">continue</span><br><br></code></pre></td></tr></table></figure>
+<figure class="highlight py"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> gmpy2 <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">from</span> Crypto.Util.number <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">from</span> sage.<span class="built_in">all</span> <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line">n = <span class="number">139167681803392690594490403105432649693546256181767408269202101512534988406137879788255103631885736461742577594980136624933914700779445704490217419248411578290305101891222576080645870988658334799437317221565839991979543660824098367011942169305111105129234902517835649895908656770416774539906212596072334423407</span></span><br><span class="line">c1 = <span class="number">11201139662236758800406931253538295757259990870588609533820056210585752522925690049252488581929717556881067021381940083808024384402885422258545946243513996</span></span><br><span class="line">c2 = <span class="number">112016152270171196606652761990170033221036025260883289104273504703557624964071464062375228351458191745141525003775876044271210498526920529385038130932141551598616579917681815276713386113932345056134302042399379895915706991873687943357627747262597883603999621939794450743982662393955266685255577026078256473601</span></span><br><span class="line">e = <span class="number">65537</span></span><br><span class="line">p = c1 ^^ <span class="number">0</span></span><br><span class="line">PR.&lt;x&gt; = PolynomialRing(Zmod(n))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">partial_prime_known_highbits</span>(<span class="params">n, known_high, unknown_bits</span>):</span><br><span class="line">    </span><br><span class="line">    f = known_high * <span class="number">2</span>^unknown_bits + x</span><br><span class="line">    roots = f.small_roots(X=<span class="number">2</span>^unknown_bits, beta=<span class="number">0.4</span>,epsilon = <span class="number">0.01</span>)</span><br><span class="line">    <span class="keyword">for</span> r <span class="keyword">in</span> roots:</span><br><span class="line">        p = <span class="built_in">int</span>(known_high * <span class="number">2</span>^unknown_bits + r)</span><br><span class="line">        <span class="keyword">if</span> p <span class="keyword">and</span> n % p == <span class="number">0</span>:</span><br><span class="line">            <span class="keyword">return</span> p</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">None</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>,<span class="number">256</span>):</span><br><span class="line">    <span class="built_in">print</span>(i)</span><br><span class="line">    p_high = p &gt;&gt; <span class="number">256</span></span><br><span class="line">    p_high = p_high &lt;&lt; <span class="number">8</span></span><br><span class="line">    p_high = p_high + i</span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        p0 = partial_prime_known_highbits(n,p_high,<span class="number">248</span>)</span><br><span class="line">        q = n // p0</span><br><span class="line">        <span class="keyword">if</span> p0*q == n: </span><br><span class="line">            phi = <span class="built_in">int</span>((p0-<span class="number">1</span>)*(q-<span class="number">1</span>))</span><br><span class="line">            d = inverse(e,phi)</span><br><span class="line">            m = <span class="built_in">pow</span>(c2,d,n)</span><br><span class="line">            <span class="built_in">print</span>(long_to_bytes(<span class="built_in">int</span>(m)))</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line">    <span class="keyword">except</span>:</span><br><span class="line">        <span class="keyword">continue</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
-                
-              </div>
-            
-            <hr/>
-            <div>
-              <div class="post-metas my-3">
-  
-  
+    </div>
+    <footer class="post-footer">
+        <nav class="post-footer__actions" aria-label="文章页脚">
+            <a class="back-link post-footer__action post-footer__action--primary" href="/#posts">
+                <svg class="svg-icon" viewBox="0 0 448 512" width="0.9em" height="0.9em" aria-hidden="true" style="display:inline-block;flex-shrink:0;pointer-events:none;vertical-align:-0.125em"><path fill="currentColor" d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.2 288 416 288c17.7 0 32-14.3 32-32s-14.3-32-32-32l-306.7 0L214.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"></path></svg><span>返回列表</span>
+            </a>
+            <a class="back-link post-footer__action" href="/">
+                <svg class="svg-icon" viewBox="0 0 576 512" width="0.9em" height="0.9em" aria-hidden="true" style="display:inline-block;flex-shrink:0;pointer-events:none;vertical-align:-0.125em"><path fill="currentColor" d="M575.8 255.5c0 18-15 32.1-32 32.1h-32l.7 160.2c0 2.7-.2 5.4-.5 8.1V432c0 22.1-17.9 40-40 40H160c-1.1 0-2.2 0-3.3-.1l-7.8-.2c-21.1 0-38.1-18.1-38.1-39.8 0-1.5 0-3 .1-4.5l.3-2.7c0-15.9 12.9-28.9 28.9-28.9 5.1 0 9.8 1.6 13.6 4.2l.5.3c3.9 2.4 8.8 3.9 14 3.9 12.5 0 22.6-10.1 22.6-22.6 0-7.2-3.4-13.6-8.6-17.7L416 213.3V386.5h40c17.7 0 32 14.3 32 32zM352 379.8V181l46.9 38.8c9.7 8 24.9 6.5 33.7-3.4l17.9-19.9c9-10.1 7.6-25.7-3.1-34.1L308.7 85.4c-6.8-5.7-16.7-5.7-23.5 0L151.5 182.4c-10.7 8.4-13.1 24-3.1 34.1l17.9 19.9c8.8 9.9 24 11.4 33.7 3.4L246 227V379.8h96 48z"></path></svg><span>返回首页</span>
+            </a>
+        </nav>
+    </footer>
+    <nav class="post-nav" aria-label="文章导航">
+        
+        <a class="post-nav__card post-nav__card--prev" href="/2026/04/26/%E6%95%B0%E5%AD%97%E4%B8%AD%E5%9B%BD%E5%86%B3%E8%B5%9B/">
+            <span class="post-nav__dir">← 上一篇</span>
+            <span class="post-nav__title">数字中国决赛</span>
+            <span class="post-nav__date">2026-04-26</span>
+        </a>
+        
+        
+        <a class="post-nav__card post-nav__card--next" href="/2026/07/21/nepctf%E9%83%A8%E5%88%86/">
+            <span class="post-nav__dir">下一篇 →</span>
+            <span class="post-nav__title">nepctf部分</span>
+            <span class="post-nav__date">2026-07-21</span>
+        </a>
+        
+    </nav>
+    
+</article>
+<div class="article-toc" aria-label="文章目录" hidden></div>
+<div class="article-dock article-dock--hidden">
+    <button class="article-dock__fab" type="button" aria-label="返回顶部">
+        <svg class="svg-icon" viewBox="0 0 448 512" width="14" height="14" aria-hidden="true" style="display:inline-block;flex-shrink:0;vertical-align:-0.125em"><path fill="currentColor" d="M201.4 105.4c12.5-12.5 32.8-12.5 45.3 0l160 160c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L224 173.3 86.6 310.6c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3l160-160z"></path></svg>
+    </button>
+    <button class="article-dock__fab article-dock__fab--aa" type="button" aria-haspopup="dialog" aria-label="阅读设置">Aa</button>
 </div>
-
-
-              
-  
-
-  <div class="license-box my-3">
-    <div class="license-title">
-      <div>tutctf wp</div>
-      <div>https://ddanggui.top/2026/06/01/tutctf/</div>
-    </div>
-    <div class="license-meta">
-      
-        <div class="license-meta-item">
-          <div>作者</div>
-          <div>ddanggui</div>
-        </div>
-      
-      
-        <div class="license-meta-item license-meta-date">
-          <div>发布于</div>
-          <div>2026年6月1日</div>
-        </div>
-      
-      
-      
-        <div class="license-meta-item">
-          <div>许可协议</div>
-          <div>
-            
-              
-              
-                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
-                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
-                    <i class="iconfont icon-cc-by"></i>
-                  </span>
-                </a>
-              
-            
-          </div>
-        </div>
-      
-    </div>
-    <div class="license-icon iconfont"></div>
-  </div>
-
-
-
-              
-                <div class="post-prevnext my-3">
-                  <article class="post-prev col-6">
-                    
-                    
-                      <a href="/2026/07/21/nepctf%E9%83%A8%E5%88%86/" title="nepctf部分">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">nepctf部分</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
-                  </article>
-                  <article class="post-next col-6">
-                    
-                    
-                      <a href="/2026/04/26/%E6%95%B0%E5%AD%97%E4%B8%AD%E5%9B%BD%E5%86%B3%E8%B5%9B/" title="数字中国决赛">
-                        <span class="hidden-mobile">数字中国决赛</span>
-                        <span class="visible-mobile">下一篇</span>
-                        <i class="iconfont icon-arrowright"></i>
-                      </a>
-                    
-                  </article>
-                </div>
-              
+<div class="article-dock__overlay" hidden>
+    <div class="article-dock__popover" role="dialog" aria-modal="true" tabindex="-1">
+        <div class="article-dock__popover-group" role="group">
+            <span class="article-dock__popover-label">字号</span>
+            <div class="article-dock__popover-row">
+                <button class="article-dock__btn article-dock__btn--font" type="button" data-font-step="-1">A−</button>
+                <span class="article-dock__popover-value">100%</span>
+                <button class="article-dock__btn article-dock__btn--font" type="button" data-font-step="1">A+</button>
             </div>
-
-            
-          </article>
         </div>
-      </div>
-    </div>
-
-    <div class="side-col d-none d-lg-block col-lg-2">
-      
-  <aside class="sidebar" style="margin-left: -1rem">
-    <div id="toc">
-  <p class="toc-header">
-    <i class="iconfont icon-list"></i>
-    <span>目录</span>
-  </p>
-  <div class="toc-body" id="toc-body"></div>
-</div>
-
-
-
-  </aside>
-
-
-    </div>
-  </div>
-</div>
-
-
-
-
-
-  
-
-
-
-  
-
-
-
-  
-
-
-
-  
-
-
-
-  
-
-
-  
-  
-
-
-
-
-
-
-
-
-    
-
-    
-      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
-        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
-      </a>
-    
-
-    
-      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
-     aria-hidden="true">
-  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
-    <div class="modal-content">
-      <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
-        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
+        <div class="article-dock__popover-group" role="group">
+            <span class="article-dock__popover-label">行高</span>
+            <div class="article-dock__popover-row">
+                
+                <button class="article-dock__btn article-dock__btn--seg" type="button" data-line-height="1.6">1.6</button>
+                
+                <button class="article-dock__btn article-dock__btn--seg" type="button" data-line-height="1.8">1.8</button>
+                
+                <button class="article-dock__btn article-dock__btn--seg" type="button" data-line-height="2">2</button>
+                
+            </div>
+        </div>
+        <div class="article-dock__popover-group" role="group">
+            <span class="article-dock__popover-label">宽度</span>
+            <div class="article-dock__popover-row">
+                
+                <button class="article-dock__btn article-dock__btn--seg" type="button" data-width="720">720px</button>
+                
+                <button class="article-dock__btn article-dock__btn--seg" type="button" data-width="840">840px</button>
+                
+                <button class="article-dock__btn article-dock__btn--seg" type="button" data-width="960">960px</button>
+                
+            </div>
+        </div>
+        <button class="article-dock__btn article-dock__btn--focus" type="button" aria-pressed="false">
+            <svg class="svg-icon" viewBox="0 0 512 512" width="14px" height="14px" aria-hidden="true" style="display:inline-block;flex-shrink:0;pointer-events:none;vertical-align:-0.125em"><path fill="currentColor" d="M344 0L488 0c13.3 0 24 10.7 24 24l0 144c0 9.7-5.8 18.5-14.8 22.2s-19.3 1.7-26.2-5.2l-39-39-87 87c-9.4 9.4-24.6 9.4-33.9 0l-32-32c-9.4-9.4-9.4-24.6 0-33.9l87-87L327 41c-6.9-6.9-8.9-17.2-5.2-26.2S334.3 0 344 0zM168 512L24 512c-13.3 0-24-10.7-24-24L0 344c0-9.7 5.8-18.5 14.8-22.2s19.3-1.7 26.2 5.2l39 39 87-87c9.4-9.4 24.6-9.4 33.9 0l32 32c9.4 9.4 9.4 24.6 0 33.9l-87 87 39 39c6.9 6.9 8.9 17.2 5.2 26.2s-12.5 14.8-22.2 14.8z"></path></svg><span>专注模式</span>
         </button>
-      </div>
-      <div class="modal-body mx-3">
-        <div class="md-form mb-5">
-          <input type="text" id="local-search-input" class="form-control validate">
-          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+    </div>
+</div>
+
+    </div>
+    <div class="page-footer">
+        <footer class="site-footer">
+    <div class="footer-bottom">
+        <span class="footer-copyright">© 2018-2026 ddanggui</span>
+        <span class="footer-meta">
+            <span class="footer-tagline">多喝热水</span>
+            <span class="footer-version" title="Wakusei HomePage v1.0.0">v1.0.0</span>
+        </span>
+    </div>
+</footer>
+
+    </div>
+</div>
+<div class="top-bar" role="toolbar" aria-label="Top navigation">
+    <a class="top-bar-left" href="/">
+        <span class="top-bar-left-content">
+            <img class="top-bar-avatar" src="/img/avatar.png" width="40" height="40" alt="">
+            <span class="top-bar-name"><span class="name-latin">ddanggui</span></span>
+        </span>
+    </a>
+    <div class="top-bar-right">
+        <a class="top-bar-dock-item has-text" href="/"><span class="top-bar-dock-label">主页</span></a>
+        <a class="top-bar-dock-item has-text active" href="/#posts"><span class="top-bar-dock-label">文章</span></a>
+        <a class="top-bar-dock-item has-text" href="/archives/"><span class="top-bar-dock-label">归档</span></a>
+        <div class="top-bar-divider"></div>
+        <button class="top-bar-dock-item" type="button" data-action="toggle-theme" title="主题" aria-label="主题">
+            <svg class="svg-icon icon-dark" viewBox="0 0 512 512" width="1em" height="1em" aria-hidden="true" style="display:inline-block;flex-shrink:0;pointer-events:none;vertical-align:-0.125em"><path fill="currentColor" d="M256 0C114.6 0 0 114.6 0 256S114.6 512 256 512c68.8 0 131.3-27.2 177.3-71.4 7.3-7 9.4-17.9 5.3-27.1s-13.7-14.9-23.8-14.1c-4.9 .4-9.8 .6-14.8 .6-101.6 0-184-82.4-184-184 0-72.1 41.5-134.6 102.1-164.8 9.1-4.5 14.3-14.3 13.1-24.4S322.6 8.5 312.7 6.3C294.4 2.2 275.4 0 256 0z"></path></svg>
+            <svg class="svg-icon icon-light" viewBox="0 0 576 512" width="1em" height="1em" aria-hidden="true" style="display:inline-block;flex-shrink:0;pointer-events:none;vertical-align:-0.125em"><path fill="currentColor" d="M288-32c8.4 0 16.3 4.4 20.6 11.7L364.1 72.3 468.9 46c8.2-2 16.9 .4 22.8 6.3S500 67 498 75.1l-26.3 104.7 92.7 55.5c7.2 4.3 11.7 12.2 11.7 20.6s-4.4 16.3-11.7 20.6L471.7 332.1 498 436.8c2 8.2-.4 16.9-6.3 22.8S477 468 468.9 466l-104.7-26.3-55.5 92.7c-4.3 7.2-12.2 11.7-20.6 11.7s-16.3-4.4-20.6-11.7L211.9 439.7 107.2 466c-8.2 2-16.8-.4-22.8-6.3S76 445 78 436.8l26.2-104.7-92.6-55.5C4.4 272.2 0 264.4 0 256s4.4-16.3 11.7-20.6L104.3 179.9 78 75.1c-2-8.2 .3-16.8 6.3-22.8S99 44 107.2 46l104.7 26.2 55.5-92.6 1.8-2.6c4.5-5.7 11.4-9.1 18.8-9.1zm0 144a144 144 0 1 0 0 288 144 144 0 1 0 0-288zm0 240a96 96 0 1 1 0-192 96 96 0 1 1 0 192z"></path></svg>
+        </button>
+        <button class="top-bar-dock-item" type="button" data-action="open-search" title="搜索" aria-label="搜索">
+            <svg class="svg-icon" viewBox="0 0 512 512" width="1em" height="1em" aria-hidden="true" style="display:inline-block;flex-shrink:0;pointer-events:none;vertical-align:-0.125em"><path fill="currentColor" d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376C296.3 401.2 253.9 416 208 416C93.1 416 0 322.9 0 208S93.1 0 208 0s208 93.1 208 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z"></path></svg>
+        </button>
+    </div>
+</div>
+<div id="top-bar-sidebar" class="top-bar-sidebar theme-light" role="dialog" aria-label="导航菜单">
+    <div class="sidebar-header">
+        <div class="sidebar-avatar-frame">
+            <img class="sidebar-avatar" src="/img/avatar.png" width="48" height="48" loading="lazy" decoding="async" alt="">
         </div>
-        <div class="list-group" id="local-search-result"></div>
-      </div>
+        <span class="sidebar-name">ddanggui</span>
     </div>
-  </div>
+    <div class="sidebar-divider"></div>
+    <a class="sidebar-menu-item" href="/">
+        <svg class="svg-icon sidebar-menu-icon" viewBox="0 0 576 512" width="1em" height="1em" aria-hidden="true" style="display:inline-block;flex-shrink:0;pointer-events:none;vertical-align:-0.125em"><path fill="currentColor" d="M575.8 255.5c0 18-15 32.1-32 32.1h-32l.7 160.2c0 2.7-.2 5.4-.5 8.1V432c0 22.1-17.9 40-40 40H160c-1.1 0-2.2 0-3.3-.1l-7.8-.2c-21.1 0-38.1-18.1-38.1-39.8 0-1.5 0-3 .1-4.5l.3-2.7c0-15.9 12.9-28.9 28.9-28.9 5.1 0 9.8 1.6 13.6 4.2l.5.3c3.9 2.4 8.8 3.9 14 3.9 12.5 0 22.6-10.1 22.6-22.6 0-7.2-3.4-13.6-8.6-17.7L416 213.3V386.5h40c17.7 0 32 14.3 32 32zM352 379.8V181l46.9 38.8c9.7 8 24.9 6.5 33.7-3.4l17.9-19.9c9-10.1 7.6-25.7-3.1-34.1L308.7 85.4c-6.8-5.7-16.7-5.7-23.5 0L151.5 182.4c-10.7 8.4-13.1 24-3.1 34.1l17.9 19.9c8.8 9.9 24 11.4 33.7 3.4L246 227V379.8h96 48z"></path></svg><span>主页</span>
+    </a>
+    <a class="sidebar-menu-item active" href="/#posts">
+        <svg class="svg-icon sidebar-menu-icon" viewBox="0 0 512 512" width="1em" height="1em" aria-hidden="true" style="display:inline-block;flex-shrink:0;pointer-events:none;vertical-align:-0.125em"><path fill="currentColor" d="M96 96c0-35.3 28.7-64 64-64l288 0c35.3 0 64 28.7 64 64l0 320c0 35.3-28.7 64-64 64L80 480c-44.2 0-80-35.8-80-80L0 128c0-17.7 14.3-32 32-32s32 14.3 32 32l0 272c0 8.8 7.2 16 16 16s16-7.2 16-16L96 96zm64 24l0 80c0 13.3 10.7 24 24 24l112 0c13.3 0 24-10.7 24-24l0-80c0-13.3-10.7-24-24-24L184 96c-13.3 0-24 10.7-24 24zm208-8c0 8.8 7.2 16 16 16l48 0c8.8 0 16-7.2 16-16s-7.2-16-16-16l-48 0c-8.8 0-16 7.2-16 16zm0 96c0 8.8 7.2 16 16 16l48 0c8.8 0 16-7.2 16-16s-7.2-16-16-16l-48 0c-8.8 0-16 7.2-16 16zM160 304c0 8.8 7.2 16 16 16l256 0c8.8 0 16-7.2 16-16s-7.2-16-16-16l-256 0c-8.8 0-16 7.2-16 16zm0 96c0 8.8 7.2 16 16 16l256 0c8.8 0 16-7.2 16-16s-7.2-16-16-16l-256 0c-8.8 0-16 7.2-16 16z"></path></svg><span>文章</span>
+    </a>
+    <a class="sidebar-menu-item" href="/archives/">
+        <svg class="svg-icon sidebar-menu-icon" viewBox="0 0 512 512" width="1em" height="1em" aria-hidden="true" style="display:inline-block;flex-shrink:0;pointer-events:none;vertical-align:-0.125em"><path fill="currentColor" d="M232.5 5.2c14.9-6.9 32.1-6.9 47 0l192 88c22.7 10.4 22.7 42.8 0 53.2l-192 88c-14.9 6.9-32.1 6.9-47 0l-192-88c-22.7-10.4-22.7-42.8 0-53.2l192-88zM0 212.8c0-9.9 10.1-16.6 19.2-12.5L256 309.5l236.8-109.2c9-4.2 19.2 2.4 19.2 12.5 0 5.4-3.2 10.3-8.1 12.5L279.5 328.7c-14.9 6.9-32.1 6.9-47 0L8.1 225.3C3.2 223 0 218.2 0 212.8zm0 96c0-9.9 10.1-16.6 19.2-12.5L256 405.5l236.8-109.2c9-4.2 19.2 2.4 19.2 12.5 0 5.4-3.2 10.3-8.1 12.5L279.5 424.7c-14.9 6.9-32.1 6.9-47 0L8.1 321.3C3.2 319 0 314.2 0 308.8z"></path></svg><span>归档</span>
+    </a>
+    <div class="sidebar-divider"></div>
+    <button class="sidebar-menu-item" type="button" data-action="toggle-theme">
+        <svg class="svg-icon sidebar-menu-icon" viewBox="0 0 512 512" width="1em" height="1em" aria-hidden="true" style="display:inline-block;flex-shrink:0;pointer-events:none;vertical-align:-0.125em"><path fill="currentColor" d="M256 0C114.6 0 0 114.6 0 256S114.6 512 256 512c68.8 0 131.3-27.2 177.3-71.4 7.3-7 9.4-17.9 5.3-27.1s-13.7-14.9-23.8-14.1c-4.9 .4-9.8 .6-14.8 .6-101.6 0-184-82.4-184-184 0-72.1 41.5-134.6 102.1-164.8 9.1-4.5 14.3-14.3 13.1-24.4S322.6 8.5 312.7 6.3C294.4 2.2 275.4 0 256 0z"></path></svg><span>主题</span>
+    </button>
+    <button class="sidebar-menu-item" type="button" data-action="open-search">
+        <svg class="svg-icon sidebar-menu-icon" viewBox="0 0 512 512" width="1em" height="1em" aria-hidden="true" style="display:inline-block;flex-shrink:0;pointer-events:none;vertical-align:-0.125em"><path fill="currentColor" d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376C296.3 401.2 253.9 416 208 416C93.1 416 0 322.9 0 208S93.1 0 208 0s208 93.1 208 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z"></path></svg><span>搜索</span>
+    </button>
+    <div class="sidebar-divider"></div>
+</div>
+<div class="top-bar-sidebar-overlay"></div>
+
+
+<div class="search-modal-overlay" id="searchModal" role="dialog" aria-modal="true" aria-labelledby="search-modal-title" hidden>
+    <div class="search-modal-dialog">
+        <div class="search-modal-header">
+            <h2 id="search-modal-title" class="sr-only">搜索</h2>
+            <div class="search-control">
+                <svg class="svg-icon search-control__icon" viewBox="0 0 512 512" width="1em" height="1em" aria-hidden="true" style="display:inline-block;flex-shrink:0;pointer-events:none;vertical-align:-0.125em"><path fill="currentColor" d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376C296.3 401.2 253.9 416 208 416C93.1 416 0 322.9 0 208S93.1 0 208 0s208 93.1 208 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z"></path></svg>
+                <input id="search-modal-input" class="search-input" type="search" placeholder="搜索文章…" autocomplete="off">
+                <button class="search-clear" type="button" aria-label="清空" hidden><svg class="svg-icon" viewBox="0 0 384 512" width="1em" height="1em" aria-hidden="true" style="display:inline-block;flex-shrink:0;pointer-events:none;vertical-align:-0.125em"><path fill="currentColor" d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z"></path></svg></button>
+            </div>
+            <p id="search-modal-help" class="search-help">↑↓ 选择,Enter 跳转,Esc 关闭</p>
+        </div>
+        <div class="search-modal-body">
+            <div class="search-loading" hidden><p>正在加载搜索索引…</p></div>
+            <div class="search-summary" aria-live="polite" hidden><span></span><span></span><button class="search-view-all-link" type="button">查看全部结果</button></div>
+            <div class="search-results scroller"></div>
+            <div class="search-empty" hidden><p>没有找到相关文章</p><button class="search-empty__button" type="button">清空重搜</button></div>
+        </div>
+    </div>
 </div>
 
-    
 
-    
-  </main>
+<script src="/js/core.js" defer></script>
+<script src="/js/article.js" defer></script>
 
-  <footer>
-    <div class="footer-inner">
-  
-    <div class="footer-content">
-       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
-    </div>
-  
-  
-  
-</div>
-
-  </footer>
-
-  <!-- Scripts -->
-  
-  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
-  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
-
-  <script>
-    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
-    NProgress.start()
-    window.addEventListener('load', function() {
-      NProgress.done();
-    })
-  </script>
-
-
-<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
-<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
-<script  src="/js/events.js" ></script>
-<script  src="/js/plugins.js" ></script>
-
-
-  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
-  <script>
-    (function (window, document) {
-      var typing = Fluid.plugins.typing;
-      var subtitle = document.getElementById('subtitle');
-      if (!subtitle || !typing) {
-        return;
-      }
-      var text = subtitle.getAttribute('data-typed-text');
-      
-        typing(text);
-      
-    })(window, document);
-  </script>
-
-
-
-
-  
-    <script  src="/js/img-lazyload.js" ></script>
-  
-
-
-
-
-  
-<script>
-  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
-    var toc = jQuery('#toc');
-    if (toc.length === 0 || !window.tocbot) { return; }
-    var boardCtn = jQuery('#board-ctn');
-    var boardTop = boardCtn.offset().top;
-
-    window.tocbot.init(Object.assign({
-      tocSelector     : '#toc-body',
-      contentSelector : '.markdown-body',
-      linkClass       : 'tocbot-link',
-      activeLinkClass : 'tocbot-active-link',
-      listClass       : 'tocbot-list',
-      isCollapsedClass: 'tocbot-is-collapsed',
-      collapsibleClass: 'tocbot-is-collapsible',
-      scrollSmooth    : true,
-      includeTitleTags: true,
-      headingsOffset  : -boardTop,
-    }, CONFIG.toc));
-    if (toc.find('.toc-list-item').length > 0) {
-      toc.css('visibility', 'visible');
-    }
-
-    Fluid.events.registerRefreshCallback(function() {
-      if ('tocbot' in window) {
-        tocbot.refresh();
-        var toc = jQuery('#toc');
-        if (toc.length === 0 || !tocbot) {
-          return;
-        }
-        if (toc.find('.toc-list-item').length > 0) {
-          toc.css('visibility', 'visible');
-        }
-      }
-    });
-  });
-</script>
-
-
-  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
-
-  <script>Fluid.plugins.codeWidget();</script>
-
-
-  
-<script>
-  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
-    window.anchors.options = {
-      placement: CONFIG.anchorjs.placement,
-      visible  : CONFIG.anchorjs.visible
-    };
-    if (CONFIG.anchorjs.icon) {
-      window.anchors.options.icon = CONFIG.anchorjs.icon;
-    }
-    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
-    var res = [];
-    for (var item of el) {
-      res.push('.markdown-body > ' + item.trim());
-    }
-    if (CONFIG.anchorjs.placement === 'left') {
-      window.anchors.options.class = 'anchorjs-link-left';
-    }
-    window.anchors.add(res.join(', '));
-
-    Fluid.events.registerRefreshCallback(function() {
-      if ('anchors' in window) {
-        anchors.removeAll();
-        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
-        var res = [];
-        for (var item of el) {
-          res.push('.markdown-body > ' + item.trim());
-        }
-        if (CONFIG.anchorjs.placement === 'left') {
-          anchors.options.class = 'anchorjs-link-left';
-        }
-        anchors.add(res.join(', '));
-      }
-    });
-  });
-</script>
-
-
-  
-<script>
-  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
-    Fluid.plugins.fancyBox();
-  });
-</script>
-
-
-  <script>Fluid.plugins.imageCaption();</script>
-
-  <script  src="/js/local-search.js" ></script>
-
-
-
-
-
-<!-- 主题的启动项，将它保持在最底部 -->
-<!-- the boot of the theme, keep it at the bottom -->
-<script  src="/js/boot.js" ></script>
-
-
-  
-
-  <noscript>
-    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
-  </noscript>
 </body>
 </html>
