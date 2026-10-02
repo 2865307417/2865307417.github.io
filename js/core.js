@@ -190,6 +190,49 @@
         setInterval(swap, pause);
     })();
 
+    /* ---------------- 壁纸中央打字机 ---------------- */
+    (function typewriter() {
+        var box = $('.wallpaper-typewriter');
+        var textEl = box ? $('#typewriterText', box) : null;
+        if (!box || !textEl) return;
+        var cfg = CFG.typewriter || {};
+        var phrases = (cfg.phrases && cfg.phrases.length ? cfg.phrases : ['尽人事,听天命']).filter(Boolean);
+        if (reducedMotion || liteMode) {
+            textEl.textContent = phrases[0];
+            return;
+        }
+        var typeSpeed = Number(cfg.typeSpeed) || 180;
+        var deleteSpeed = Number(cfg.deleteSpeed) || 90;
+        var pause = Number(cfg.pauseDuration) || 4200;
+        var loop = cfg.loop !== false;
+        var idx = 0, pos = 0, deleting = false;
+        function step() {
+            var phrase = phrases[idx];
+            if (!deleting) {
+                pos += 1;
+                textEl.textContent = phrase.slice(0, pos);
+                if (pos >= phrase.length) {
+                    if (!loop && phrases.length === 1) return;
+                    deleting = true;
+                    setTimeout(step, pause);
+                    return;
+                }
+                setTimeout(step, typeSpeed);
+            } else {
+                pos -= 1;
+                textEl.textContent = phrase.slice(0, pos);
+                if (pos <= 0) {
+                    deleting = false;
+                    idx = (idx + 1) % phrases.length;
+                    setTimeout(step, 700);
+                    return;
+                }
+                setTimeout(step, deleteSpeed);
+            }
+        }
+        setTimeout(step, 900);
+    })();
+
     /* ---------------- 跑马灯:悬停缓停 / 标签页隐藏暂停 ---------------- */
     var marqueeCtrl = (function () {
         var track = $('.hero-marquee__track');
