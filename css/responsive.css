@@ -363,6 +363,13 @@
         margin-bottom: var(--space-lg, 2rem);
         padding: var(--space-sm, 1rem);
     }
+    /* 矮视口下收紧贡献图：数字行与地形图一起压缩，避免把社交链接挤出可视区 */
+    .github-contrib__stage {
+        padding-top: 2.3rem;
+    }
+    .github-contrib__count {
+        font-size: clamp(1.7rem, 2.8vw, 2rem);
+    }
     .social-links-page {
         gap: var(--space-xs, 0.75rem);
     }

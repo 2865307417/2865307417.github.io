@@ -678,6 +678,9 @@ html:not(.is-loaded) .noise-overlay {
     display: block;
     width: 100%;
     max-width: 360px;
+    /* 顶部预留数字行的高度：head 是绝对定位，画布从这里往下开始，
+       避免地形柱体压在大号数字与图标上（两者不再重叠） */
+    padding-top: 2.6rem;
 }
 
 .github-contrib__head {
@@ -701,8 +704,7 @@ html:not(.is-loaded) .noise-overlay {
 
 .github-contrib__count {
     font-family: var(--font-ui, 'Inter', sans-serif);
-    font-size: 2.9rem;
-    font-size: clamp(2.3rem, 4vw, 2.9rem);
+    font-size: clamp(1.9rem, 3.2vw, 2.4rem);
     font-weight: 800;
     letter-spacing: -0.06em;
     font-variant-numeric: tabular-nums;

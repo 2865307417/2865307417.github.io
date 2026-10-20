@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-ui-lang="zh-CN" data-content-lang="zh-CN" class="is-entering">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>MT19937 学习与攻击 | ddanggui&#39;s 博客</title>
+<meta name="description" content="MT19937 的初始化、twist、temper 流程梳理，untemper 与逆 twist 的推导，附 SUCTF2019 MT、V&amp;N2020 Backtrace 等例题 exp。">
+<meta name="robots" content="index, follow">
+<script>
+(function () {
+    var t;
+    try { t = localStorage.getItem('theme'); } catch (e) {}
+    if (t !== 'dark' && t !== 'light') {
+        t = (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light';
+    }
+    document.documentElement.setAttribute('data-theme', t);
+    if (t === 'dark') {
+        var m = document.querySelector('meta[name="theme-color"]');
+        if (m) m.setAttribute('content', '#080808');
+    }
+    var c = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+    try {
+        if ((c && (c.saveData || /^(slow-2g|2g|3g)$/.test(c.effectiveType || ''))) ||
+            (window.matchMedia && window.matchMedia('(prefers-reduced-data: reduce)').matches)) {
+            document.documentElement.setAttribute('data-perf', 'lite');
+        }
+    } catch (e) {}
+})();
+</script>
+<meta name="theme-color" content="#fffef7">
+<style>:root { --theme-color: #fffef7; }</style>
+<link rel="canonical" href="https://ddanggui.top/2025/05/14/MT19937%E5%AD%A6%E4%B9%A0/">
+<link rel="icon" href="/img/avatar.png" type="image/png">
+
+<link rel="preconnect" href="https://www.loliapi.com" media="(min-width: 901px)">
+<link rel="dns-prefetch" href="https://www.loliapi.com" media="(min-width: 901px)">
+<link rel="alternate" type="application/atom+xml" title="ddanggui&#39;s 博客" href="/atom.xml">
+
+
+<link rel="stylesheet" href="/fonts/inter/inter.css">
+<link rel="stylesheet" href="/fonts/noto-sans-sc/400.css">
+<link rel="stylesheet" href="/fonts/noto-sans-sc/500.css">
+<link rel="stylesheet" href="/fonts/noto-sans-sc/600.css">
+<link rel="stylesheet" href="/fonts/noto-sans-sc/700.css">
+<link rel="stylesheet" href="/fonts/noto-serif-sc/400.css">
+<link rel="stylesheet" href="/fonts/noto-serif-sc/600.css">
+<link rel="stylesheet" href="/fonts/noto-serif-sc/700.css">
+
+<link rel="stylesheet" href="/fonts/katex/katex.min.css">
+
+<link rel="stylesheet" href="/css/base.css">
+<link rel="stylesheet" href="/css/layout.css">
+<link rel="stylesheet" href="/css/transitions.css">
+<link rel="stylesheet" href="/css/components.css">
+<link rel="stylesheet" href="/css/responsive.css">
+<link rel="stylesheet" href="/css/dock.css">
+<link rel="stylesheet" href="/css/topbar.css">
+<link rel="stylesheet" href="/css/footer.css">
+<link rel="stylesheet" href="/css/article.css">
+<link rel="stylesheet" href="/css/toc.css">
+<link rel="stylesheet" href="/css/reading-controls.css">
+<link rel="stylesheet" href="/css/performance.css">
+<link rel="stylesheet" href="/css/wakusei.css">
+
+<meta property="og:site_name" content="ddanggui&#39;s 博客">
+<meta property="og:title" content="MT19937 学习与攻击 | ddanggui&#39;s 博客">
+<meta property="og:description" content="MT19937 的初始化、twist、temper 流程梳理，untemper 与逆 twist 的推导，附 SUCTF2019 MT、V&amp;N2020 Backtrace 等例题 exp。">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://ddanggui.top/2025/05/14/MT19937%E5%AD%A6%E4%B9%A0/">
+<meta property="og:image" content="https://ddanggui.top/img/avatar.png">
+<meta property="og:locale" content="zh_CN">
+<meta name="twitter:card" content="summary">
+
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"MT19937 学习与攻击","description":"MT19937 的初始化、twist、temper 流程梳理，untemper 与逆 twist 的推导，附 SUCTF2019 MT、V&N2020 Backtrace 等例题 exp。","inLanguage":"zh-CN","datePublished":"2025-05-14T12:00:00.000Z","dateModified":"2026-10-20T10:20:21.305Z","author":{"@type":"Person","name":"ddanggui"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://ddanggui.top/2025/05/14/MT19937%E5%AD%A6%E4%B9%A0/"}}</script>
+
+<script>
+/* 壁纸首帧预取(桌面端) */
+(function () {
+    if (!window.matchMedia || !window.matchMedia('(min-width: 901px)').matches) return;
+    if (document.querySelector('.wallpaper-image')) return;
+    var img = new Image();
+    img.fetchPriority = 'low';
+    img.decoding = 'async';
+    img.src = '/img/default.png';
+    window.__wallpaperPrefetch = { img: img };
+})();
+</script>
+<script>
+window.__WAKUSEI__ = {"themeColor":"#fffef7","profile":{"name":"ddanggui","status":"CRYPTO小菜鸡的升级之路","avatar":"/img/avatar.png"},"slogans":{"list":["尽人事,听天命,静候花开。","CRYPTO小菜鸡的升级之路","用冰冷的理性温暖世界。","Stay hungry, stay foolish.","师傅,别念了!"],"mode":"sequence","pauseDuration":5000,"loop":true},"time":{"format":"24h","showWeekday":true,"showDate":true,"updateInterval":1000},"wallpaper":{"defaultImage":"/img/default.png","apis":["https://www.loliapi.com/bg/"],"raceTimeout":10000,"maxRetries":5,"rotation":{"enabled":false,"interval":8000}},"effects":{"scrollReveal":{"enabled":true,"offset":50,"delay":50}},"social":{"colorScheme":"cycle","links":[{"name":"GITHUB","url":"https://github.com/2865307417","icon":"fab fa-github","color":"#fff700"},{"name":"EMAIL","url":"mailto:2865307417@qq.com","icon":"fas fa-envelope","color":"#0022ff"},{"name":"BILIBILI","url":"https://space.bilibili.com/","icon":"fab fa-bilibili","color":"#ff7676"},{"name":"RSS","url":"/atom.xml","icon":"fas fa-rss","color":"#ff8400","copy":true}]},"typewriter":{"enabled":true,"loop":true,"typeSpeed":180,"deleteSpeed":90,"pauseDuration":4200,"phrases":["尽人事,听天命"]},"comments":{"enabled":false,"envId":"","pageview":true},"searchIndexUrl":"/search-index.json","searchPageUrl":"/search/","contributionsUrl":"/github-contributions.json","version":"1.0.0"};
+</script>
+<noscript><style>.scroll-reveal { opacity: 1 !important; transform: none !important; }</style></noscript>
+<meta name="generator" content="Hexo 8.1.1"></head>
+<body>
+<script>(function () {
+    var remove = function () { document.documentElement.classList.remove('is-entering'); };
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', function () {
+            requestAnimationFrame(function () { requestAnimationFrame(remove); });
+        });
+    } else {
+        requestAnimationFrame(function () { requestAnimationFrame(remove); });
+    }
+})();</script>
+<div id="navigationProgress" class="navigation-progress" aria-hidden="true">
+    <div id="navigationProgressBar" class="navigation-progress__bar"></div>
+</div>
+<div id="pageScroller" class="page-scroller">
+    <div class="noise-overlay"></div>
+<div class="hero-sticky" data-shell-mode="article">
+    <div class="hero-content">
+        <main class="container">
+            <div class="wallpaper-scroll-area"></div>
+            <section class="left-panel">
+                
+                <header class="hero hero-minimal">
+                    <h1 class="name"><span class="name-latin">MT19937</span> 学习与攻击</h1>
+                </header>
+                
+            </section>
+        </main>
+        
+        
+        <div class="wallpaper-typewriter" aria-label="尽人事,听天命">
+            <p class="wallpaper-typewriter__text"><span id="typewriterText"></span><span class="typewriter-cursor" aria-hidden="true"></span></p>
+        </div>
+        
+        
+        <div class="hero-marquee-defocus hero-marquee-defocus--revealed" aria-hidden="true" style="--marquee-defocus-opacity: 1">
+    <div class="hero-marquee-defocus__layer hero-marquee-defocus__layer--far"></div>
+    <div class="hero-marquee-defocus__layer hero-marquee-defocus__layer--mid"></div>
+    <div class="hero-marquee-defocus__layer hero-marquee-defocus__layer--near"></div>
+</div>
+<section class="hero-marquee hero-marquee--revealed" aria-label="首页速览">
+    <div class="hero-marquee__viewport" style="--marquee-duration: 126s">
+        <div class="hero-marquee__track">
+            
+            
+<article class="hero-ticket hero-ticket--clock">
+    <div class="hero-ticket__pad">
+        <span class="hero-ticket__label">时间</span>
+        <div class="time-widget time-widget--compact">
+            <div class="weekday" data-allow-mismatch="text"></div>
+            <div class="date-display" data-allow-mismatch="text"></div>
+            <div class="clock" data-allow-mismatch="text">--:--:--</div>
+        </div>
+    </div>
+</article>
+            
+            
+<article class="hero-ticket hero-ticket--search">
+    <a class="hero-ticket__hit" href="javascript:void(0)" data-wakusei-search>
+        <span class="hero-ticket__label"><svg class="svg-icon hero-ticket__icon" viewBox="0 0 512 512" width="0.7em" height="0.7em" aria-hidden="true" style="display:inline-block;flex-shrink:0;pointer-events:none;vertical-align:-0.125em"><path fill="currentColor" d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376C296.3 401.2 253.9 416 208 416C93.1 416 0 322.9 0 208S93.1 0 208 0s208 93.1 208 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z"></path></svg>搜索</span>
+        <span class="hero-ticket__title">站内搜索</span>
+        <span class="hero-ticket__meta hero-ticket__meta--mono">⌘K / Ctrl+K</span>
+    </a>
+</article>
+            
+            
+<article class="hero-ticket hero-ticket--slogan">
+    <div class="hero-ticket__pad">
+        <span class="hero-ticket__label">摘句</span>
+        <p class="hero-ticket__quote">尽人事,听天命,静候花开。</p>
+    </div>
+</article>
+            
+            
+<article class="hero-ticket hero-ticket--stats">
+    <a class="hero-ticket__hit hero-ticket__hit--stats" href="/#posts">
+        <span class="hero-ticket__label">站点</span>
+        <div class="hero-ticket__stat-row" role="presentation">
+            <div class="hero-ticket__stat"><span class="hero-ticket__stat-value">19</span><span class="hero-ticket__stat-label">文</span></div>
+            <div class="hero-ticket__stat"><span class="hero-ticket__stat-value">3</span><span class="hero-ticket__stat-label">类</span></div>
+            <div class="hero-ticket__stat"><span class="hero-ticket__stat-value">12</span><span class="hero-ticket__stat-label">签</span></div>
+        </div>
+    </a>
+</article>
+            
+            
+<article class="hero-ticket hero-ticket--archive">
+    <a class="hero-ticket__hit" href="/archives/">
+        <span class="hero-ticket__label"><svg class="svg-icon hero-ticket__icon" viewBox="0 0 512 512" width="0.7em" height="0.7em" aria-hidden="true" style="display:inline-block;flex-shrink:0;pointer-events:none;vertical-align:-0.125em"><path fill="currentColor" d="M232.5 5.2c14.9-6.9 32.1-6.9 47 0l192 88c22.7 10.4 22.7 42.8 0 53.2l-192 88c-14.9 6.9-32.1 6.9-47 0l-192-88c-22.7-10.4-22.7-42.8 0-53.2l192-88zM0 212.8c0-9.9 10.1-16.6 19.2-12.5L256 309.5l236.8-109.2c9-4.2 19.2 2.4 19.2 12.5 0 5.4-3.2 10.3-8.1 12.5L279.5 328.7c-14.9 6.9-32.1 6.9-47 0L8.1 225.3C3.2 223 0 218.2 0 212.8zm0 96c0-9.9 10.1-16.6 19.2-12.5L256 405.5l236.8-109.2c9-4.2 19.2 2.4 19.2 12.5 0 5.4-3.2 10.3-8.1 12.5L279.5 424.7c-14.9 6.9-32.1 6.9-47 0L8.1 321.3C3.2 319 0 314.2 0 308.8z"></path></svg>索引</span>
+        <span class="hero-ticket__title">写作年表</span>
+        <span class="hero-ticket__meta">2025–2026</span>
+    </a>
+</article>
+            
+            
+<article class="hero-ticket hero-ticket--updated">
+    <a class="hero-ticket__hit hero-ticket__hit--post" href="/2026/10/13/MoeCTF2026-wp/">
+        
+        <div class="hero-ticket__body">
+            <span class="hero-ticket__label">更新</span>
+            <span class="hero-ticket__title">MoeCTF2026 wp</span>
+            <span class="hero-ticket__meta">2026-10-13</span>
+        </div>
+    </a>
+</article>
+            
+            
+<article class="hero-ticket hero-ticket--post">
+    <a class="hero-ticket__hit hero-ticket__hit--post" href="/2026/10/20/%E5%88%86%E7%BB%84%E5%AF%86%E7%A0%81%E5%AD%A6%E4%B9%A0/">
+        
+        <div class="hero-ticket__body">
+            <span class="hero-ticket__label">crypto学习</span>
+            <span class="hero-ticket__title">分组密码学习</span>
+            <span class="hero-ticket__meta">2026-10-20</span>
+        </div>
+    </a>
+</article>
+            
+            
+<article class="hero-ticket hero-ticket--post">
+    <a class="hero-ticket__hit hero-ticket__hit--post" href="/2026/10/13/MoeCTF2026-wp/">
+        
+        <div class="hero-ticket__body">
+            <span class="hero-ticket__label">wp题解</span>
+            <span class="hero-ticket__title">MoeCTF2026 wp</span>
+            <span class="hero-ticket__meta">2026-10-13</span>
+        </div>
+    </a>
+</article>
+            
+            
+<article class="hero-ticket hero-ticket--post">
+    <a class="hero-ticket__hit hero-ticket__hit--post" href="/2026/10/13/0x2026-wp/">
+        
+        <div class="hero-ticket__body">
+            <span class="hero-ticket__label">wp题解</span>
+            <span class="hero-ticket__title">0x2026 wp</span>
+            <span class="hero-ticket__meta">2026-10-13</span>
+        </div>
+    </a>
+</article>
+            
+            
+<article class="hero-ticket hero-ticket--clock">
+    <div class="hero-ticket__pad">
+        <span class="hero-ticket__label">时间</span>
+        <div class="time-widget time-widget--compact">
+            <div class="weekday" data-allow-mismatch="text"></div>
+            <div class="date-display" data-allow-mismatch="text"></div>
+            <div class="clock" data-allow-mismatch="text">--:--:--</div>
+        </div>
+    </div>
+</article>
+            
+            
+<article class="hero-ticket hero-ticket--search">
+    <a class="hero-ticket__hit" href="javascript:void(0)" data-wakusei-search>
+        <span class="hero-ticket__label"><svg class="svg-icon hero-ticket__icon" viewBox="0 0 512 512" width="0.7em" height="0.7em" aria-hidden="true" style="display:inline-block;flex-shrink:0;pointer-events:none;vertical-align:-0.125em"><path fill="currentColor" d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376C296.3 401.2 253.9 416 208 416C93.1 416 0 322.9 0 208S93.1 0 208 0s208 93.1 208 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z"></path></svg>搜索</span>
+        <span class="hero-ticket__title">站内搜索</span>
+        <span class="hero-ticket__meta hero-ticket__meta--mono">⌘K / Ctrl+K</span>
+    </a>
+</article>
+            
+            
+<article class="hero-ticket hero-ticket--slogan">
+    <div class="hero-ticket__pad">
+        <span class="hero-ticket__label">摘句</span>
+        <p class="hero-ticket__quote">尽人事,听天命,静候花开。</p>
+    </div>
+</article>
+            
+            
+<article class="hero-ticket hero-ticket--stats">
+    <a class="hero-ticket__hit hero-ticket__hit--stats" href="/#posts">
+        <span class="hero-ticket__label">站点</span>
+        <div class="hero-ticket__stat-row" role="presentation">
+            <div class="hero-ticket__stat"><span class="hero-ticket__stat-value">19</span><span class="hero-ticket__stat-label">文</span></div>
+            <div class="hero-ticket__stat"><span class="hero-ticket__stat-value">3</span><span class="hero-ticket__stat-label">类</span></div>
+            <div class="hero-ticket__stat"><span class="hero-ticket__stat-value">12</span><span class="hero-ticket__stat-label">签</span></div>
+        </div>
+    </a>
+</article>
+            
+            
+<article class="hero-ticket hero-ticket--archive">
+    <a class="hero-ticket__hit" href="/archives/">
+        <span class="hero-ticket__label"><svg class="svg-icon hero-ticket__icon" viewBox="0 0 512 512" width="0.7em" height="0.7em" aria-hidden="true" style="display:inline-block;flex-shrink:0;pointer-events:none;vertical-align:-0.125em"><path fill="currentColor" d="M232.5 5.2c14.9-6.9 32.1-6.9 47 0l192 88c22.7 10.4 22.7 42.8 0 53.2l-192 88c-14.9 6.9-32.1 6.9-47 0l-192-88c-22.7-10.4-22.7-42.8 0-53.2l192-88zM0 212.8c0-9.9 10.1-16.6 19.2-12.5L256 309.5l236.8-109.2c9-4.2 19.2 2.4 19.2 12.5 0 5.4-3.2 10.3-8.1 12.5L279.5 328.7c-14.9 6.9-32.1 6.9-47 0L8.1 225.3C3.2 223 0 218.2 0 212.8zm0 96c0-9.9 10.1-16.6 19.2-12.5L256 405.5l236.8-109.2c9-4.2 19.2 2.4 19.2 12.5 0 5.4-3.2 10.3-8.1 12.5L279.5 424.7c-14.9 6.9-32.1 6.9-47 0L8.1 321.3C3.2 319 0 314.2 0 308.8z"></path></svg>索引</span>
+        <span class="hero-ticket__title">写作年表</span>
+        <span class="hero-ticket__meta">2025–2026</span>
+    </a>
+</article>
+            
+            
+<article class="hero-ticket hero-ticket--updated">
+    <a class="hero-ticket__hit hero-ticket__hit--post" href="/2026/10/13/MoeCTF2026-wp/">
+        
+        <div class="hero-ticket__body">
+            <span class="hero-ticket__label">更新</span>
+            <span class="hero-ticket__title">MoeCTF2026 wp</span>
+            <span class="hero-ticket__meta">2026-10-13</span>
+        </div>
+    </a>
+</article>
+            
+            
+<article class="hero-ticket hero-ticket--post">
+    <a class="hero-ticket__hit hero-ticket__hit--post" href="/2026/10/20/%E5%88%86%E7%BB%84%E5%AF%86%E7%A0%81%E5%AD%A6%E4%B9%A0/">
+        
+        <div class="hero-ticket__body">
+            <span class="hero-ticket__label">crypto学习</span>
+            <span class="hero-ticket__title">分组密码学习</span>
+            <span class="hero-ticket__meta">2026-10-20</span>
+        </div>
+    </a>
+</article>
+            
+            
+<article class="hero-ticket hero-ticket--post">
+    <a class="hero-ticket__hit hero-ticket__hit--post" href="/2026/10/13/MoeCTF2026-wp/">
+        
+        <div class="hero-ticket__body">
+            <span class="hero-ticket__label">wp题解</span>
+            <span class="hero-ticket__title">MoeCTF2026 wp</span>
+            <span class="hero-ticket__meta">2026-10-13</span>
+        </div>
+    </a>
+</article>
+            
+            
+<article class="hero-ticket hero-ticket--post">
+    <a class="hero-ticket__hit hero-ticket__hit--post" href="/2026/10/13/0x2026-wp/">
+        
+        <div class="hero-ticket__body">
+            <span class="hero-ticket__label">wp题解</span>
+            <span class="hero-ticket__title">0x2026 wp</span>
+            <span class="hero-ticket__meta">2026-10-13</span>
+        </div>
+    </a>
+</article>
+            
+        </div>
+    </div>
+</section>
+
+        
+    </div>
+</div>
+
+    <div id="pageTransitionSurface" class="page-transition-surface" data-shell-mode="article" data-page-title="MT19937 学习与攻击">
+        <div class="reading-progress" aria-hidden="true"><div class="reading-progress__fill"></div></div>
+<article class="post-container">
+    <div class="post-lead">
+        <header class="post-header">
+            <h1 class="post-title">MT19937 学习与攻击</h1>
+            <div class="post-meta">
+                <span class="post-tags">crypto · PRNG · MT19937</span>
+                <time class="post-date" datetime="2025-05-14T12:00:00.000Z">2025-05-14</time>
+                <span class="post-reading-time">7 分钟阅读</span>
+                <time class="post-date post-date--updated" datetime="2026-10-20T10:20:21.305Z">更新于 2026-10-20</time>
+                
+            </div>
+        </header>
+        
+    </div>
+    <div class="post-body">
+        <h1>mt19937学习</h1>
+<h2 id="算法分析">算法分析</h2>
+<p>MT19937的工作流程分为三个部分：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">┌─────────────────────────────────────────────────────────┐</span><br><span class="line">│                    MT19937 工作流程                      │</span><br><span class="line">├─────────────────────────────────────────────────────────┤</span><br><span class="line">│  1. 初始化（Init）                                        │</span><br><span class="line">│     输入：seed（种子）                                     │</span><br><span class="line">│     输出：624个初始状态值（state[0..623]）                  │</span><br><span class="line">│                                                         │</span><br><span class="line">│  2. 状态旋转（Twist）                                     │</span><br><span class="line">│     每使用624个随机数后执行一次                             │</span><br><span class="line">│     将当前状态转换为下一组624个状态                          │</span><br><span class="line">│                                                         │</span><br><span class="line">│  3. 提取随机数（Extract/Temper）                           │</span><br><span class="line">│     对状态进行一系列位运算，输出最终的随机数                   │</span><br><span class="line">│     包括：右移11位、左移7位&amp;mask、左移15位&amp;mask、右移18位     │</span><br><span class="line">└─────────────────────────────────────────────────────────┘</span><br></pre></td></tr></table></figure>
+<h3 id="2-3-Python实现">2.3 Python实现</h3>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">_int32</span>(<span class="params">x</span>):</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">int</span>(<span class="number">0xFFFFFFFF</span> &amp; x)</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">MT19937</span>:</span><br><span class="line">    <span class="comment"># 初始化</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, seed</span>):</span><br><span class="line">        <span class="variable language_">self</span>.mt = [<span class="number">0</span>] * <span class="number">624</span></span><br><span class="line">        <span class="variable language_">self</span>.mt[<span class="number">0</span>] = seed</span><br><span class="line">        <span class="variable language_">self</span>.mti = <span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, <span class="number">624</span>):</span><br><span class="line">            <span class="variable language_">self</span>.mt[i] = _int32(<span class="number">1812433253</span> * (<span class="variable language_">self</span>.mt[i - <span class="number">1</span>] ^ <span class="variable language_">self</span>.mt[i - <span class="number">1</span>] &gt;&gt; <span class="number">30</span>) + i)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 提取伪随机数</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">extract_number</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="keyword">if</span> <span class="variable language_">self</span>.mti == <span class="number">0</span>:</span><br><span class="line">            <span class="variable language_">self</span>.twist()</span><br><span class="line">        y = <span class="variable language_">self</span>.mt[<span class="variable language_">self</span>.mti]</span><br><span class="line">        y = y ^ y &gt;&gt; <span class="number">11</span></span><br><span class="line">        y = y ^ y &lt;&lt; <span class="number">7</span> &amp; <span class="number">2636928640</span></span><br><span class="line">        y = y ^ y &lt;&lt; <span class="number">15</span> &amp; <span class="number">4022730752</span></span><br><span class="line">        y = y ^ y &gt;&gt; <span class="number">18</span></span><br><span class="line">        <span class="variable language_">self</span>.mti = (<span class="variable language_">self</span>.mti + <span class="number">1</span>) % <span class="number">624</span></span><br><span class="line">        <span class="keyword">return</span> _int32(y)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 旋转状态</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">twist</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>, <span class="number">624</span>):</span><br><span class="line">            y = _int32((<span class="variable language_">self</span>.mt[i] &amp; <span class="number">0x80000000</span>) + (<span class="variable language_">self</span>.mt[(i + <span class="number">1</span>) % <span class="number">624</span>] &amp; <span class="number">0x7fffffff</span>))</span><br><span class="line">            <span class="variable language_">self</span>.mt[i] = (y &gt;&gt; <span class="number">1</span>) ^ <span class="variable language_">self</span>.mt[(i + <span class="number">397</span>) % <span class="number">624</span>]</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> y % <span class="number">2</span> != <span class="number">0</span>:</span><br><span class="line">                <span class="variable language_">self</span>.mt[i] = <span class="variable language_">self</span>.mt[i] ^ <span class="number">0x9908b0df</span></span><br></pre></td></tr></table></figure>
+<h3 id="2-3-1-伪代码">2.3.1 伪代码</h3>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line">     seed</span><br><span class="line">      │</span><br><span class="line">      ▼</span><br><span class="line">┌──────────┐</span><br><span class="line">│ 初始化    │  init_genrand(seed)</span><br><span class="line">│ 展开为    │  或 init_by_array(seeds)</span><br><span class="line">│ 624 状态  │</span><br><span class="line">└────┬─────┘</span><br><span class="line">     │ index ← N (624)</span><br><span class="line">     ▼</span><br><span class="line">┌──────────────────────────────────────────────┐</span><br><span class="line">│                                              │</span><br><span class="line">│   extract_number() 被调用                     │</span><br><span class="line">│       │                                      │</span><br><span class="line">│       ├── index &gt;= N ? ──Yes──▶ twist()      │</span><br><span class="line">│       │                        │             │</span><br><span class="line">│       │                        ├─ 用 state[i]  │</span><br><span class="line">│       │                        │   和 state[i+1] │</span><br><span class="line">│       │                        │   和 state[i+397] │</span><br><span class="line">│       │                        │   生成新 state   │</span><br><span class="line">│       │                        │             │</span><br><span class="line">│       │                        └─ index ← 0  │</span><br><span class="line">│       │                                      │</span><br><span class="line">│       ▼                                      │</span><br><span class="line">│   y ← state[index]                           │</span><br><span class="line">│   index ← index + 1                          │</span><br><span class="line">│       │                                      │</span><br><span class="line">│       ▼                                      │</span><br><span class="line">│   temper(y):                                 │</span><br><span class="line">│     y ^= y &gt;&gt; 11                             │</span><br><span class="line">│     y ^= (y &lt;&lt; 7)  &amp; 0x9D2C5680              │</span><br><span class="line">│     y ^= (y &lt;&lt; 15) &amp; 0xEFC60000              │</span><br><span class="line">│     y ^= y &gt;&gt; 18                             │</span><br><span class="line">│       │                                      │</span><br><span class="line">│       ▼                                      │</span><br><span class="line">│   return y   ◀── 每 624 次循环一次 twist      │</span><br><span class="line">│                                              │</span><br><span class="line">└──────────────────────────────────────────────┘</span><br></pre></td></tr></table></figure>
+<h3 id="2-4-关键理解">2.4 关键理解</h3>
+<p>由seed产生624个内部状态(mt[0])<br>
+一个内部状态（过extract_number函数后）对应的就是一个32位输出</p>
+<p>内部状态用完后再过twist重新生成</p>
+<p><strong>攻击的核心思想</strong>：</p>
+<ul>
+<li>收集足够的输出 → 逆向恢复内部状态 → 预测未来输出<br>
+收集需要一个完整的624输出，如果碰到twist那就恢复一个完整快之后再逆twist完整恢复</li>
+</ul>
+<hr>
+<h2 id="攻击思路">攻击思路</h2>
+<h3 id="逆extract-number">逆extract_number</h3>
+<h4 id="原理">原理</h4>
+<p>MT19937的<code>extract_number</code>函数对状态进行了一系列位运算（称为tempering）：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">y = y ^ (y &gt;&gt; <span class="number">11</span>)</span><br><span class="line">y = y ^ ((y &lt;&lt; <span class="number">7</span>) &amp; <span class="number">0x9D2C5680</span>)</span><br><span class="line">y = y ^ ((y &lt;&lt; <span class="number">15</span>) &amp; <span class="number">0xEFC60000</span>)</span><br><span class="line">y = y ^ (y &gt;&gt; <span class="number">18</span>)</span><br></pre></td></tr></table></figure>
+<p>这些操作都是<strong>可逆的</strong>！我们可以编写untemper函数，从输出恢复原始状态。</p>
+<h4 id="位运算逆向分析：">位运算逆向分析：</h4>
+<p>每一步的动作都差不多，我们取一步分析：<br>
+<code>y = y ^ ((y &lt;&lt; shift) &amp; mask)</code></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">inverse_left_mask</span>(<span class="params">res, shift, mask=<span class="number">0xffffffff</span>, bits=<span class="number">32</span></span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;逆向 y = y ^ ((y &lt;&lt; shift) &amp; mask)&quot;&quot;&quot;</span></span><br><span class="line">    tmp = res</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(bits // shift):</span><br><span class="line">        tmp = res ^ (tmp &lt;&lt; shift) &amp; mask</span><br><span class="line">    <span class="keyword">return</span> tmp</span><br></pre></td></tr></table></figure>
+<h4 id="完整untemper">完整untemper</h4>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">untemper</span>(<span class="params">y</span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;从MT19937的输出恢复原始状态&quot;&quot;&quot;</span></span><br><span class="line">    <span class="comment"># 逆向 y = y ^ (y &gt;&gt; 18)</span></span><br><span class="line">    y = inverse_right_mask(y, <span class="number">18</span>)</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 逆向 y = y ^ ((y &lt;&lt; 15) &amp; 0xEFC60000)</span></span><br><span class="line">    y = inverse_left_mask(y, <span class="number">15</span>, <span class="number">0xEFC60000</span>)</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 逆向 y = y ^ ((y &lt;&lt; 7) &amp; 0x9D2C5680)</span></span><br><span class="line">    y = inverse_left_mask(y, <span class="number">7</span>, <span class="number">0x9D2C5680</span>)</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 逆向 y = y ^ (y &gt;&gt; 11)</span></span><br><span class="line">    y = inverse_right_mask(y, <span class="number">11</span>)</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> y &amp; <span class="number">0xffffffff</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 验证</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">test_untemper</span>():</span><br><span class="line">    <span class="string">&quot;&quot;&quot;测试untemper是否正确&quot;&quot;&quot;</span></span><br><span class="line">    <span class="keyword">import</span> random</span><br><span class="line">    rng = random.Random(<span class="number">12345</span>)</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 获取一个随机数</span></span><br><span class="line">    output = rng.getrandbits(<span class="number">32</span>)</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 用untemper恢复</span></span><br><span class="line">    recovered = untemper(output)</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 创建新的RNG，手动设置状态</span></span><br><span class="line">    rng2 = random.Random()</span><br><span class="line">    state = <span class="built_in">list</span>(rng2.getstate()[<span class="number">1</span>])</span><br><span class="line">    state[<span class="number">0</span>] = recovered</span><br><span class="line">    rng2.setstate((<span class="number">2</span>, <span class="built_in">tuple</span>(state), <span class="literal">None</span>))</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 验证下一个随机数是否相同</span></span><br><span class="line">    <span class="comment"># （注意：这里需要更完整的状态设置）</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&quot;原始输出: <span class="subst">&#123;output&#125;</span>&quot;</span>)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&quot;恢复状态: <span class="subst">&#123;recovered&#125;</span>&quot;</span>)</span><br><span class="line"></span><br><span class="line">test_untemper()</span><br></pre></td></tr></table></figure>
+<h4 id="例题：-SUCTF2019-MT">例题：[SUCTF2019]MT</h4>
+<h5 id="4-4-1-题目代码">4.4.1 题目代码</h5>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> random</span><br><span class="line"><span class="keyword">import</span> hashlib</span><br><span class="line"></span><br><span class="line"><span class="comment"># 生成大量随机数</span></span><br><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&#x27;random_numbers.txt&#x27;</span>, <span class="string">&#x27;w&#x27;</span>) <span class="keyword">as</span> f:</span><br><span class="line">    <span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1000</span>):</span><br><span class="line">        f.write(<span class="built_in">str</span>(random.getrandbits(<span class="number">32</span>)) + <span class="string">&#x27;\n&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 用下一个随机数生成flag</span></span><br><span class="line">flag = <span class="string">&quot;flag&#123;&quot;</span> + hashlib.md5(<span class="built_in">str</span>(random.getrandbits(<span class="number">32</span>)).encode()).hexdigest() + <span class="string">&quot;&#125;&quot;</span></span><br><span class="line"><span class="built_in">print</span>(flag)</span><br></pre></td></tr></table></figure>
+<p>从文件中读取前624个随机数，对每个随机数进行untemper，恢复内部状态再预测第1001个随机数就行</p>
+<h4 id="4-4-3-exp">4.4.3 exp</h4>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> hashlib</span><br><span class="line"><span class="keyword">import</span> random</span><br><span class="line"></span><br><span class="line"><span class="comment"># ========== 步骤1：实现untemper ==========</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">inverse_right_mask</span>(<span class="params">res, shift, mask=<span class="number">0xffffffff</span>, bits=<span class="number">32</span></span>):</span><br><span class="line">    tmp = res</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(bits // shift):</span><br><span class="line">        tmp = res ^ (tmp &gt;&gt; shift) &amp; mask</span><br><span class="line">    <span class="keyword">return</span> tmp</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">inverse_left_mask</span>(<span class="params">res, shift, mask=<span class="number">0xffffffff</span>, bits=<span class="number">32</span></span>):</span><br><span class="line">    tmp = res</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(bits // shift):</span><br><span class="line">        tmp = res ^ (tmp &lt;&lt; shift) &amp; mask</span><br><span class="line">    <span class="keyword">return</span> tmp</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">untemper</span>(<span class="params">y</span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;从MT19937输出恢复原始状态&quot;&quot;&quot;</span></span><br><span class="line">    y = inverse_right_mask(y, <span class="number">18</span>)</span><br><span class="line">    y = inverse_left_mask(y, <span class="number">15</span>, <span class="number">0xEFC60000</span>)</span><br><span class="line">    y = inverse_left_mask(y, <span class="number">7</span>, <span class="number">0x9D2C5680</span>)</span><br><span class="line">    y = inverse_right_mask(y, <span class="number">11</span>)</span><br><span class="line">    <span class="keyword">return</span> y &amp; <span class="number">0xffffffff</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># ========== 步骤2：读取随机数并恢复状态 ==========</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 读取前624个随机数</span></span><br><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&#x27;random_numbers.txt&#x27;</span>, <span class="string">&#x27;r&#x27;</span>) <span class="keyword">as</span> f:</span><br><span class="line">    outputs = [<span class="built_in">int</span>(line.strip()) <span class="keyword">for</span> line <span class="keyword">in</span> f.readlines()[:<span class="number">624</span>]]</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&quot;[+] 已读取 <span class="subst">&#123;<span class="built_in">len</span>(outputs)&#125;</span> 个随机数&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 恢复内部状态</span></span><br><span class="line">state = [untemper(y) <span class="keyword">for</span> y <span class="keyword">in</span> outputs]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 注意：MT19937的状态格式需要调整</span></span><br><span class="line"><span class="comment"># Python的random模块状态格式：(version, state_tuple, gauss_next)</span></span><br><span class="line"><span class="comment"># state_tuple[0]必须是特定值，state_tuple[1:625]是624个状态</span></span><br><span class="line"></span><br><span class="line">state_tuple = (<span class="number">3</span>, ) + <span class="built_in">tuple</span>(state) + (<span class="number">624</span>, )</span><br><span class="line"></span><br><span class="line"><span class="comment"># ========== 步骤3：预测后续随机数 ==========</span></span><br><span class="line"></span><br><span class="line">rng = random.Random()</span><br><span class="line">rng.setstate((<span class="number">2</span>, state_tuple, <span class="literal">None</span>))</span><br><span class="line"></span><br><span class="line"><span class="comment"># 跳过已经使用的624个随机数</span></span><br><span class="line"><span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">624</span>):</span><br><span class="line">    rng.getrandbits(<span class="number">32</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 获取下一个随机数（用于生成flag的那个）</span></span><br><span class="line">next_random = rng.getrandbits(<span class="number">32</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&quot;[+] 预测的随机数: <span class="subst">&#123;next_random&#125;</span>&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># ========== 步骤4：计算flag ==========</span></span><br><span class="line"></span><br><span class="line">flag = <span class="string">&quot;flag&#123;&quot;</span> + hashlib.md5(<span class="built_in">str</span>(next_random).encode()).hexdigest() + <span class="string">&quot;&#125;&quot;</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&quot;[+] Flag: <span class="subst">&#123;flag&#125;</span>&quot;</span>)</span><br></pre></td></tr></table></figure>
+<h3 id="逆向twist（向后恢复攻击）">逆向twist（向后恢复攻击）</h3>
+<h4 id="原理-2">原理</h4>
+<p>MT19937的<code>twist</code>操作会生成下一组624个状态。如果我们知道当前状态，可以通过逆向twist操作恢复上一组状态。</p>
+<p><strong>twist</strong>：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">twist</span>(<span class="params">self</span>):</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">624</span>):</span><br><span class="line">        y = _int32((<span class="variable language_">self</span>.mt[i] &amp; <span class="number">0x80000000</span>) + </span><br><span class="line">                   (<span class="variable language_">self</span>.mt[(i + <span class="number">1</span>) % <span class="number">624</span>] &amp; <span class="number">0x7fffffff</span>))</span><br><span class="line">        <span class="variable language_">self</span>.mt[i] = <span class="variable language_">self</span>.mt[(i + <span class="number">397</span>) % <span class="number">624</span>] ^ (y &gt;&gt; <span class="number">1</span>)</span><br><span class="line">        <span class="keyword">if</span> y % <span class="number">2</span> != <span class="number">0</span>:</span><br><span class="line">            <span class="variable language_">self</span>.mt[i] = <span class="variable language_">self</span>.mt[i] ^ <span class="number">0x9908b0df</span></span><br></pre></td></tr></table></figure>
+<p><strong>逆向思路</strong>：</p>
+<ol>
+<li>twist操作是线性的，可以用矩阵表示</li>
+<li>在GF(2)上求解线性方程组</li>
+<li>或者利用已知的624个输出，通过矩阵求逆恢复之前的状态</li>
+</ol>
+<h2 id="例题：">例题：</h2>
+<h3 id="V-N2020-公开赛-Backtrace">[V&amp;N2020 公开赛]Backtrace</h3>
+<h4 id="题目代码">题目代码</h4>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> random</span><br><span class="line"><span class="keyword">from</span> Crypto.Util.number <span class="keyword">import</span> bytes_to_long</span><br><span class="line"></span><br><span class="line">flag = <span class="string">b&quot;flag&#123;xxxxxxxxxxxxxxxxxxxx&#125;&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 先跳过一些随机数</span></span><br><span class="line"><span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1000</span>):</span><br><span class="line">    random.getrandbits(<span class="number">32</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 用随机数异或加密flag</span></span><br><span class="line">encrypted = <span class="built_in">bytes</span>([b ^ random.getrandbits(<span class="number">8</span>) <span class="keyword">for</span> b <span class="keyword">in</span> flag])</span><br><span class="line"></span><br><span class="line"><span class="comment"># 输出加密后的flag</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;encrypted_flag:&quot;</span>, encrypted.<span class="built_in">hex</span>())</span><br><span class="line"></span><br><span class="line"><span class="comment"># 再输出一些随机数</span></span><br><span class="line"><span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">624</span>):</span><br><span class="line">    <span class="built_in">print</span>(random.getrandbits(<span class="number">32</span>))</span><br></pre></td></tr></table></figure>
+<p>除了恢复内部状态之外多了一步<strong>逆twist</strong></p>
+<h4 id="exp">exp</h4>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> sys, re</span><br><span class="line"></span><br><span class="line">M32 = <span class="number">0xffffffff</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">inv_right</span>(<span class="params">y, s</span>):                  <span class="comment"># 逆 y ^= y &gt;&gt; s</span></span><br><span class="line">    x = y</span><br><span class="line">    <span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">32</span> // s + <span class="number">1</span>):</span><br><span class="line">        x = y ^ (x &gt;&gt; s)</span><br><span class="line">    <span class="keyword">return</span> x &amp; M32</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">inv_left</span>(<span class="params">y, s, m</span>):                <span class="comment"># 逆 y ^= (y &lt;&lt; s) &amp; m</span></span><br><span class="line">    x = y</span><br><span class="line">    <span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">32</span> // s + <span class="number">1</span>):</span><br><span class="line">        x = y ^ ((x &lt;&lt; s) &amp; m)</span><br><span class="line">    <span class="keyword">return</span> x &amp; M32</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">untemper</span>(<span class="params">y</span>):                      <span class="comment"># 逆 temper（相反顺序撤销）</span></span><br><span class="line">    y = inv_right(y, <span class="number">18</span>)</span><br><span class="line">    y = inv_left(y, <span class="number">15</span>, <span class="number">0xefc60000</span>)</span><br><span class="line">    y = inv_left(y, <span class="number">7</span>, <span class="number">0x9d2c5680</span>)</span><br><span class="line">    y = inv_right(y, <span class="number">11</span>)</span><br><span class="line">    <span class="keyword">return</span> y</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">temper</span>(<span class="params">y</span>):</span><br><span class="line">    y ^= y &gt;&gt; <span class="number">11</span></span><br><span class="line">    y ^= (y &lt;&lt; <span class="number">7</span>) &amp; <span class="number">0x9d2c5680</span></span><br><span class="line">    y ^= (y &lt;&lt; <span class="number">15</span>) &amp; <span class="number">0xefc60000</span></span><br><span class="line">    y ^= y &gt;&gt; <span class="number">18</span></span><br><span class="line">    <span class="keyword">return</span> y &amp; M32</span><br><span class="line"></span><br><span class="line">text = sys.stdin.read()</span><br><span class="line">enc = <span class="built_in">bytes</span>.fromhex(re.search(<span class="string">r&#x27;encrypted_flag:\s*([0-9a-fA-F]+)&#x27;</span>, text).group(<span class="number">1</span>))</span><br><span class="line">outs = [<span class="built_in">int</span>(t) <span class="keyword">for</span> t <span class="keyword">in</span> re.findall(<span class="string">r&#x27;(?m)^\s*(\d+)\s*$&#x27;</span>, text)]</span><br><span class="line"><span class="keyword">assert</span> <span class="built_in">len</span>(outs) == <span class="number">624</span></span><br><span class="line"></span><br><span class="line">n = <span class="built_in">len</span>(enc)          <span class="comment"># flag 长度</span></span><br><span class="line">s = <span class="number">1000</span> + n          <span class="comment"># 第一条尾部输出的全局下标</span></span><br><span class="line">k = <span class="number">1248</span> - s          <span class="comment"># 尾部输出中属于状态 A1 的个数</span></span><br><span class="line"><span class="keyword">assert</span> <span class="number">0</span> &lt;= k, <span class="string">&quot;flag too long&quot;</span></span><br><span class="line"></span><br><span class="line">x = [untemper(v) <span class="keyword">for</span> v <span class="keyword">in</span> outs]</span><br><span class="line">C = x[k:]             <span class="comment"># A2 = twist(A1) 的头部原始状态值</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">recover_y</span>(<span class="params">i</span>):</span><br><span class="line">    r = C[i] ^ C[i - <span class="number">227</span>]             <span class="comment"># = (y_i&gt;&gt;1) ^ mag_bit</span></span><br><span class="line">    <span class="keyword">if</span> r &gt;&gt; <span class="number">31</span>:                       <span class="comment"># 最高位 1 =&gt; 异或了 mag，y_i 为奇数</span></span><br><span class="line">        <span class="keyword">return</span> ((r ^ <span class="number">0x9908b0df</span>) &lt;&lt; <span class="number">1</span>) | <span class="number">1</span></span><br><span class="line">    <span class="keyword">return</span> r &lt;&lt; <span class="number">1</span></span><br><span class="line"></span><br><span class="line">hi, lo = &#123;&#125;, &#123;&#125;</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">227</span>, s - <span class="number">625</span> + <span class="number">1</span>):     <span class="comment"># s-625 = 375+n，覆盖 flag 所需范围</span></span><br><span class="line">    y = recover_y(i)</span><br><span class="line">    hi[i] = y &amp; <span class="number">0x80000000</span>            <span class="comment"># y_i 高位 -&gt; B[i] 的 bit31</span></span><br><span class="line">    lo[i + <span class="number">1</span>] = y &amp; <span class="number">0x7fffffff</span>        <span class="comment"># y_i 低 31 位 -&gt; B[i+1] 的 bits0-30</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># flag 第 t 字节的随机数 = temper(B[376+t]) &gt;&gt; 24</span></span><br><span class="line">flag = <span class="built_in">bytes</span>(enc[t] ^ (temper(hi[<span class="number">376</span> + t] | lo[<span class="number">376</span> + t]) &gt;&gt; <span class="number">24</span>) <span class="keyword">for</span> t <span class="keyword">in</span> <span class="built_in">range</span>(n))</span><br><span class="line"><span class="built_in">print</span>(flag.decode(errors=<span class="string">&quot;replace&quot;</span>))</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h3 id="创宇杯">创宇杯</h3>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> Crypto.Cipher <span class="keyword">import</span> AES</span><br><span class="line"><span class="keyword">from</span> Crypto.Util.Padding <span class="keyword">import</span> pad</span><br><span class="line"><span class="keyword">from</span> random <span class="keyword">import</span> randbytes</span><br><span class="line"><span class="keyword">from</span> secret <span class="keyword">import</span> flag</span><br><span class="line"></span><br><span class="line">key = randbytes(<span class="number">16</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">while</span> <span class="built_in">input</span>(<span class="string">&quot;&gt;&gt;&gt; &quot;</span>):</span><br><span class="line">    aes = AES.new(key, AES.MODE_CBC, iv=randbytes(<span class="number">16</span>))</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;your gift: &quot;</span> + (aes.iv + aes.encrypt(pad(flag, <span class="number">16</span>))).<span class="built_in">hex</span>())</span><br></pre></td></tr></table></figure>
+<h4 id="分析">分析</h4>
+<p>想了半天CBC,后面才反应过来是打mt19937<br>
+有连续randbytes，random输出一定要先想能不能打mt！</p>
+<h4 id="exp-2">exp</h4>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> Crypto.Cipher <span class="keyword">import</span> AES</span><br><span class="line"><span class="keyword">from</span> Crypto.Util.Padding <span class="keyword">import</span> pad, unpad</span><br><span class="line"><span class="keyword">from</span> random <span class="keyword">import</span> randbytes</span><br><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">from</span> Crypto.Util.number <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">_int32</span>(<span class="params">x</span>):</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">int</span>(<span class="number">0xFFFFFFFF</span> &amp; x)</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">inverse_right_mask</span>(<span class="params">res, shift, mask=<span class="number">0xffffffff</span>, bits=<span class="number">32</span></span>):</span><br><span class="line">    tmp = res</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(bits // shift):</span><br><span class="line">        tmp = res ^ tmp &gt;&gt; shift &amp; mask</span><br><span class="line">    <span class="keyword">return</span> tmp</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">inverse_left_mask</span>(<span class="params">res, shift, mask=<span class="number">0xffffffff</span>, bits=<span class="number">32</span></span>):</span><br><span class="line">    tmp = res</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(bits // shift):</span><br><span class="line">        tmp = res ^ tmp &lt;&lt; shift &amp; mask</span><br><span class="line">    <span class="keyword">return</span> tmp</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">extract_number</span>(<span class="params">y</span>):</span><br><span class="line">    y = y ^ y &gt;&gt; <span class="number">11</span></span><br><span class="line">    y = y ^ y &lt;&lt; <span class="number">7</span> &amp; <span class="number">2636928640</span></span><br><span class="line">    y = y ^ y &lt;&lt; <span class="number">15</span> &amp; <span class="number">4022730752</span></span><br><span class="line">    y = y ^ y &gt;&gt; <span class="number">18</span></span><br><span class="line">    <span class="keyword">return</span> y&amp;<span class="number">0xffffffff</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">recover</span>(<span class="params">y</span>):</span><br><span class="line">    y = inverse_right_mask(y,<span class="number">18</span>)</span><br><span class="line">    y = inverse_left_mask(y,<span class="number">15</span>,<span class="number">4022730752</span>)</span><br><span class="line">    y = inverse_left_mask(y,<span class="number">7</span>,<span class="number">2636928640</span>)</span><br><span class="line">    y = inverse_right_mask(y,<span class="number">11</span>)</span><br><span class="line">    <span class="keyword">return</span> y&amp;<span class="number">0xffffffff</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">inv_twist</span>(<span class="params">state</span>):</span><br><span class="line">    high = <span class="number">0x80000000</span></span><br><span class="line">    low = <span class="number">0x7fffffff</span></span><br><span class="line">    mask = <span class="number">0x9908b0df</span></span><br><span class="line">    prev = [<span class="number">0</span>]*<span class="number">624</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">623</span>, -<span class="number">1</span>, -<span class="number">1</span>):</span><br><span class="line">        tmp = state[i] ^ state[(i + <span class="number">397</span>) % <span class="number">624</span>]</span><br><span class="line">        <span class="keyword">if</span> tmp &amp; high:</span><br><span class="line">            tmp ^= mask</span><br><span class="line">            tmp &lt;&lt;= <span class="number">1</span></span><br><span class="line">            tmp |= <span class="number">1</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            tmp &lt;&lt;= <span class="number">1</span></span><br><span class="line">        <span class="keyword">if</span> i &gt; <span class="number">0</span>:</span><br><span class="line">            prev[i] = (prev[i-<span class="number">1</span>] &amp; high) | (tmp &amp; low)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            prev[i] = tmp &amp; high</span><br><span class="line">    <span class="keyword">return</span> prev</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">ext_number</span>(<span class="params">index</span>):</span><br><span class="line">    y = mt1[index]</span><br><span class="line">    y = y ^ y &gt;&gt; <span class="number">11</span></span><br><span class="line">    y = y ^ y &lt;&lt; <span class="number">7</span> &amp; <span class="number">2636928640</span></span><br><span class="line">    y = y ^ y &lt;&lt; <span class="number">15</span> &amp; <span class="number">4022730752</span></span><br><span class="line">    y = y ^ y &gt;&gt; <span class="number">18</span></span><br><span class="line">    <span class="keyword">return</span> _int32(y)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">io = remote(<span class="string">&quot;challenge.xiaoyuyc.com&quot;</span> ,<span class="number">33007</span>)</span><br><span class="line">output_iv = []</span><br><span class="line">output_c = []</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">312</span>):</span><br><span class="line">    io.recvuntil(<span class="string">b&quot;&gt;&gt;&gt; &quot;</span>)</span><br><span class="line">    io.sendline(<span class="string">b&#x27;1&#x27;</span>)</span><br><span class="line">    io.recvuntil(<span class="string">b&#x27;gift: &#x27;</span>)</span><br><span class="line">    temp = io.recvline().strip().decode()</span><br><span class="line">    iv = <span class="built_in">bytes</span>.fromhex(temp[:<span class="number">32</span>])</span><br><span class="line">    c = temp[<span class="number">32</span>:]</span><br><span class="line">    output_c.append(c)</span><br><span class="line">    output_iv.append(iv)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;ok&quot;</span>)</span><br><span class="line"></span><br><span class="line">mt_out_all = []</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">312</span>):</span><br><span class="line">    temp1 = bytes_to_long(output_iv[i][::-<span class="number">1</span>])</span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">4</span>):</span><br><span class="line">        mt_out_all.append(temp1 &amp; <span class="number">0xffffffff</span>)</span><br><span class="line">        temp1 = temp1 &gt;&gt; <span class="number">32</span></span><br><span class="line"></span><br><span class="line">mt_out2 = mt_out_all[<span class="number">620</span>:-<span class="number">4</span>]</span><br><span class="line"></span><br><span class="line">mt2 = []</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">624</span>):</span><br><span class="line">    mt2.append(recover(mt_out2[i]))</span><br><span class="line"></span><br><span class="line">mt1 = inv_twist(mt2)</span><br><span class="line"></span><br><span class="line">key = <span class="number">0</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">4</span>):</span><br><span class="line">    key |= ext_number(i) &lt;&lt; <span class="number">32</span>*i</span><br><span class="line">key = key.to_bytes(<span class="number">16</span>,<span class="string">&#x27;little&#x27;</span>)</span><br><span class="line"></span><br><span class="line">iv =output_iv[<span class="number">6</span>]</span><br><span class="line">c = <span class="built_in">bytes</span>.fromhex(output_c[<span class="number">6</span>])</span><br><span class="line">aes = AES.new(key, AES.MODE_CBC, iv)</span><br><span class="line">flag = unpad(aes.decrypt(c), <span class="number">16</span>)</span><br><span class="line"><span class="built_in">print</span>(flag)</span><br></pre></td></tr></table></figure>
+<p>这个题有一点就是，第一个块624输出是残缺的，第一个输出拿去当了key，所以收集后面第二个块的624位输出再做逆twist就行</p>
+
+    </div>
+    <footer class="post-footer">
+        <nav class="post-footer__actions" aria-label="文章页脚">
+            <a class="back-link post-footer__action post-footer__action--primary" href="/#posts">
+                <svg class="svg-icon" viewBox="0 0 448 512" width="0.9em" height="0.9em" aria-hidden="true" style="display:inline-block;flex-shrink:0;pointer-events:none;vertical-align:-0.125em"><path fill="currentColor" d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.2 288 416 288c17.7 0 32-14.3 32-32s-14.3-32-32-32l-306.7 0L214.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"></path></svg><span>返回列表</span>
+            </a>
+            <a class="back-link post-footer__action" href="/">
+                <svg class="svg-icon" viewBox="0 0 576 512" width="0.9em" height="0.9em" aria-hidden="true" style="display:inline-block;flex-shrink:0;pointer-events:none;vertical-align:-0.125em"><path fill="currentColor" d="M575.8 255.5c0 18-15 32.1-32 32.1h-32l.7 160.2c0 2.7-.2 5.4-.5 8.1V432c0 22.1-17.9 40-40 40H160c-1.1 0-2.2 0-3.3-.1l-7.8-.2c-21.1 0-38.1-18.1-38.1-39.8 0-1.5 0-3 .1-4.5l.3-2.7c0-15.9 12.9-28.9 28.9-28.9 5.1 0 9.8 1.6 13.6 4.2l.5.3c3.9 2.4 8.8 3.9 14 3.9 12.5 0 22.6-10.1 22.6-22.6 0-7.2-3.4-13.6-8.6-17.7L416 213.3V386.5h40c17.7 0 32 14.3 32 32zM352 379.8V181l46.9 38.8c9.7 8 24.9 6.5 33.7-3.4l17.9-19.9c9-10.1 7.6-25.7-3.1-34.1L308.7 85.4c-6.8-5.7-16.7-5.7-23.5 0L151.5 182.4c-10.7 8.4-13.1 24-3.1 34.1l17.9 19.9c8.8 9.9 24 11.4 33.7 3.4L246 227V379.8h96 48z"></path></svg><span>返回首页</span>
+            </a>
+        </nav>
+    </footer>
+    <nav class="post-nav" aria-label="文章导航">
+        
+        <span class="post-nav__placeholder"></span>
+        
+        
+        <a class="post-nav__card post-nav__card--next" href="/2025/12/21/%E6%B5%B7%E6%B2%B3%E5%B7%A5%E5%8C%A0%E6%9D%AFwp/">
+            <span class="post-nav__dir">下一篇 →</span>
+            <span class="post-nav__title">海河工匠杯wp</span>
+            <span class="post-nav__date">2025-12-21</span>
+        </a>
+        
+    </nav>
+    
+</article>
+<div class="article-toc" aria-label="文章目录" hidden></div>
+<div class="article-dock article-dock--hidden">
+    <button class="article-dock__fab" type="button" aria-label="返回顶部">
+        <svg class="svg-icon" viewBox="0 0 448 512" width="14" height="14" aria-hidden="true" style="display:inline-block;flex-shrink:0;vertical-align:-0.125em"><path fill="currentColor" d="M201.4 105.4c12.5-12.5 32.8-12.5 45.3 0l160 160c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L224 173.3 86.6 310.6c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3l160-160z"></path></svg>
+    </button>
+    <button class="article-dock__fab article-dock__fab--aa" type="button" aria-haspopup="dialog" aria-label="阅读设置">Aa</button>
+</div>
+<div class="article-dock__overlay" hidden>
+    <div class="article-dock__popover" role="dialog" aria-modal="true" tabindex="-1">
+        <div class="article-dock__popover-group" role="group">
+            <span class="article-dock__popover-label">字号</span>
+            <div class="article-dock__popover-row">
+                <button class="article-dock__btn article-dock__btn--font" type="button" data-font-step="-1">A−</button>
+                <span class="article-dock__popover-value">100%</span>
+                <button class="article-dock__btn article-dock__btn--font" type="button" data-font-step="1">A+</button>
+            </div>
+        </div>
+        <div class="article-dock__popover-group" role="group">
+            <span class="article-dock__popover-label">行高</span>
+            <div class="article-dock__popover-row">
+                
+                <button class="article-dock__btn article-dock__btn--seg" type="button" data-line-height="1.6">1.6</button>
+                
+                <button class="article-dock__btn article-dock__btn--seg" type="button" data-line-height="1.8">1.8</button>
+                
+                <button class="article-dock__btn article-dock__btn--seg" type="button" data-line-height="2">2</button>
+                
+            </div>
+        </div>
+        <div class="article-dock__popover-group" role="group">
+            <span class="article-dock__popover-label">宽度</span>
+            <div class="article-dock__popover-row">
+                
+                <button class="article-dock__btn article-dock__btn--seg" type="button" data-width="720">720px</button>
+                
+                <button class="article-dock__btn article-dock__btn--seg" type="button" data-width="840">840px</button>
+                
+                <button class="article-dock__btn article-dock__btn--seg" type="button" data-width="960">960px</button>
+                
+            </div>
+        </div>
+        <button class="article-dock__btn article-dock__btn--focus" type="button" aria-pressed="false">
+            <svg class="svg-icon" viewBox="0 0 512 512" width="14px" height="14px" aria-hidden="true" style="display:inline-block;flex-shrink:0;pointer-events:none;vertical-align:-0.125em"><path fill="currentColor" d="M344 0L488 0c13.3 0 24 10.7 24 24l0 144c0 9.7-5.8 18.5-14.8 22.2s-19.3 1.7-26.2-5.2l-39-39-87 87c-9.4 9.4-24.6 9.4-33.9 0l-32-32c-9.4-9.4-9.4-24.6 0-33.9l87-87L327 41c-6.9-6.9-8.9-17.2-5.2-26.2S334.3 0 344 0zM168 512L24 512c-13.3 0-24-10.7-24-24L0 344c0-9.7 5.8-18.5 14.8-22.2s19.3-1.7 26.2 5.2l39 39 87-87c9.4-9.4 24.6-9.4 33.9 0l32 32c9.4 9.4 9.4 24.6 0 33.9l-87 87 39 39c6.9 6.9 8.9 17.2 5.2 26.2s-12.5 14.8-22.2 14.8z"></path></svg><span>专注模式</span>
+        </button>
+    </div>
+</div>
+
+    </div>
+    <div class="page-footer">
+        <footer class="site-footer">
+    <div class="footer-bottom">
+        <span class="footer-copyright">© 2018-2026 ddanggui</span>
+        <span class="footer-meta">
+            <span class="footer-tagline">多喝热水</span>
+            <span class="footer-version" title="Wakusei HomePage v1.0.0">v1.0.0</span>
+        </span>
+    </div>
+</footer>
+
+    </div>
+</div>
+<div class="top-bar" role="toolbar" aria-label="Top navigation">
+    <a class="top-bar-left" href="/">
+        <span class="top-bar-left-content">
+            <img class="top-bar-avatar" src="/img/avatar.png" width="40" height="40" alt="">
+            <span class="top-bar-name"><span class="name-latin">ddanggui</span></span>
+        </span>
+    </a>
+    <div class="top-bar-right">
+        <a class="top-bar-dock-item has-text" href="/"><span class="top-bar-dock-label">主页</span></a>
+        <a class="top-bar-dock-item has-text active" href="/#posts"><span class="top-bar-dock-label">文章</span></a>
+        <a class="top-bar-dock-item has-text" href="/archives/"><span class="top-bar-dock-label">归档</span></a>
+        <div class="top-bar-divider"></div>
+        <button class="top-bar-dock-item" type="button" data-action="toggle-theme" title="主题" aria-label="主题">
+            <svg class="svg-icon icon-dark" viewBox="0 0 512 512" width="1em" height="1em" aria-hidden="true" style="display:inline-block;flex-shrink:0;pointer-events:none;vertical-align:-0.125em"><path fill="currentColor" d="M256 0C114.6 0 0 114.6 0 256S114.6 512 256 512c68.8 0 131.3-27.2 177.3-71.4 7.3-7 9.4-17.9 5.3-27.1s-13.7-14.9-23.8-14.1c-4.9 .4-9.8 .6-14.8 .6-101.6 0-184-82.4-184-184 0-72.1 41.5-134.6 102.1-164.8 9.1-4.5 14.3-14.3 13.1-24.4S322.6 8.5 312.7 6.3C294.4 2.2 275.4 0 256 0z"></path></svg>
+            <svg class="svg-icon icon-light" viewBox="0 0 576 512" width="1em" height="1em" aria-hidden="true" style="display:inline-block;flex-shrink:0;pointer-events:none;vertical-align:-0.125em"><path fill="currentColor" d="M288-32c8.4 0 16.3 4.4 20.6 11.7L364.1 72.3 468.9 46c8.2-2 16.9 .4 22.8 6.3S500 67 498 75.1l-26.3 104.7 92.7 55.5c7.2 4.3 11.7 12.2 11.7 20.6s-4.4 16.3-11.7 20.6L471.7 332.1 498 436.8c2 8.2-.4 16.9-6.3 22.8S477 468 468.9 466l-104.7-26.3-55.5 92.7c-4.3 7.2-12.2 11.7-20.6 11.7s-16.3-4.4-20.6-11.7L211.9 439.7 107.2 466c-8.2 2-16.8-.4-22.8-6.3S76 445 78 436.8l26.2-104.7-92.6-55.5C4.4 272.2 0 264.4 0 256s4.4-16.3 11.7-20.6L104.3 179.9 78 75.1c-2-8.2 .3-16.8 6.3-22.8S99 44 107.2 46l104.7 26.2 55.5-92.6 1.8-2.6c4.5-5.7 11.4-9.1 18.8-9.1zm0 144a144 144 0 1 0 0 288 144 144 0 1 0 0-288zm0 240a96 96 0 1 1 0-192 96 96 0 1 1 0 192z"></path></svg>
+        </button>
+        <button class="top-bar-dock-item" type="button" data-action="open-search" title="搜索" aria-label="搜索">
+            <svg class="svg-icon" viewBox="0 0 512 512" width="1em" height="1em" aria-hidden="true" style="display:inline-block;flex-shrink:0;pointer-events:none;vertical-align:-0.125em"><path fill="currentColor" d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376C296.3 401.2 253.9 416 208 416C93.1 416 0 322.9 0 208S93.1 0 208 0s208 93.1 208 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z"></path></svg>
+        </button>
+    </div>
+</div>
+<div id="top-bar-sidebar" class="top-bar-sidebar theme-light" role="dialog" aria-label="导航菜单">
+    <div class="sidebar-header">
+        <div class="sidebar-avatar-frame">
+            <img class="sidebar-avatar" src="/img/avatar.png" width="48" height="48" loading="lazy" decoding="async" alt="">
+        </div>
+        <span class="sidebar-name">ddanggui</span>
+    </div>
+    <div class="sidebar-divider"></div>
+    <a class="sidebar-menu-item" href="/">
+        <svg class="svg-icon sidebar-menu-icon" viewBox="0 0 576 512" width="1em" height="1em" aria-hidden="true" style="display:inline-block;flex-shrink:0;pointer-events:none;vertical-align:-0.125em"><path fill="currentColor" d="M575.8 255.5c0 18-15 32.1-32 32.1h-32l.7 160.2c0 2.7-.2 5.4-.5 8.1V432c0 22.1-17.9 40-40 40H160c-1.1 0-2.2 0-3.3-.1l-7.8-.2c-21.1 0-38.1-18.1-38.1-39.8 0-1.5 0-3 .1-4.5l.3-2.7c0-15.9 12.9-28.9 28.9-28.9 5.1 0 9.8 1.6 13.6 4.2l.5.3c3.9 2.4 8.8 3.9 14 3.9 12.5 0 22.6-10.1 22.6-22.6 0-7.2-3.4-13.6-8.6-17.7L416 213.3V386.5h40c17.7 0 32 14.3 32 32zM352 379.8V181l46.9 38.8c9.7 8 24.9 6.5 33.7-3.4l17.9-19.9c9-10.1 7.6-25.7-3.1-34.1L308.7 85.4c-6.8-5.7-16.7-5.7-23.5 0L151.5 182.4c-10.7 8.4-13.1 24-3.1 34.1l17.9 19.9c8.8 9.9 24 11.4 33.7 3.4L246 227V379.8h96 48z"></path></svg><span>主页</span>
+    </a>
+    <a class="sidebar-menu-item active" href="/#posts">
+        <svg class="svg-icon sidebar-menu-icon" viewBox="0 0 512 512" width="1em" height="1em" aria-hidden="true" style="display:inline-block;flex-shrink:0;pointer-events:none;vertical-align:-0.125em"><path fill="currentColor" d="M96 96c0-35.3 28.7-64 64-64l288 0c35.3 0 64 28.7 64 64l0 320c0 35.3-28.7 64-64 64L80 480c-44.2 0-80-35.8-80-80L0 128c0-17.7 14.3-32 32-32s32 14.3 32 32l0 272c0 8.8 7.2 16 16 16s16-7.2 16-16L96 96zm64 24l0 80c0 13.3 10.7 24 24 24l112 0c13.3 0 24-10.7 24-24l0-80c0-13.3-10.7-24-24-24L184 96c-13.3 0-24 10.7-24 24zm208-8c0 8.8 7.2 16 16 16l48 0c8.8 0 16-7.2 16-16s-7.2-16-16-16l-48 0c-8.8 0-16 7.2-16 16zm0 96c0 8.8 7.2 16 16 16l48 0c8.8 0 16-7.2 16-16s-7.2-16-16-16l-48 0c-8.8 0-16 7.2-16 16zM160 304c0 8.8 7.2 16 16 16l256 0c8.8 0 16-7.2 16-16s-7.2-16-16-16l-256 0c-8.8 0-16 7.2-16 16zm0 96c0 8.8 7.2 16 16 16l256 0c8.8 0 16-7.2 16-16s-7.2-16-16-16l-256 0c-8.8 0-16 7.2-16 16z"></path></svg><span>文章</span>
+    </a>
+    <a class="sidebar-menu-item" href="/archives/">
+        <svg class="svg-icon sidebar-menu-icon" viewBox="0 0 512 512" width="1em" height="1em" aria-hidden="true" style="display:inline-block;flex-shrink:0;pointer-events:none;vertical-align:-0.125em"><path fill="currentColor" d="M232.5 5.2c14.9-6.9 32.1-6.9 47 0l192 88c22.7 10.4 22.7 42.8 0 53.2l-192 88c-14.9 6.9-32.1 6.9-47 0l-192-88c-22.7-10.4-22.7-42.8 0-53.2l192-88zM0 212.8c0-9.9 10.1-16.6 19.2-12.5L256 309.5l236.8-109.2c9-4.2 19.2 2.4 19.2 12.5 0 5.4-3.2 10.3-8.1 12.5L279.5 328.7c-14.9 6.9-32.1 6.9-47 0L8.1 225.3C3.2 223 0 218.2 0 212.8zm0 96c0-9.9 10.1-16.6 19.2-12.5L256 405.5l236.8-109.2c9-4.2 19.2 2.4 19.2 12.5 0 5.4-3.2 10.3-8.1 12.5L279.5 424.7c-14.9 6.9-32.1 6.9-47 0L8.1 321.3C3.2 319 0 314.2 0 308.8z"></path></svg><span>归档</span>
+    </a>
+    <div class="sidebar-divider"></div>
+    <button class="sidebar-menu-item" type="button" data-action="toggle-theme">
+        <svg class="svg-icon sidebar-menu-icon" viewBox="0 0 512 512" width="1em" height="1em" aria-hidden="true" style="display:inline-block;flex-shrink:0;pointer-events:none;vertical-align:-0.125em"><path fill="currentColor" d="M256 0C114.6 0 0 114.6 0 256S114.6 512 256 512c68.8 0 131.3-27.2 177.3-71.4 7.3-7 9.4-17.9 5.3-27.1s-13.7-14.9-23.8-14.1c-4.9 .4-9.8 .6-14.8 .6-101.6 0-184-82.4-184-184 0-72.1 41.5-134.6 102.1-164.8 9.1-4.5 14.3-14.3 13.1-24.4S322.6 8.5 312.7 6.3C294.4 2.2 275.4 0 256 0z"></path></svg><span>主题</span>
+    </button>
+    <button class="sidebar-menu-item" type="button" data-action="open-search">
+        <svg class="svg-icon sidebar-menu-icon" viewBox="0 0 512 512" width="1em" height="1em" aria-hidden="true" style="display:inline-block;flex-shrink:0;pointer-events:none;vertical-align:-0.125em"><path fill="currentColor" d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376C296.3 401.2 253.9 416 208 416C93.1 416 0 322.9 0 208S93.1 0 208 0s208 93.1 208 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z"></path></svg><span>搜索</span>
+    </button>
+    <div class="sidebar-divider"></div>
+</div>
+<div class="top-bar-sidebar-overlay"></div>
+
+
+<div class="search-modal-overlay" id="searchModal" role="dialog" aria-modal="true" aria-labelledby="search-modal-title" hidden>
+    <div class="search-modal-dialog">
+        <div class="search-modal-header">
+            <h2 id="search-modal-title" class="sr-only">搜索</h2>
+            <div class="search-control">
+                <svg class="svg-icon search-control__icon" viewBox="0 0 512 512" width="1em" height="1em" aria-hidden="true" style="display:inline-block;flex-shrink:0;pointer-events:none;vertical-align:-0.125em"><path fill="currentColor" d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376C296.3 401.2 253.9 416 208 416C93.1 416 0 322.9 0 208S93.1 0 208 0s208 93.1 208 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z"></path></svg>
+                <input id="search-modal-input" class="search-input" type="search" placeholder="搜索文章…" autocomplete="off">
+                <button class="search-clear" type="button" aria-label="清空" hidden><svg class="svg-icon" viewBox="0 0 384 512" width="1em" height="1em" aria-hidden="true" style="display:inline-block;flex-shrink:0;pointer-events:none;vertical-align:-0.125em"><path fill="currentColor" d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z"></path></svg></button>
+            </div>
+            <p id="search-modal-help" class="search-help">↑↓ 选择,Enter 跳转,Esc 关闭</p>
+        </div>
+        <div class="search-modal-body">
+            <div class="search-loading" hidden><p>正在加载搜索索引…</p></div>
+            <div class="search-summary" aria-live="polite" hidden><span></span><span></span><button class="search-view-all-link" type="button">查看全部结果</button></div>
+            <div class="search-results scroller"></div>
+            <div class="search-empty" hidden><p>没有找到相关文章</p><button class="search-empty__button" type="button">清空重搜</button></div>
+        </div>
+    </div>
+</div>
+
+
+<script src="/js/core.js" defer></script>
+<script src="/js/article.js" defer></script>
+
+</body>
+</html>
