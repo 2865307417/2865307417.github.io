@@ -1,0 +1,16 @@
+.about-page { padding-top: 32px; }
+.about-intro { display: flex; align-items: center; gap: 32px; padding-bottom: 32px; border-bottom: 2px solid var(--panel-border); }
+.about-intro > div { min-width: 0; }
+.about-intro .taxonomy-title { font-size: clamp(2rem, 4vw, 3.5rem); overflow-wrap: anywhere; }
+.about-avatar { flex: 0 0 112px; width: 112px; height: 112px; object-fit: cover; border: 3px solid var(--fg); border-radius: 16px; box-shadow: 6px 6px 0 var(--accent-yellow); }
+.about-tags { display: flex; flex-wrap: wrap; gap: 8px; list-style: none; margin: 18px 0 0; padding: 0; }
+.about-tags li { padding: 5px 12px; border: 1px solid var(--panel-border); border-radius: 999px; color: var(--muted); font-size: .8rem; }
+.about-content { max-width: 800px; margin: 32px 0 40px; }
+.about-contact { padding: 28px; background: var(--panel-bg-solid); border: 2px solid var(--panel-border); border-radius: var(--radius-sm, 8px); }
+.about-contact h3 { margin: 0; font-family: var(--font-display); font-size: 1.5rem; }
+.about-contact p { color: var(--muted); line-height: 1.8; }
+.about-contact-links { display: flex; flex-wrap: wrap; gap: 12px; }
+.about-contact-links a { display: inline-flex; align-items: center; gap: 18px; padding: 10px 14px; border: 1px solid var(--panel-border); border-radius: 6px; color: var(--fg); text-decoration: none; font-size: .85rem; }
+.about-contact-links a:hover { color: var(--accent-blue); border-color: var(--accent-blue); }
+.about-contact-links a:focus-visible { outline: 3px solid var(--accent-blue); outline-offset: 4px; }
+@media (max-width: 640px) { .about-intro { align-items: flex-start; flex-direction: column; gap: 24px; } .about-avatar { width: 88px; height: 88px; flex-basis: 88px; } .about-contact { padding: 20px; } }

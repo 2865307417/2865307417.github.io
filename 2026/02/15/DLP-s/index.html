@@ -62,6 +62,8 @@
 <link rel="stylesheet" href="/css/performance.css">
 <link rel="stylesheet" href="/css/wakusei.css">
 
+
+
 <meta property="og:site_name" content="ddanggui&#39;s 博客">
 <meta property="og:title" content="DLP问题整理 | ddanggui&#39;s 博客">
 <meta property="og:description" content="整理 CTF 中遇到的各类离散对数（DLP）题型与解法，涵盖 BSGS、Pohlig-Hellman 等算法及 SageMath 用法。">
@@ -594,6 +596,8 @@ $$k = \log_{\det(A)}(\det(B))$$</p>
         <a class="top-bar-dock-item has-text" href="/"><span class="top-bar-dock-label">主页</span></a>
         <a class="top-bar-dock-item has-text active" href="/#posts"><span class="top-bar-dock-label">文章</span></a>
         <a class="top-bar-dock-item has-text" href="/archives/"><span class="top-bar-dock-label">归档</span></a>
+        <a class="top-bar-dock-item has-text" href="/friends/"><span class="top-bar-dock-label">友链</span></a>
+        <a class="top-bar-dock-item has-text" href="/about/"><span class="top-bar-dock-label">About Me</span></a>
         <div class="top-bar-divider"></div>
         <button class="top-bar-dock-item" type="button" data-action="toggle-theme" title="主题" aria-label="主题">
             <svg class="svg-icon icon-dark" viewBox="0 0 512 512" width="1em" height="1em" aria-hidden="true" style="display:inline-block;flex-shrink:0;pointer-events:none;vertical-align:-0.125em"><path fill="currentColor" d="M256 0C114.6 0 0 114.6 0 256S114.6 512 256 512c68.8 0 131.3-27.2 177.3-71.4 7.3-7 9.4-17.9 5.3-27.1s-13.7-14.9-23.8-14.1c-4.9 .4-9.8 .6-14.8 .6-101.6 0-184-82.4-184-184 0-72.1 41.5-134.6 102.1-164.8 9.1-4.5 14.3-14.3 13.1-24.4S322.6 8.5 312.7 6.3C294.4 2.2 275.4 0 256 0z"></path></svg>
@@ -621,7 +625,13 @@ $$k = \log_{\det(A)}(\det(B))$$</p>
     <a class="sidebar-menu-item" href="/archives/">
         <svg class="svg-icon sidebar-menu-icon" viewBox="0 0 512 512" width="1em" height="1em" aria-hidden="true" style="display:inline-block;flex-shrink:0;pointer-events:none;vertical-align:-0.125em"><path fill="currentColor" d="M232.5 5.2c14.9-6.9 32.1-6.9 47 0l192 88c22.7 10.4 22.7 42.8 0 53.2l-192 88c-14.9 6.9-32.1 6.9-47 0l-192-88c-22.7-10.4-22.7-42.8 0-53.2l192-88zM0 212.8c0-9.9 10.1-16.6 19.2-12.5L256 309.5l236.8-109.2c9-4.2 19.2 2.4 19.2 12.5 0 5.4-3.2 10.3-8.1 12.5L279.5 328.7c-14.9 6.9-32.1 6.9-47 0L8.1 225.3C3.2 223 0 218.2 0 212.8zm0 96c0-9.9 10.1-16.6 19.2-12.5L256 405.5l236.8-109.2c9-4.2 19.2 2.4 19.2 12.5 0 5.4-3.2 10.3-8.1 12.5L279.5 424.7c-14.9 6.9-32.1 6.9-47 0L8.1 321.3C3.2 319 0 314.2 0 308.8z"></path></svg><span>归档</span>
     </a>
+    <a class="sidebar-menu-item" href="/friends/">
+        <span class="sidebar-menu-icon" aria-hidden="true">↗</span><span>友链</span>
+    </a>
     <div class="sidebar-divider"></div>
+    <a class="sidebar-menu-item" href="/about/">
+        <span class="sidebar-menu-icon" aria-hidden="true">☺</span><span>About Me</span>
+    </a>
     <button class="sidebar-menu-item" type="button" data-action="toggle-theme">
         <svg class="svg-icon sidebar-menu-icon" viewBox="0 0 512 512" width="1em" height="1em" aria-hidden="true" style="display:inline-block;flex-shrink:0;pointer-events:none;vertical-align:-0.125em"><path fill="currentColor" d="M256 0C114.6 0 0 114.6 0 256S114.6 512 256 512c68.8 0 131.3-27.2 177.3-71.4 7.3-7 9.4-17.9 5.3-27.1s-13.7-14.9-23.8-14.1c-4.9 .4-9.8 .6-14.8 .6-101.6 0-184-82.4-184-184 0-72.1 41.5-134.6 102.1-164.8 9.1-4.5 14.3-14.3 13.1-24.4S322.6 8.5 312.7 6.3C294.4 2.2 275.4 0 256 0z"></path></svg><span>主题</span>
     </button>
