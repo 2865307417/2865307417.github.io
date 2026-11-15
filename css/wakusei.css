@@ -124,9 +124,10 @@
 }
 
 /* 顶栏主题按钮:亮/暗图标切换 */
-.top-bar [data-action='toggle-theme'] .icon-light { display: none; }
-[data-theme='dark'] .top-bar [data-action='toggle-theme'] .icon-dark { display: none; }
-[data-theme='dark'] .top-bar [data-action='toggle-theme'] .icon-light { display: inline-block; }
+/* SVG helper supplies inline display:inline-block; override it for the inactive icon. */
+.top-bar [data-action='toggle-theme'] .icon-light { display: none !important; }
+[data-theme='dark'] .top-bar [data-action='toggle-theme'] .icon-dark { display: none !important; }
+[data-theme='dark'] .top-bar [data-action='toggle-theme'] .icon-light { display: inline-block !important; }
 
 /* 搜索结果可聚焦态(搜索页复用 PostCard) */
 .search-result { cursor: pointer; }

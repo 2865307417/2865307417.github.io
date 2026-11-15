@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-ui-lang="zh-CN" data-content-lang="zh-CN" class="is-entering">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>issc密码安全赛后记 | ddanggui&#39;s 博客</title>
+<meta name="description" content="你的摘要">
+<meta name="robots" content="index, follow">
+<meta name="theme-color" content="#fffef7">
+<script>
+(function () {
+    var t;
+    try { t = localStorage.getItem('theme'); } catch (e) {}
+    if (t !== 'dark' && t !== 'light') {
+        t = (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light';
+    }
+    document.documentElement.setAttribute('data-theme', t);
+    if (t === 'dark') {
+        var m = document.querySelector('meta[name="theme-color"]');
+        if (m) m.setAttribute('content', '#080808');
+    }
+    var c = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+    try {
+        if ((c && (c.saveData || /^(slow-2g|2g|3g)$/.test(c.effectiveType || ''))) ||
+            (window.matchMedia && window.matchMedia('(prefers-reduced-data: reduce)').matches)) {
+            document.documentElement.setAttribute('data-perf', 'lite');
+        }
+    } catch (e) {}
+})();
+</script>
+<style>:root { --theme-color: #fffef7; }</style>
+<link rel="canonical" href="https://ddanggui.top/2026/11/14/issc%E5%AF%86%E7%A0%81%E5%AE%89%E5%85%A8%E8%B5%9B%E5%90%8E%E8%AE%B0/">
+<link rel="icon" href="/img/avatar.png" type="image/png">
+
+<link rel="preconnect" href="https://www.loliapi.com" media="(min-width: 901px)">
+<link rel="dns-prefetch" href="https://www.loliapi.com" media="(min-width: 901px)">
+<link rel="alternate" type="application/atom+xml" title="ddanggui&#39;s 博客" href="/atom.xml">
+
+
+<link rel="stylesheet" href="/fonts/inter/index.css">
+<link rel="stylesheet" href="/fonts/noto-sans-sc/400.css">
+<link rel="stylesheet" href="/fonts/noto-sans-sc/700.css">
+<link rel="stylesheet" href="/fonts/noto-serif-sc/400.css">
+<link rel="stylesheet" href="/fonts/noto-serif-sc/700.css">
+
+<link rel="stylesheet" href="/fonts/katex/katex.min.css">
+
+<link rel="stylesheet" href="/css/base.css">
+<link rel="stylesheet" href="/css/layout.css">
+<link rel="stylesheet" href="/css/transitions.css">
+<link rel="stylesheet" href="/css/components.css">
+<link rel="stylesheet" href="/css/responsive.css">
+<link rel="stylesheet" href="/css/dock.css">
+<link rel="stylesheet" href="/css/topbar.css">
+<link rel="stylesheet" href="/css/footer.css">
+<link rel="stylesheet" href="/css/article.css">
+<link rel="stylesheet" href="/css/toc.css">
+<link rel="stylesheet" href="/css/reading-controls.css">
+<link rel="stylesheet" href="/css/performance.css">
+<link rel="stylesheet" href="/css/wakusei.css">
+
+
+
+<meta property="og:site_name" content="ddanggui&#39;s 博客">
+<meta property="og:title" content="issc密码安全赛后记 | ddanggui&#39;s 博客">
+<meta property="og:description" content="你的摘要">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://ddanggui.top/2026/11/14/issc%E5%AF%86%E7%A0%81%E5%AE%89%E5%85%A8%E8%B5%9B%E5%90%8E%E8%AE%B0/">
+<meta property="og:image" content="https://ddanggui.top/img/avatar.png">
+<meta property="og:locale" content="zh_CN">
+<meta name="twitter:card" content="summary">
+
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"issc密码安全赛后记","description":"你的摘要","inLanguage":"zh-CN","datePublished":"2026-11-14T07:21:00.000Z","dateModified":"2026-11-15T14:59:59.001Z","author":{"@type":"Person","name":"ddanggui"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://ddanggui.top/2026/11/14/issc%E5%AF%86%E7%A0%81%E5%AE%89%E5%85%A8%E8%B5%9B%E5%90%8E%E8%AE%B0/"}}</script>
+
+<script>
+/* 壁纸首帧预取(桌面端) */
+(function () {
+    if (!window.matchMedia || !window.matchMedia('(min-width: 901px)').matches) return;
+    if (document.querySelector('.wallpaper-image')) return;
+    var img = new Image();
+    img.fetchPriority = 'low';
+    img.decoding = 'async';
+    img.src = '/img/default.png';
+    window.__wallpaperPrefetch = { img: img };
+})();
+</script>
+<script>
+window.__WAKUSEI__ = {"themeColor":"#fffef7","profile":{"name":"ddanggui","status":"CRYPTO小菜鸡的升级之路","avatar":"/img/avatar.png"},"slogans":{"list":["尽人事,听天命,静候花开。","CRYPTO小菜鸡的升级之路","用冰冷的理性温暖世界。","Stay hungry, stay foolish.","师傅,别念了!"],"mode":"sequence","pauseDuration":5000,"loop":true},"time":{"format":"24h","showWeekday":true,"showDate":true,"updateInterval":1000},"wallpaper":{"defaultImage":"/img/default.png","apis":["https://www.loliapi.com/bg/"],"raceTimeout":10000,"maxRetries":5,"rotation":{"enabled":false,"interval":8000}},"effects":{"scrollReveal":{"enabled":true,"offset":50,"delay":50}},"social":{"colorScheme":"cycle","links":[{"name":"GITHUB","url":"https://github.com/2865307417","icon":"fab fa-github","color":"#fff700"},{"name":"EMAIL","url":"mailto:2865307417@qq.com","icon":"fas fa-envelope","color":"#0022ff"},{"name":"RSS","url":"/atom.xml","icon":"fas fa-rss","color":"#ff8400","copy":true}]},"typewriter":{"enabled":true,"loop":true,"typeSpeed":180,"deleteSpeed":90,"pauseDuration":4200,"phrases":["尽人事,听天命"]},"comments":{"enabled":false,"envId":"","pageview":true},"searchIndexUrl":"/search-index.json","searchPageUrl":"/search/","contributionsUrl":"/github-contributions.json","version":"1.0.0"};
+</script>
+<noscript><style>.scroll-reveal { opacity: 1 !important; transform: none !important; }</style></noscript>
+<meta name="generator" content="Hexo 8.1.2"></head>
+<body>
+<script>(function () {
+    var remove = function () { document.documentElement.classList.remove('is-entering'); };
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', function () {
+            requestAnimationFrame(function () { requestAnimationFrame(remove); });
+        });
+    } else {
+        requestAnimationFrame(function () { requestAnimationFrame(remove); });
+    }
+})();</script>
+<div id="navigationProgress" class="navigation-progress" aria-hidden="true">
+    <div id="navigationProgressBar" class="navigation-progress__bar"></div>
+</div>
+<div id="pageScroller" class="page-scroller">
+    <div class="noise-overlay"></div>
+<div class="hero-sticky" data-shell-mode="article">
+    <div class="hero-content">
+        <main class="container">
+            <div class="wallpaper-scroll-area"></div>
+            <section class="left-panel">
+                
+                <header class="hero hero-minimal">
+                    <p class="name"><span class="name-latin">issc</span>密码安全赛后记</p>
+                </header>
+                
+            </section>
+        </main>
+        
+        
+        <div class="wallpaper-typewriter" aria-label="尽人事,听天命">
+            <p class="wallpaper-typewriter__text"><span id="typewriterText"></span><span class="typewriter-cursor" aria-hidden="true"></span></p>
+        </div>
+        
+        
+        <div class="hero-marquee-defocus hero-marquee-defocus--revealed" aria-hidden="true" style="--marquee-defocus-opacity: 1">
+    <div class="hero-marquee-defocus__layer hero-marquee-defocus__layer--far"></div>
+    <div class="hero-marquee-defocus__layer hero-marquee-defocus__layer--mid"></div>
+    <div class="hero-marquee-defocus__layer hero-marquee-defocus__layer--near"></div>
+</div>
+<section class="hero-marquee hero-marquee--revealed" aria-label="首页速览">
+    <div class="hero-marquee__viewport" style="--marquee-duration: 126s">
+        <div class="hero-marquee__track">
+            
+            
+<article class="hero-ticket hero-ticket--clock">
+    <div class="hero-ticket__pad">
+        <span class="hero-ticket__label">时间</span>
+        <div class="time-widget time-widget--compact">
+            <div class="weekday" data-allow-mismatch="text"></div>
+            <div class="date-display" data-allow-mismatch="text"></div>
+            <div class="clock" data-allow-mismatch="text">--:--:--</div>
+        </div>
+    </div>
+</article>
+            
+            
+<article class="hero-ticket hero-ticket--search">
+    <a class="hero-ticket__hit" href="javascript:void(0)" data-wakusei-search>
+        <span class="hero-ticket__label"><svg class="svg-icon hero-ticket__icon" viewBox="0 0 512 512" width="0.7em" height="0.7em" aria-hidden="true" style="display:inline-block;flex-shrink:0;pointer-events:none;vertical-align:-0.125em"><path fill="currentColor" d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376C296.3 401.2 253.9 416 208 416C93.1 416 0 322.9 0 208S93.1 0 208 0s208 93.1 208 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z"></path></svg>搜索</span>
+        <span class="hero-ticket__title">站内搜索</span>
+        <span class="hero-ticket__meta hero-ticket__meta--mono">⌘K / Ctrl+K</span>
+    </a>
+</article>
+            
+            
+<article class="hero-ticket hero-ticket--slogan">
+    <div class="hero-ticket__pad">
+        <span class="hero-ticket__label">摘句</span>
+        <p class="hero-ticket__quote">尽人事,听天命,静候花开。</p>
+    </div>
+</article>
+            
+            
+<article class="hero-ticket hero-ticket--stats">
+    <a class="hero-ticket__hit hero-ticket__hit--stats" href="/#posts">
+        <span class="hero-ticket__label">站点</span>
+        <div class="hero-ticket__stat-row" role="presentation">
+            <div class="hero-ticket__stat"><span class="hero-ticket__stat-value">21</span><span class="hero-ticket__stat-label">文</span></div>
+            <div class="hero-ticket__stat"><span class="hero-ticket__stat-value">3</span><span class="hero-ticket__stat-label">类</span></div>
+            <div class="hero-ticket__stat"><span class="hero-ticket__stat-value">13</span><span class="hero-ticket__stat-label">签</span></div>
+        </div>
+    </a>
+</article>
+            
+            
+<article class="hero-ticket hero-ticket--archive">
+    <a class="hero-ticket__hit" href="/archives/">
+        <span class="hero-ticket__label"><svg class="svg-icon hero-ticket__icon" viewBox="0 0 512 512" width="0.7em" height="0.7em" aria-hidden="true" style="display:inline-block;flex-shrink:0;pointer-events:none;vertical-align:-0.125em"><path fill="currentColor" d="M232.5 5.2c14.9-6.9 32.1-6.9 47 0l192 88c22.7 10.4 22.7 42.8 0 53.2l-192 88c-14.9 6.9-32.1 6.9-47 0l-192-88c-22.7-10.4-22.7-42.8 0-53.2l192-88zM0 212.8c0-9.9 10.1-16.6 19.2-12.5L256 309.5l236.8-109.2c9-4.2 19.2 2.4 19.2 12.5 0 5.4-3.2 10.3-8.1 12.5L279.5 328.7c-14.9 6.9-32.1 6.9-47 0L8.1 225.3C3.2 223 0 218.2 0 212.8zm0 96c0-9.9 10.1-16.6 19.2-12.5L256 405.5l236.8-109.2c9-4.2 19.2 2.4 19.2 12.5 0 5.4-3.2 10.3-8.1 12.5L279.5 424.7c-14.9 6.9-32.1 6.9-47 0L8.1 321.3C3.2 319 0 314.2 0 308.8z"></path></svg>索引</span>
+        <span class="hero-ticket__title">写作年表</span>
+        <span class="hero-ticket__meta">2025–2026</span>
+    </a>
+</article>
+            
+            
+<article class="hero-ticket hero-ticket--updated">
+    <a class="hero-ticket__hit hero-ticket__hit--post" href="/2026/11/14/issc%E5%AF%86%E7%A0%81%E5%AE%89%E5%85%A8%E8%B5%9B%E5%90%8E%E8%AE%B0/">
+        
+        <div class="hero-ticket__body">
+            <span class="hero-ticket__label">更新</span>
+            <span class="hero-ticket__title">issc密码安全赛后记</span>
+            <span class="hero-ticket__meta">2026-11-14</span>
+        </div>
+    </a>
+</article>
+            
+            
+<article class="hero-ticket hero-ticket--post">
+    <a class="hero-ticket__hit hero-ticket__hit--post" href="/2026/11/14/issc%E5%AF%86%E7%A0%81%E5%AE%89%E5%85%A8%E8%B5%9B%E5%90%8E%E8%AE%B0/">
+        
+        <div class="hero-ticket__body">
+            <span class="hero-ticket__label">wp题解</span>
+            <span class="hero-ticket__title">issc密码安全赛后记</span>
+            <span class="hero-ticket__meta">2026-11-14</span>
+        </div>
+    </a>
+</article>
+            
+            
+<article class="hero-ticket hero-ticket--post">
+    <a class="hero-ticket__hit hero-ticket__hit--post" href="/2026/11/05/LWE%E5%AD%A6%E4%B9%A0/">
+        
+        <div class="hero-ticket__body">
+            <span class="hero-ticket__label">crypto学习</span>
+            <span class="hero-ticket__title">LWE学习</span>
+            <span class="hero-ticket__meta">2026-11-05</span>
+        </div>
+    </a>
+</article>
+            
+            
+<article class="hero-ticket hero-ticket--post">
+    <a class="hero-ticket__hit hero-ticket__hit--post" href="/2026/10/20/%E5%88%86%E7%BB%84%E5%AF%86%E7%A0%81%E5%AD%A6%E4%B9%A0/">
+        
+        <div class="hero-ticket__body">
+            <span class="hero-ticket__label">crypto学习</span>
+            <span class="hero-ticket__title">分组密码学习</span>
+            <span class="hero-ticket__meta">2026-10-20</span>
+        </div>
+    </a>
+</article>
+            
+            
+<article class="hero-ticket hero-ticket--clock">
+    <div class="hero-ticket__pad">
+        <span class="hero-ticket__label">时间</span>
+        <div class="time-widget time-widget--compact">
+            <div class="weekday" data-allow-mismatch="text"></div>
+            <div class="date-display" data-allow-mismatch="text"></div>
+            <div class="clock" data-allow-mismatch="text">--:--:--</div>
+        </div>
+    </div>
+</article>
+            
+            
+<article class="hero-ticket hero-ticket--search">
+    <a class="hero-ticket__hit" href="javascript:void(0)" data-wakusei-search>
+        <span class="hero-ticket__label"><svg class="svg-icon hero-ticket__icon" viewBox="0 0 512 512" width="0.7em" height="0.7em" aria-hidden="true" style="display:inline-block;flex-shrink:0;pointer-events:none;vertical-align:-0.125em"><path fill="currentColor" d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376C296.3 401.2 253.9 416 208 416C93.1 416 0 322.9 0 208S93.1 0 208 0s208 93.1 208 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z"></path></svg>搜索</span>
+        <span class="hero-ticket__title">站内搜索</span>
+        <span class="hero-ticket__meta hero-ticket__meta--mono">⌘K / Ctrl+K</span>
+    </a>
+</article>
+            
+            
+<article class="hero-ticket hero-ticket--slogan">
+    <div class="hero-ticket__pad">
+        <span class="hero-ticket__label">摘句</span>
+        <p class="hero-ticket__quote">尽人事,听天命,静候花开。</p>
+    </div>
+</article>
+            
+            
+<article class="hero-ticket hero-ticket--stats">
+    <a class="hero-ticket__hit hero-ticket__hit--stats" href="/#posts">
+        <span class="hero-ticket__label">站点</span>
+        <div class="hero-ticket__stat-row" role="presentation">
+            <div class="hero-ticket__stat"><span class="hero-ticket__stat-value">21</span><span class="hero-ticket__stat-label">文</span></div>
+            <div class="hero-ticket__stat"><span class="hero-ticket__stat-value">3</span><span class="hero-ticket__stat-label">类</span></div>
+            <div class="hero-ticket__stat"><span class="hero-ticket__stat-value">13</span><span class="hero-ticket__stat-label">签</span></div>
+        </div>
+    </a>
+</article>
+            
+            
+<article class="hero-ticket hero-ticket--archive">
+    <a class="hero-ticket__hit" href="/archives/">
+        <span class="hero-ticket__label"><svg class="svg-icon hero-ticket__icon" viewBox="0 0 512 512" width="0.7em" height="0.7em" aria-hidden="true" style="display:inline-block;flex-shrink:0;pointer-events:none;vertical-align:-0.125em"><path fill="currentColor" d="M232.5 5.2c14.9-6.9 32.1-6.9 47 0l192 88c22.7 10.4 22.7 42.8 0 53.2l-192 88c-14.9 6.9-32.1 6.9-47 0l-192-88c-22.7-10.4-22.7-42.8 0-53.2l192-88zM0 212.8c0-9.9 10.1-16.6 19.2-12.5L256 309.5l236.8-109.2c9-4.2 19.2 2.4 19.2 12.5 0 5.4-3.2 10.3-8.1 12.5L279.5 328.7c-14.9 6.9-32.1 6.9-47 0L8.1 225.3C3.2 223 0 218.2 0 212.8zm0 96c0-9.9 10.1-16.6 19.2-12.5L256 405.5l236.8-109.2c9-4.2 19.2 2.4 19.2 12.5 0 5.4-3.2 10.3-8.1 12.5L279.5 424.7c-14.9 6.9-32.1 6.9-47 0L8.1 321.3C3.2 319 0 314.2 0 308.8z"></path></svg>索引</span>
+        <span class="hero-ticket__title">写作年表</span>
+        <span class="hero-ticket__meta">2025–2026</span>
+    </a>
+</article>
+            
+            
+<article class="hero-ticket hero-ticket--updated">
+    <a class="hero-ticket__hit hero-ticket__hit--post" href="/2026/11/14/issc%E5%AF%86%E7%A0%81%E5%AE%89%E5%85%A8%E8%B5%9B%E5%90%8E%E8%AE%B0/">
+        
+        <div class="hero-ticket__body">
+            <span class="hero-ticket__label">更新</span>
+            <span class="hero-ticket__title">issc密码安全赛后记</span>
+            <span class="hero-ticket__meta">2026-11-14</span>
+        </div>
+    </a>
+</article>
+            
+            
+<article class="hero-ticket hero-ticket--post">
+    <a class="hero-ticket__hit hero-ticket__hit--post" href="/2026/11/14/issc%E5%AF%86%E7%A0%81%E5%AE%89%E5%85%A8%E8%B5%9B%E5%90%8E%E8%AE%B0/">
+        
+        <div class="hero-ticket__body">
+            <span class="hero-ticket__label">wp题解</span>
+            <span class="hero-ticket__title">issc密码安全赛后记</span>
+            <span class="hero-ticket__meta">2026-11-14</span>
+        </div>
+    </a>
+</article>
+            
+            
+<article class="hero-ticket hero-ticket--post">
+    <a class="hero-ticket__hit hero-ticket__hit--post" href="/2026/11/05/LWE%E5%AD%A6%E4%B9%A0/">
+        
+        <div class="hero-ticket__body">
+            <span class="hero-ticket__label">crypto学习</span>
+            <span class="hero-ticket__title">LWE学习</span>
+            <span class="hero-ticket__meta">2026-11-05</span>
+        </div>
+    </a>
+</article>
+            
+            
+<article class="hero-ticket hero-ticket--post">
+    <a class="hero-ticket__hit hero-ticket__hit--post" href="/2026/10/20/%E5%88%86%E7%BB%84%E5%AF%86%E7%A0%81%E5%AD%A6%E4%B9%A0/">
+        
+        <div class="hero-ticket__body">
+            <span class="hero-ticket__label">crypto学习</span>
+            <span class="hero-ticket__title">分组密码学习</span>
+            <span class="hero-ticket__meta">2026-10-20</span>
+        </div>
+    </a>
+</article>
+            
+        </div>
+    </div>
+</section>
+
+        
+    </div>
+</div>
+
+    <div id="pageTransitionSurface" class="page-transition-surface" data-shell-mode="article" data-page-title="issc密码安全赛后记">
+        <div class="reading-progress" aria-hidden="true"><div class="reading-progress__fill"></div></div>
+<article class="post-container">
+    <div class="post-lead">
+        <header class="post-header">
+            <h1 class="post-title">issc密码安全赛后记</h1>
+            <div class="post-meta">
+                
+                <time class="post-date" datetime="2026-11-14T07:21:00.000Z">2026-11-14</time>
+                <span class="post-reading-time">7 分钟阅读</span>
+                <time class="post-date post-date--updated" datetime="2026-11-15T14:59:59.001Z">更新于 2026-11-15</time>
+                
+            </div>
+        </header>
+        
+    </div>
+    <div class="post-body">
+        <h1>iscc密码安全赛后记</h1>
+<p>线下断网的比赛，表现比以前强多了，继续加油，也是拿到了一个竞赛目录里面的奖了</p>
+<p>几个密码味道比较浓的题目被学长干掉了，简单记录一下吧，复盘一下比赛碰到的疑难杂症和映像比较深的题目吧</p>
+<h2 id="1-哈希长度扩展攻击">1.哈希长度扩展攻击</h2>
+<h3 id="题目">题目</h3>
+<p>某系统采用以下方式对用户请求进行签名：<br>
+<code>token = sha1(secret_key + user_data)</code><br>
+其中 <code>secret_key</code> 为服务端持有的密钥，长度 12 字节。<br>
+请构造包括<code>role=admin</code>的签名认证数据，服务器ip地址为：<code>172.16.8.6</code></p>
+<p>以管理员身份登录并获取 <code>FLAG</code>（15 位数字）。<br>
+提交方式：<code>POST /auth</code>，参数 <code>user_data</code> 与 <code>token</code>。</p>
+<p>接口调用参考代码如下：（给了两条交互路径，第二条是要你本地转hex提交后服务端转回）</p>
+<p>系统对外泄露了一个普通用户的凭证：<br>
+<code>user_data = user=normal&amp;role=normal token = 22ad8989b1b3d9a14e439e9e67f754be3f2c2a00</code><br>
+构造<code>admin</code>用户获取的<code>flag</code>值是什么？(210/分）</p>
+<h3 id="分析">分析</h3>
+<p>这个题目整体还是比较顺利的，辨认出题型</p>
+<p>用存的板子（<a target="_blank" rel="noopener" href="https://github.com/stephenbradshaw/hlextend/blob/master/hlextend.py">hlextend/hlextend.py at master · stephenbradshaw/hlextend</a>）一下子就出来了</p>
+<p>就是利用Merkle–Damgård结构问题原始消息后面追加一段消息</p>
+<p>比较坑的就是要注意服务器的解码逻辑，你直接发送<code>m = b'\x00\x12'</code></p>
+<p>会被服务的解码成 10 个 ASCII 字符：<code>b, ', \, x, 0, 0, \, x, 1, 2, '</code>，死活过不了。</p>
+<p>所以需要使用另外一条交互路径：本地转16进制再交给服务端转回字节</p>
+<h2 id="2-tls">2.tls</h2>
+<h3 id="题目-2">题目</h3>
+<p>给了一个pem文件和流量包，要求解出tls流量里面的登录的账户密码</p>
+<h3 id="分析-2">分析</h3>
+<p>这个题目其实跟密码学关系不大，考察wireshark工具等使用</p>
+<p>其实流量包长得非常板正，也没什么噪音，就是tls里面client hello那一套</p>
+<p><img src="/2026/11/14/issc%E5%AF%86%E7%A0%81%E5%AE%89%E5%85%A8%E8%B5%9B%E5%90%8E%E8%AE%B0/image-cf7b7ff2822972f3.png" alt="image-20261114173511986"></p>
+<p>导入tls的rsa的pem文件wireshark就能自动解密了…</p>
+<p>可惜都不会用当时</p>
+<p><img src="/2026/11/14/issc%E5%AF%86%E7%A0%81%E5%AE%89%E5%85%A8%E8%B5%9B%E5%90%8E%E8%AE%B0/image-c90f7d559161fb5d.png" alt="image-20261114172115313"></p>
+<p>顺着配置一下wireshark</p>
+<p><img src="/2026/11/14/issc%E5%AF%86%E7%A0%81%E5%AE%89%E5%85%A8%E8%B5%9B%E5%90%8E%E8%AE%B0/image-18f180240eec50f8.png" alt="image-20261114172310782"></p>
+<p>解出来之后能清晰看到登录请求和flag了</p>
+<p><img src="/2026/11/14/issc%E5%AF%86%E7%A0%81%E5%AE%89%E5%85%A8%E8%B5%9B%E5%90%8E%E8%AE%B0/image-b34f783697bd0479.png" alt="image-20261114172421736"></p>
+<p><img src="/2026/11/14/issc%E5%AF%86%E7%A0%81%E5%AE%89%E5%85%A8%E8%B5%9B%E5%90%8E%E8%AE%B0/image-cc29647c68a28487.png" alt="image-20261114172441049"></p>
+<p>可惜可惜</p>
+<p>这题拿下基本就国一了，可惜同时考到三个人的知识盲区了</p>
+<p>给了给了</p>
+<h2 id="3-AES比特翻转攻击">3.AES比特翻转攻击</h2>
+<h3 id="题目-3">题目</h3>
+<p>已知使用 AES-128-CBC 对明文： user=xueli&amp;time=202611031125 加密得到的密文是 <code>655acb58e2b9795ba6c8ecb4f81d82b7a411ccd32072e43ec3eccd892a94ead3093ceb45f7c4a08e07b7d7bddde57811</code>（hex 编码）。<br>
+IV为随机生成，位于密文前16字节。<br>
+请在不知道密钥的条件下，构造一个新的密文使得解密后的消息为： <code>user=admin&amp;time=202611031125</code></p>
+<h3 id="分析-3">分析</h3>
+<p>非常经典的题目啊</p>
+<p>用板子（<a target="_blank" rel="noopener" href="https://github.com/jvdsn/crypto-attacks/blob/master/attacks/cbc/bit_flipping.py">crypto-attacks/attacks/cbc/bit_flipping.py at master · jvdsn/crypto-attacks</a>）一把梭了</p>
+<h3 id="exp">exp</h3>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">attack</span>(<span class="params">iv, c, pos, p, p_</span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    Replaces the original plaintext with a new plaintext at a position in the ciphertext.</span></span><br><span class="line"><span class="string">    :param iv: the initialization vector</span></span><br><span class="line"><span class="string">    :param c: the ciphertext</span></span><br><span class="line"><span class="string">    :param pos: the position to modify at</span></span><br><span class="line"><span class="string">    :param p: the original plaintext</span></span><br><span class="line"><span class="string">    :param p_: the new plaintext</span></span><br><span class="line"><span class="string">    :return: a tuple containing the modified initialization vector and the modified ciphertext</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    iv_ = <span class="built_in">bytearray</span>(iv)</span><br><span class="line">    c_ = <span class="built_in">bytearray</span>(c)</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(p)):</span><br><span class="line">        <span class="keyword">if</span> pos + i &lt; <span class="number">16</span>:</span><br><span class="line">            iv_[pos + i] = iv[pos + i] ^ p[i] ^ p_[i]</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            c_[pos + i - <span class="number">16</span>] = c[pos + i - <span class="number">16</span>] ^ p[i] ^ p_[i]</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> iv_, c_</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">raw = <span class="built_in">bytes</span>.fromhex(hexct)</span><br><span class="line">iv, c = raw[:<span class="number">16</span>], raw[<span class="number">16</span>:]  </span><br><span class="line">iv_, c_ = attack(iv, c, <span class="number">5</span>, <span class="string">b&quot;xueli&quot;</span>, <span class="string">b&quot;admin&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>((<span class="built_in">bytes</span>(iv_) + <span class="built_in">bytes</span>(c_)).<span class="built_in">hex</span>())</span><br><span class="line"><span class="comment"># 655acb58e2a06853a3cfecb4f81d82b7a411ccd32072e43ec3eccd892a94ead3093ceb45f7c4a08e07b7d7bddde57811</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h2 id="4-rsa前面伪造">4.rsa前面伪造</h2>
+<h3 id="题目-4">题目</h3>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">📋 背景</span><br><span class="line">某系统使用 RSA（公钥指数 e = <span class="number">3</span>）对登录命令签名。服务端校验：签名解出的消息等于目标登录命令 CMD=LOGIN&amp;USER=Admin&amp;role=admin 的 PKCS<span class="comment">#1 v1.5 编码即视为合法，允许登录。</span></span><br><span class="line"></span><br><span class="line">以下为服务端验签源码（明文公开，请仔细分析其漏洞）：</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">verify</span>(<span class="params">signature, n, e, target</span>):</span><br><span class="line">    <span class="comment"># ---- 步骤1：用公钥解出 EM = signature^e mod n ----</span></span><br><span class="line">    keylen = (n.bit_length() + <span class="number">7</span>) // <span class="number">8</span></span><br><span class="line">    em = <span class="built_in">pow</span>(signature, e, n)</span><br><span class="line">    em_bytes = em.to_bytes(keylen, <span class="string">&#x27;big&#x27;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># ---- 步骤2：校验 PKCS#1 v1.5 格式 ----</span></span><br><span class="line">    <span class="comment"># 2a) 开头必须是 0x00 0x01（块类型 01，用于签名）</span></span><br><span class="line">    <span class="keyword">if</span> em_bytes[:<span class="number">2</span>] != <span class="string">b&#x27;\x00\x01&#x27;</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 2b) 定位 0x00 分隔符，其后应为 DigestInfo</span></span><br><span class="line">    asn1 = sha256_der(target)             <span class="comment"># DER 编码的目标消息摘要</span></span><br><span class="line">    idx = em_bytes.find(<span class="string">b&#x27;\x00&#x27;</span> + asn1)   <span class="comment"># 找 &quot;00 || DigestInfo&quot;</span></span><br><span class="line">    <span class="keyword">if</span> idx &lt; <span class="number">2</span>:                            <span class="comment"># 分隔符必须在开头标记之后</span></span><br><span class="line">        <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># ---- 2c) 返回结果 ----</span></span><br><span class="line">    <span class="keyword">return</span> <span class="literal">True</span></span><br><span class="line"><span class="comment"># 说明：标准 PKCS#1 v1.5 中，2a 标记与分隔符 0x00 之间的&quot;填充串 PS&quot;应为 0xFF...FF，</span></span><br><span class="line"><span class="comment">#       但本实现并未对该填充串做任何校验（是否为 0xFF、长度是否足够）。</span></span><br><span class="line">📌 参数</span><br><span class="line">n = <span class="number">0xc0f6c3a5466f87ae18fffa62da425b7620fe9a37ec30a6ff69111a67268e76c3bbfc2b791f5350b18205d73c4a0b2fc27928a22a2516662435649f5cf00f4dd31703779979529fbb64068449424585a03892de77bdc4d6972f10bb7df852d39425048b4b9ada8957078f648e75fb93eb959ae5673707124aeec15428834bdaf288f8186b37bd8e9a288da9dbec912ca743b9156d68f614df09915e2e398fe004d684d1ceffde320f0e7c55c0cd5e572521f7b64e8d09bd0351473b8548894320860846fdf0107eee4918f1d803f33f909014038d93568b58bf58dc88b42a95adae25d39ca6f257f1165b0fb0c38f020c8bb86b93d93d04fb3d8b8abe67cf4627</span></span><br><span class="line">e = <span class="number">3</span></span><br><span class="line">target = CMD=LOGIN&amp;USER=Admin&amp;role=admin</span><br><span class="line">target 的 SHA-<span class="number">256</span> 摘要：3031300d06096086480165030402010500042004adac79091c50730eafe973208ee267087b30abacbd5c58abdd77f1f808990d</span><br><span class="line">任务：构造一个能通过上述验签逻辑的伪造签名，提交即可获得 flag （验签通过与否由真实验签代码判定，而非比对某个固定签名值）。</span><br><span class="line"></span><br><span class="line">📤 提交伪造签名</span><br><span class="line">输入十六进制伪造签名 s（可含 0x 前缀）：</span><br></pre></td></tr></table></figure>
+<h3 id="分析-4">分析</h3>
+<p>想解这个题目要熟悉<code>PKCS#1 v1.5</code>填充机制</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">00 | 01 | FF FF FF ... FF | 00 | 30 31 30 0d 06 09 60 86 48 01 65 03 04 02 01 05 00 04 20 || &lt;32字节摘要&gt;</span><br><span class="line">└┬┘ └┬┘  └─────┬──────┘  └┬┘  └────────────────────┬───────────────────────────────┘  └───┬───┘</span><br><span class="line"> 0   1       PS(填充)      分隔符              DigestInfo 前缀（19字节）       </span><br></pre></td></tr></table></figure>
+<p>其中 <code>DigestInfo</code> = 19 字节前缀 + 32 字节摘要 = <strong>51 字节</strong>。</p>
+<p>本题验签逻辑：</p>
+<p>头两字节是 <code>00 01</code>；存在子串 <code>00‖DigestInfo</code> 且 <code>idx ≥ 2。</code></p>
+<p>这里就有一个问题：<strong>PS 段无校验</strong></p>
+<p>原本的EM 由摘要唯一确定，没有操作空间，但是此处在PS 能随便填，EM 的结构就可以由我们设计。</p>
+<p>验签算的是 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>s</mi><mn>3</mn></msup><mtext> </mtext><mi>m</mi><mi>o</mi><mi>d</mi><mtext> </mtext><mi>n</mi></mrow><annotation encoding="application/x-tex">s^3\,mod \, n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8141em;"></span><span class="mord"><span class="mord mathnormal">s</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">3</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal">m</span><span class="mord mathnormal">o</span><span class="mord mathnormal">d</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal">n</span></span></span></span>，反方向就是近似立方数。只要 EM 是近似立方数且小于n，<em>s</em> 不需要私钥就能算出来。</p>
+<p>构造：把 DigestInfo 顶到高位，后面全放垃圾值</p>
+<pre><code>EM = 00 01 00 ‖ DigestInfo(51B) ‖ 0x00 × 202        （共 256 字节）
+</code></pre>
+<p>取 s = ⌈∛EM⌉，则 s³ = EM + Δ，其中 Δ &lt; 3s² ≈ 2^1357 ≈ 170 字节。<br>
+误差只啃最低 170 字节，而垃圾区有 202 字节,不会影响关键的<code>DigestInfo</code></p>
+<p>提交 s 即可</p>
+<h2 id="5-非常规数据流的处理">5.非常规数据流的处理</h2>
+<p>考点范围很广，汗多题目都脱离的传统密码ctf，所以有是碰到什么word或者原始二进制文件加解密会有点茫然</p>
+<p>这里梳理一下</p>
+<h3 id="1-pem文件">1.  pem文件</h3>
+<p>这个重点就是openssl的使用了</p>
+<p>直接输入<code>openssl help</code>你会发现打印出来了命令列表：</p>
+<p><img src="/2026/11/14/issc%E5%AF%86%E7%A0%81%E5%AE%89%E5%85%A8%E8%B5%9B%E5%90%8E%E8%AE%B0/image-f9f9806602965762.png" alt="image-20261115223252712"></p>
+<p>这个help的信息在断网情况下对于新手使用者还是很重要的</p>
+<p>这里的每一项都代表特定的算法或者证书格式，而我们这里涉及的是<code>rsa</code>，所以我们使用<code>openssl rsa -help</code>进一步查看帮助文档</p>
+<p><img src="/2026/11/14/issc%E5%AF%86%E7%A0%81%E5%AE%89%E5%85%A8%E8%B5%9B%E5%90%8E%E8%AE%B0/image-db6200bd961a55e8.png" alt="image-20261115223402337"></p>
+<p>这里列出了和<code>rsa</code>证书有关的项</p>
+<p>我们要查看密钥内容的话直接</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">openssl rsa -in key.pem -inform PEM -text</span><br></pre></td></tr></table></figure>
+<p><img src="/2026/11/14/issc%E5%AF%86%E7%A0%81%E5%AE%89%E5%85%A8%E8%B5%9B%E5%90%8E%E8%AE%B0/image-8b7efae7bc0f7a91.png" alt="image-20261115223757002"></p>
+<p>不带<code>-text</code>就是不解析打印一次pem内容:</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">openssl rsa -in key.pem -inform PEM</span><br></pre></td></tr></table></figure>
+<p><img src="/2026/11/14/issc%E5%AF%86%E7%A0%81%E5%AE%89%E5%85%A8%E8%B5%9B%E5%90%8E%E8%AE%B0/image-72ec5231accb1cf8.png" alt="image-20261115223926059"></p>
+<h3 id="2-其他类型">2.其他类型</h3>
+<p>读入python：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">b = <span class="built_in">open</span>(p, <span class="string">&#x27;rb&#x27;</span>).read()                    <span class="comment"># 整个读</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>, <span class="built_in">len</span>(b), <span class="number">1</span> &lt;&lt; <span class="number">20</span>):         <span class="comment"># 大文件分块</span></span><br><span class="line">    chunk = b[i:i + (<span class="number">1</span> &lt;&lt; <span class="number">20</span>)]</span><br><span class="line">b.find(<span class="string">b&#x27;word/document.xml&#x27;</span>)                <span class="comment"># 按偏移定位，再用切片</span></span><br></pre></td></tr></table></figure>
+<p>辅助判断的信息：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">sniff(b)      <span class="comment"># 前 8 字节比对 magic</span></span><br><span class="line"><span class="built_in">len</span>(b)        <span class="comment"># 密文长度 == 明文长度 → 流密码；变长/对齐到 16 → 分组密码</span></span><br><span class="line">entropy(b)    <span class="comment"># ≈8.0 加密或压缩；≈4.5 英文/代码；≈7.9 但 magic=PK → 压缩容器</span></span><br><span class="line">printable(b)  <span class="comment"># 接近 1.0 说明其实是文本，不是密文</span></span><br></pre></td></tr></table></figure>
+<p>某题目exp：</p>
+<figure class="highlight py"><table><tr><td class="code"><pre><span class="line">ct = <span class="built_in">open</span>(<span class="string">&#x27;填空2数据.enc&#x27;</span>, <span class="string">&#x27;rb&#x27;</span>).read()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">step</span>(<span class="params">s</span>):</span><br><span class="line">    <span class="keyword">return</span> s[<span class="number">0</span>], s[<span class="number">1</span>:] + <span class="built_in">bytes</span>([s[<span class="number">0</span>] ^ s[<span class="number">2</span>] ^ s[<span class="number">3</span>] ^ s[<span class="number">63</span>]])</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">back</span>(<span class="params">s</span>):</span><br><span class="line">    b = s[<span class="number">63</span>] ^ s[<span class="number">1</span>] ^ s[<span class="number">2</span>] ^ s[<span class="number">62</span>]</span><br><span class="line">    <span class="keyword">return</span> b, <span class="built_in">bytes</span>([b]) + s[:<span class="number">63</span>]</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">s = ct[<span class="number">1700</span>:<span class="number">1764</span>]                      <span class="comment"># 零段密文 = 密钥流 = 该刻状态</span></span><br><span class="line">fwd = <span class="built_in">bytearray</span>()</span><br><span class="line"><span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(ct) - <span class="number">1700</span>):</span><br><span class="line">    o, s = step(s)</span><br><span class="line">    fwd.append(o)</span><br><span class="line"></span><br><span class="line">s = ct[<span class="number">1700</span>:<span class="number">1764</span>]</span><br><span class="line">pre = <span class="built_in">bytearray</span>()</span><br><span class="line"><span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1700</span>):</span><br><span class="line">    o, s = back(s)</span><br><span class="line">    pre.append(o)</span><br><span class="line">pre.reverse()</span><br><span class="line"></span><br><span class="line">pt = <span class="built_in">bytes</span>(a ^ b <span class="keyword">for</span> a, b <span class="keyword">in</span> <span class="built_in">zip</span>(ct, <span class="built_in">bytes</span>(pre) + <span class="built_in">bytes</span>(fwd)))</span><br><span class="line"><span class="built_in">open</span>(<span class="string">&#x27;out.docx&#x27;</span>, <span class="string">&#x27;wb&#x27;</span>).write(pt)</span><br><span class="line"><span class="built_in">print</span>(pt[:<span class="number">4</span>], pt[:<span class="number">4</span>] == <span class="string">b&#x27;PK\x03\x04&#x27;</span>)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+    </div>
+    <footer class="post-footer">
+        <nav class="post-footer__actions" aria-label="文章页脚">
+            <a class="back-link post-footer__action post-footer__action--primary" href="/#posts">
+                <svg class="svg-icon" viewBox="0 0 448 512" width="0.9em" height="0.9em" aria-hidden="true" style="display:inline-block;flex-shrink:0;pointer-events:none;vertical-align:-0.125em"><path fill="currentColor" d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.2 288 416 288c17.7 0 32-14.3 32-32s-14.3-32-32-32l-306.7 0L214.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"></path></svg><span>返回列表</span>
+            </a>
+            <a class="back-link post-footer__action" href="/">
+                <svg class="svg-icon" viewBox="0 0 576 512" width="0.9em" height="0.9em" aria-hidden="true" style="display:inline-block;flex-shrink:0;pointer-events:none;vertical-align:-0.125em"><path fill="currentColor" d="M575.8 255.5c0 18-15 32.1-32 32.1h-32l.7 160.2c0 2.7-.2 5.4-.5 8.1V432c0 22.1-17.9 40-40 40H160c-1.1 0-2.2 0-3.3-.1l-7.8-.2c-21.1 0-38.1-18.1-38.1-39.8 0-1.5 0-3 .1-4.5l.3-2.7c0-15.9 12.9-28.9 28.9-28.9 5.1 0 9.8 1.6 13.6 4.2l.5.3c3.9 2.4 8.8 3.9 14 3.9 12.5 0 22.6-10.1 22.6-22.6 0-7.2-3.4-13.6-8.6-17.7L416 213.3V386.5h40c17.7 0 32 14.3 32 32zM352 379.8V181l46.9 38.8c9.7 8 24.9 6.5 33.7-3.4l17.9-19.9c9-10.1 7.6-25.7-3.1-34.1L308.7 85.4c-6.8-5.7-16.7-5.7-23.5 0L151.5 182.4c-10.7 8.4-13.1 24-3.1 34.1l17.9 19.9c8.8 9.9 24 11.4 33.7 3.4L246 227V379.8h96 48z"></path></svg><span>返回首页</span>
+            </a>
+        </nav>
+    </footer>
+    <nav class="post-nav" aria-label="文章导航">
+        
+        <a class="post-nav__card post-nav__card--prev" href="/2026/11/05/LWE%E5%AD%A6%E4%B9%A0/">
+            <span class="post-nav__dir">← 上一篇</span>
+            <span class="post-nav__title">LWE学习</span>
+            <span class="post-nav__date">2026-11-05</span>
+        </a>
+        
+        
+        <span class="post-nav__placeholder"></span>
+        
+    </nav>
+    
+</article>
+<div class="article-toc" aria-label="文章目录" hidden></div>
+<div class="article-dock article-dock--hidden">
+    <button class="article-dock__fab" type="button" aria-label="返回顶部">
+        <svg class="svg-icon" viewBox="0 0 448 512" width="14" height="14" aria-hidden="true" style="display:inline-block;flex-shrink:0;vertical-align:-0.125em"><path fill="currentColor" d="M201.4 105.4c12.5-12.5 32.8-12.5 45.3 0l160 160c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L224 173.3 86.6 310.6c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3l160-160z"></path></svg>
+    </button>
+    <button class="article-dock__fab article-dock__fab--aa" type="button" aria-haspopup="dialog" aria-label="阅读设置">Aa</button>
+</div>
+<div class="article-dock__overlay" hidden>
+    <div class="article-dock__popover" role="dialog" aria-modal="true" tabindex="-1">
+        <div class="article-dock__popover-group" role="group">
+            <span class="article-dock__popover-label">字号</span>
+            <div class="article-dock__popover-row">
+                <button class="article-dock__btn article-dock__btn--font" type="button" data-font-step="-1">A−</button>
+                <span class="article-dock__popover-value">100%</span>
+                <button class="article-dock__btn article-dock__btn--font" type="button" data-font-step="1">A+</button>
+            </div>
+        </div>
+        <div class="article-dock__popover-group" role="group">
+            <span class="article-dock__popover-label">行高</span>
+            <div class="article-dock__popover-row">
+                
+                <button class="article-dock__btn article-dock__btn--seg" type="button" data-line-height="1.6">1.6</button>
+                
+                <button class="article-dock__btn article-dock__btn--seg" type="button" data-line-height="1.8">1.8</button>
+                
+                <button class="article-dock__btn article-dock__btn--seg" type="button" data-line-height="2">2</button>
+                
+            </div>
+        </div>
+        <div class="article-dock__popover-group" role="group">
+            <span class="article-dock__popover-label">宽度</span>
+            <div class="article-dock__popover-row">
+                
+                <button class="article-dock__btn article-dock__btn--seg" type="button" data-width="720">720px</button>
+                
+                <button class="article-dock__btn article-dock__btn--seg" type="button" data-width="840">840px</button>
+                
+                <button class="article-dock__btn article-dock__btn--seg" type="button" data-width="960">960px</button>
+                
+            </div>
+        </div>
+        <button class="article-dock__btn article-dock__btn--focus" type="button" aria-pressed="false">
+            <svg class="svg-icon" viewBox="0 0 512 512" width="14px" height="14px" aria-hidden="true" style="display:inline-block;flex-shrink:0;pointer-events:none;vertical-align:-0.125em"><path fill="currentColor" d="M344 0L488 0c13.3 0 24 10.7 24 24l0 144c0 9.7-5.8 18.5-14.8 22.2s-19.3 1.7-26.2-5.2l-39-39-87 87c-9.4 9.4-24.6 9.4-33.9 0l-32-32c-9.4-9.4-9.4-24.6 0-33.9l87-87L327 41c-6.9-6.9-8.9-17.2-5.2-26.2S334.3 0 344 0zM168 512L24 512c-13.3 0-24-10.7-24-24L0 344c0-9.7 5.8-18.5 14.8-22.2s19.3-1.7 26.2 5.2l39 39 87-87c9.4-9.4 24.6-9.4 33.9 0l32 32c9.4 9.4 9.4 24.6 0 33.9l-87 87 39 39c6.9 6.9 8.9 17.2 5.2 26.2s-12.5 14.8-22.2 14.8z"></path></svg><span>专注模式</span>
+        </button>
+    </div>
+</div>
+
+    </div>
+    <div class="page-footer">
+        <footer class="site-footer">
+    <div class="footer-bottom">
+        <span class="footer-copyright">© 2018-2026 ddanggui</span>
+        <span class="footer-meta">
+            <span class="footer-tagline">多喝热水</span>
+            <span class="footer-version" title="Wakusei HomePage v1.0.0">v1.0.0</span>
+        </span>
+    </div>
+</footer>
+
+    </div>
+</div>
+<div class="top-bar" role="toolbar" aria-label="Top navigation">
+    <a class="top-bar-left" href="/">
+        <span class="top-bar-left-content">
+            <img class="top-bar-avatar" src="/img/avatar.png" width="40" height="40" alt="">
+            <span class="top-bar-name"><span class="name-latin">ddanggui</span></span>
+        </span>
+    </a>
+    <div class="top-bar-right">
+        <a class="top-bar-dock-item has-text" href="/"><span class="top-bar-dock-label">主页</span></a>
+        <a class="top-bar-dock-item has-text active" href="/#posts"><span class="top-bar-dock-label">文章</span></a>
+        <a class="top-bar-dock-item has-text" href="/archives/"><span class="top-bar-dock-label">归档</span></a>
+        <a class="top-bar-dock-item has-text" href="/friends/"><span class="top-bar-dock-label">友链</span></a>
+        <a class="top-bar-dock-item has-text" href="/about/"><span class="top-bar-dock-label">About Me</span></a>
+        <div class="top-bar-divider"></div>
+        <button class="top-bar-dock-item" type="button" data-action="toggle-theme" title="主题" aria-label="主题">
+            <svg class="svg-icon icon-dark" viewBox="0 0 512 512" width="1em" height="1em" aria-hidden="true" style="display:inline-block;flex-shrink:0;pointer-events:none;vertical-align:-0.125em"><path fill="currentColor" d="M256 0C114.6 0 0 114.6 0 256S114.6 512 256 512c68.8 0 131.3-27.2 177.3-71.4 7.3-7 9.4-17.9 5.3-27.1s-13.7-14.9-23.8-14.1c-4.9 .4-9.8 .6-14.8 .6-101.6 0-184-82.4-184-184 0-72.1 41.5-134.6 102.1-164.8 9.1-4.5 14.3-14.3 13.1-24.4S322.6 8.5 312.7 6.3C294.4 2.2 275.4 0 256 0z"></path></svg>
+            <svg class="svg-icon icon-light" viewBox="0 0 576 512" width="1em" height="1em" aria-hidden="true" style="display:inline-block;flex-shrink:0;pointer-events:none;vertical-align:-0.125em"><path fill="currentColor" d="M288-32c8.4 0 16.3 4.4 20.6 11.7L364.1 72.3 468.9 46c8.2-2 16.9 .4 22.8 6.3S500 67 498 75.1l-26.3 104.7 92.7 55.5c7.2 4.3 11.7 12.2 11.7 20.6s-4.4 16.3-11.7 20.6L471.7 332.1 498 436.8c2 8.2-.4 16.9-6.3 22.8S477 468 468.9 466l-104.7-26.3-55.5 92.7c-4.3 7.2-12.2 11.7-20.6 11.7s-16.3-4.4-20.6-11.7L211.9 439.7 107.2 466c-8.2 2-16.8-.4-22.8-6.3S76 445 78 436.8l26.2-104.7-92.6-55.5C4.4 272.2 0 264.4 0 256s4.4-16.3 11.7-20.6L104.3 179.9 78 75.1c-2-8.2 .3-16.8 6.3-22.8S99 44 107.2 46l104.7 26.2 55.5-92.6 1.8-2.6c4.5-5.7 11.4-9.1 18.8-9.1zm0 144a144 144 0 1 0 0 288 144 144 0 1 0 0-288zm0 240a96 96 0 1 1 0-192 96 96 0 1 1 0 192z"></path></svg>
+        </button>
+        <button class="top-bar-dock-item" type="button" data-action="open-search" title="搜索" aria-label="搜索">
+            <svg class="svg-icon" viewBox="0 0 512 512" width="1em" height="1em" aria-hidden="true" style="display:inline-block;flex-shrink:0;pointer-events:none;vertical-align:-0.125em"><path fill="currentColor" d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376C296.3 401.2 253.9 416 208 416C93.1 416 0 322.9 0 208S93.1 0 208 0s208 93.1 208 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z"></path></svg>
+        </button>
+    </div>
+</div>
+<div id="top-bar-sidebar" class="top-bar-sidebar theme-light" role="dialog" aria-label="导航菜单">
+    <div class="sidebar-header">
+        <div class="sidebar-avatar-frame">
+            <img class="sidebar-avatar" src="/img/avatar.png" width="48" height="48" loading="lazy" decoding="async" alt="">
+        </div>
+        <span class="sidebar-name">ddanggui</span>
+    </div>
+    <div class="sidebar-divider"></div>
+    <a class="sidebar-menu-item" href="/">
+        <svg class="svg-icon sidebar-menu-icon" viewBox="0 0 576 512" width="1em" height="1em" aria-hidden="true" style="display:inline-block;flex-shrink:0;pointer-events:none;vertical-align:-0.125em"><path fill="currentColor" d="M575.8 255.5c0 18-15 32.1-32 32.1h-32l.7 160.2c0 2.7-.2 5.4-.5 8.1V432c0 22.1-17.9 40-40 40H160c-1.1 0-2.2 0-3.3-.1l-7.8-.2c-21.1 0-38.1-18.1-38.1-39.8 0-1.5 0-3 .1-4.5l.3-2.7c0-15.9 12.9-28.9 28.9-28.9 5.1 0 9.8 1.6 13.6 4.2l.5.3c3.9 2.4 8.8 3.9 14 3.9 12.5 0 22.6-10.1 22.6-22.6 0-7.2-3.4-13.6-8.6-17.7L416 213.3V386.5h40c17.7 0 32 14.3 32 32zM352 379.8V181l46.9 38.8c9.7 8 24.9 6.5 33.7-3.4l17.9-19.9c9-10.1 7.6-25.7-3.1-34.1L308.7 85.4c-6.8-5.7-16.7-5.7-23.5 0L151.5 182.4c-10.7 8.4-13.1 24-3.1 34.1l17.9 19.9c8.8 9.9 24 11.4 33.7 3.4L246 227V379.8h96 48z"></path></svg><span>主页</span>
+    </a>
+    <a class="sidebar-menu-item active" href="/#posts">
+        <svg class="svg-icon sidebar-menu-icon" viewBox="0 0 512 512" width="1em" height="1em" aria-hidden="true" style="display:inline-block;flex-shrink:0;pointer-events:none;vertical-align:-0.125em"><path fill="currentColor" d="M96 96c0-35.3 28.7-64 64-64l288 0c35.3 0 64 28.7 64 64l0 320c0 35.3-28.7 64-64 64L80 480c-44.2 0-80-35.8-80-80L0 128c0-17.7 14.3-32 32-32s32 14.3 32 32l0 272c0 8.8 7.2 16 16 16s16-7.2 16-16L96 96zm64 24l0 80c0 13.3 10.7 24 24 24l112 0c13.3 0 24-10.7 24-24l0-80c0-13.3-10.7-24-24-24L184 96c-13.3 0-24 10.7-24 24zm208-8c0 8.8 7.2 16 16 16l48 0c8.8 0 16-7.2 16-16s-7.2-16-16-16l-48 0c-8.8 0-16 7.2-16 16zm0 96c0 8.8 7.2 16 16 16l48 0c8.8 0 16-7.2 16-16s-7.2-16-16-16l-48 0c-8.8 0-16 7.2-16 16zM160 304c0 8.8 7.2 16 16 16l256 0c8.8 0 16-7.2 16-16s-7.2-16-16-16l-256 0c-8.8 0-16 7.2-16 16zm0 96c0 8.8 7.2 16 16 16l256 0c8.8 0 16-7.2 16-16s-7.2-16-16-16l-256 0c-8.8 0-16 7.2-16 16z"></path></svg><span>文章</span>
+    </a>
+    <a class="sidebar-menu-item" href="/archives/">
+        <svg class="svg-icon sidebar-menu-icon" viewBox="0 0 512 512" width="1em" height="1em" aria-hidden="true" style="display:inline-block;flex-shrink:0;pointer-events:none;vertical-align:-0.125em"><path fill="currentColor" d="M232.5 5.2c14.9-6.9 32.1-6.9 47 0l192 88c22.7 10.4 22.7 42.8 0 53.2l-192 88c-14.9 6.9-32.1 6.9-47 0l-192-88c-22.7-10.4-22.7-42.8 0-53.2l192-88zM0 212.8c0-9.9 10.1-16.6 19.2-12.5L256 309.5l236.8-109.2c9-4.2 19.2 2.4 19.2 12.5 0 5.4-3.2 10.3-8.1 12.5L279.5 328.7c-14.9 6.9-32.1 6.9-47 0L8.1 225.3C3.2 223 0 218.2 0 212.8zm0 96c0-9.9 10.1-16.6 19.2-12.5L256 405.5l236.8-109.2c9-4.2 19.2 2.4 19.2 12.5 0 5.4-3.2 10.3-8.1 12.5L279.5 424.7c-14.9 6.9-32.1 6.9-47 0L8.1 321.3C3.2 319 0 314.2 0 308.8z"></path></svg><span>归档</span>
+    </a>
+    <a class="sidebar-menu-item" href="/friends/">
+        <span class="sidebar-menu-icon" aria-hidden="true">↗</span><span>友链</span>
+    </a>
+    <div class="sidebar-divider"></div>
+    <a class="sidebar-menu-item" href="/about/">
+        <span class="sidebar-menu-icon" aria-hidden="true">☺</span><span>About Me</span>
+    </a>
+    <button class="sidebar-menu-item" type="button" data-action="toggle-theme">
+        <svg class="svg-icon sidebar-menu-icon" viewBox="0 0 512 512" width="1em" height="1em" aria-hidden="true" style="display:inline-block;flex-shrink:0;pointer-events:none;vertical-align:-0.125em"><path fill="currentColor" d="M256 0C114.6 0 0 114.6 0 256S114.6 512 256 512c68.8 0 131.3-27.2 177.3-71.4 7.3-7 9.4-17.9 5.3-27.1s-13.7-14.9-23.8-14.1c-4.9 .4-9.8 .6-14.8 .6-101.6 0-184-82.4-184-184 0-72.1 41.5-134.6 102.1-164.8 9.1-4.5 14.3-14.3 13.1-24.4S322.6 8.5 312.7 6.3C294.4 2.2 275.4 0 256 0z"></path></svg><span>主题</span>
+    </button>
+    <button class="sidebar-menu-item" type="button" data-action="open-search">
+        <svg class="svg-icon sidebar-menu-icon" viewBox="0 0 512 512" width="1em" height="1em" aria-hidden="true" style="display:inline-block;flex-shrink:0;pointer-events:none;vertical-align:-0.125em"><path fill="currentColor" d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376C296.3 401.2 253.9 416 208 416C93.1 416 0 322.9 0 208S93.1 0 208 0s208 93.1 208 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z"></path></svg><span>搜索</span>
+    </button>
+    <div class="sidebar-divider"></div>
+</div>
+<div class="top-bar-sidebar-overlay"></div>
+
+
+<div class="search-modal-overlay" id="searchModal" role="dialog" aria-modal="true" aria-labelledby="search-modal-title" hidden>
+    <div class="search-modal-dialog">
+        <div class="search-modal-header">
+            <h2 id="search-modal-title" class="sr-only">搜索</h2>
+            <div class="search-control">
+                <svg class="svg-icon search-control__icon" viewBox="0 0 512 512" width="1em" height="1em" aria-hidden="true" style="display:inline-block;flex-shrink:0;pointer-events:none;vertical-align:-0.125em"><path fill="currentColor" d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376C296.3 401.2 253.9 416 208 416C93.1 416 0 322.9 0 208S93.1 0 208 0s208 93.1 208 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z"></path></svg>
+                <input id="search-modal-input" class="search-input" type="search" placeholder="搜索文章…" autocomplete="off">
+                <button class="search-clear" type="button" aria-label="清空" hidden><svg class="svg-icon" viewBox="0 0 384 512" width="1em" height="1em" aria-hidden="true" style="display:inline-block;flex-shrink:0;pointer-events:none;vertical-align:-0.125em"><path fill="currentColor" d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z"></path></svg></button>
+            </div>
+            <p id="search-modal-help" class="search-help">↑↓ 选择,Enter 跳转,Esc 关闭</p>
+        </div>
+        <div class="search-modal-body">
+            <div class="search-loading" hidden><p>正在加载搜索索引…</p></div>
+            <div class="search-summary" aria-live="polite" hidden><span></span><span></span><button class="search-view-all-link" type="button">查看全部结果</button></div>
+            <div class="search-results scroller"></div>
+            <div class="search-empty" hidden><p>没有找到相关文章</p><button class="search-empty__button" type="button">清空重搜</button></div>
+        </div>
+    </div>
+</div>
+
+
+<script src="/js/core.js" defer></script>
+<script src="/js/article.js" defer></script>
+
+</body>
+</html>

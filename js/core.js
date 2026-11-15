@@ -41,6 +41,14 @@
     function clamp01(v) { return v < 0 ? 0 : v > 1 ? 1 : v; }
 
     function applyScrollProgress(sp, dir) {
+        // Inner pages start at their content on mobile: no full-screen hero or delayed navigation.
+        if (isMobileMQ.matches && !isHome) {
+            if (topBar) {
+                topBar.removeAttribute('data-capsule-hidden');
+                topBar.style.setProperty('--nav-translate-y', '0');
+            }
+            return;
+        }
         if (heroContent) {
             if (sp <= 0) {
                 heroContent.removeAttribute('style');
@@ -66,7 +74,7 @@
             topBar.style.setProperty('--left-width', 'calc(' + eased + ' * var(--left-panel-width, 500px))');
             var hideNav = sp >= 0.45 && dir === 'down';
             topBar.style.setProperty('--nav-translate-y', hideNav ? '-100%' : '0');
-            var showCapsule = isMobileMQ.matches && isHome && sp > 0.35;
+            var showCapsule = isMobileMQ.matches && (!isHome || sp > 0.35);
             if (showCapsule) topBar.removeAttribute('data-capsule-hidden');
             else topBar.setAttribute('data-capsule-hidden', '');
         }
@@ -93,6 +101,7 @@
             if (!frame) frame = requestAnimationFrame(flush);
         };
         scroller.addEventListener('scroll', onScroll, { passive: true });
+        window.addEventListener('resize', onScroll, { passive: true });
         onScroll();
     }
     var scrollDir = 'up';

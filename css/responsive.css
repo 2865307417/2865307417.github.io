@@ -69,6 +69,13 @@
         min-height: 100svh;
     }
 
+    /* Keep the immersive hero on the home page only. Inner pages open directly on content. */
+    .hero-sticky:not([data-is-home]) {
+        display: none;
+        height: 0;
+        min-height: 0;
+    }
+
     /* The widget rail is a desktop-only enhancement. Mobile keeps the full hero content. */
     .hero-marquee,
     .hero-marquee-defocus {

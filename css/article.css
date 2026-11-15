@@ -2263,7 +2263,7 @@
     background: var(--accent-blue);
 }
 
-.archives-index-header h2 {
+.archives-index-header h1 {
     margin: 0;
     font-family: var(--font-display);
     font-size: clamp(3rem, 9vw, 7rem);
